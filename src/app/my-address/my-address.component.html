@@ -1,0 +1,273 @@
+<title>My Address</title>
+<div class="container-fluid" style="padding:50px;">
+
+    <div>
+        
+        <div class="Banner" >
+            <div *ngFor='let item of Profilr'>
+            <div class="col-lg-2 col-sm-12 col-xs-12 col-md-12" *ngIf='item.profileImage != "" && item.profileImage != null ? false :true'>
+                <img src="../../assets/Images/icon/avatar.jpg"  class="avatar">
+        
+            </div><div class="col-lg-2 col-sm-12 col-xs-12 col-md-12" *ngIf='item.profileImage != "" && item.profileImage != null ? true :false'>
+                <img src="{{item.profileImage}}"  class="avatar">
+        
+            </div>
+        </div>
+            <div class="col-lg-10 col-xs-12 col-md-12 col-sm-12" style="top: 270px;">
+               <div class="col-lg-3 col-xs-3 col-md-3 col-sm-3" style="text-align: center;" >
+                   <h4 style="font-family:Roboto, sans-serif  !important;color: white;font-size: 27px;"> {{Name}}  {{LastName}}</h4>
+               </div>
+               <div class="col-lg-3 col-xs-3 col-md-3 col-sm-3" style="border-left: 1px solid white;text-align: center;">
+                <h4 style="font-family:'Roboto', sans-serif !important;color: white;font-size: 27px;">  {{Mobileno}} </h4>
+            </div>
+            <div class="col-lg-4 col-xs-3 col-md-3 col-sm-3" style="border-left: 1px solid white;text-align: center;">
+                <h4 style="font-family:'Roboto', sans-serif !important;color: white;font-size: 27px;">{{EmailId}} </h4>
+            </div>
+            <div class="col-lg-2 col-xs-3 col-md-3 col-sm-3" *ngIf='GustStrn == null || GustStrn == "" ? true : false' style="padding-top:32px ;" >
+                <button class="btn" style="background-color: #9ed3c2; color: white;font-size: 20px;font-family:Ubuntu-Bold !important ;" (click)="open(CustomerDetails)">Edit Profile</button>
+            </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="container-fluid" style="padding:50px;padding-left: 100px;">
+    <div class="row">
+        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6" style="padding-right: unset;">
+<h3 style="font-family: Ubuntu-Medium !important;font-size: 25px;">My Account</h3>
+
+<div style="padding-top: 20px;">
+    <h3 style="    padding-top: 5px;height: 31px;padding-left: 15px; font-family: 'Roboto', sans-serif !important;font-size: 20px; outline: none;" [routerLink]="'/MyOrder'">My Order</h3>
+</div>
+
+<div style="padding-top: 5px;">
+<h3 style="font-family: 'Roboto', sans-serif !important;font-size: 20px;padding-left: 15px;outline: none;" [routerLink]="'/OrderDetail'">Order Details</h3>
+</div>
+<div style="padding-top: 5px;">
+<h3 style="font-family: 'Roboto', sans-serif !important;font-size: 20px;padding-left: 15px;outline: none;" [routerLink]="'/Review'">Review</h3>
+</div>
+
+<div style="padding-top: 5px;">
+<h3 style=" padding-top: 5px;padding-bottom: 5px; font-family: 'Roboto', sans-serif !important;font-size: 20px;padding-left: 15px;outline: none;background-color: silver;border-left: 3px solid #9ed3c2;color: #9ed3c2;" [routerLink]="'/MyAddress'">My Address</h3>
+</div>
+
+        </div>
+        <div class="col-lg-10 colmd-10 col-xs-6 col-sm-6" style="padding-left: unset;">
+            <div class="col-lg-12 col-xs-12 col-sm-12 col-md-12" style="padding-top:40px;padding-bottom: 50px; padding-left: 70px;  border:1px solid rgba(111,111,111,0.5)" >
+          
+                <div class="col-lg-5 col-xs-5 col-md-5 col-sm-5">
+                <h2 >My Address</h2>
+
+                <div class="" style="padding-top: 40px;" *ngFor='let items of EditAddress'>
+                    <div class="" style="border: 1px solid rgba(111,111,111,0.5);padding: 15px; border-radius: 8px;  height: 200px;;">
+                    <p style="margin-bottom:unset;font-size: 21px;color: #555;">{{items.name}} {{items.lastName}}</p>
+                    <p style="margin-bottom:unset;font-size: 21px;color: #555">{{items.addLine1}} {{items.addLine2}}</p>
+                    <p style="margin-bottom:unset;font-size: 21px;color: #555">{{items.city}} {{items.state}}, {{items.zip}}</p>
+<div class="col-lg-3 col-md-3">
+    
+</div>
+<div class="col-lg-6 col-md-6 col-xs-5 col-sm-5" style="padding-top: 25px;">
+    <button class="btn " style="background-color: #9ed3c2;color: white;float: right;width: 71%;border-radius: 5px;font-family: Ubuntu-Medium !important;font-size: 18px;font-family:Ubuntu-Bold !important" (click)="open1(ChangeAddress,items.deliveryId)"  >Edit <i class="fa fa-pencil" style="padding-left: 10px;"></i></button> 
+</div>
+<div class="col-lg-3col-md-3 col-xs-3 col-sm-3" style="padding-top: 25px;">
+    <span style="float: right;" style="border: 1px solid rgba(111,111,111,0.5);padding: 5px;border-radius: 5px;font-family: Ubuntu-Medium !important;float: right;font-size: 23px;" (click)="Delete(items.deliveryId)"  ><i class="fa fa-trash" style="font-size: 1.5em;"></i></span>
+</div>
+                       
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-lg-5 col-md-5 col-xs-5 col-sm-5" style="padding-top: 18%;">
+                <button class="btn " style="background-color: #9ed3c2;width: 73%; color: white;float: right;font-size: 21px;font-family:Ubuntu-Bold !important ;"  (click)="open(AddNewAddress)">ADD NEW ADDRESS</button> 
+            </div>
+               
+              
+              
+            </div>
+        
+        </div>
+    </div>
+</div>
+
+  
+
+
+ 
+<ng-template #CustomerDetails let-modal >
+    
+    <div class="modal-header" style="border: none;padding: 35px;padding-bottom: unset;">
+  
+      <h3 class="modal-title" id="modal-basic-title" style="font-family:Roboto, sans-serif  !important">Profile Details</h3>
+  
+      <button type="button" class="close" aria-label="Close" style="outline: none;opacity: 1;font-size: 34px;padding-top: unset;" (click)="modal.dismiss('Cross click')">
+  
+        <span aria-hidden="true">×</span>
+  
+      </button>
+  
+    </div>
+  
+    <div class="modal-body" style="padding:35px;">
+ <div class="col-lg-12 col-xs-12 col-sm-12 col-xs-12">
+    <span [hidden]="isShownErrorAddress" style="color: red;" >{{AddressErrorMsg}}</span>
+    <span [hidden]="isShownSuccessAddress" style="color: #9ed3c2;" >{{AddressSuccessMsg}}</span>
+ </div>
+  
+    <div class="col-lg-12 col-xs-12 col-sm-12 col-xs-12">
+        <div class="form-group" style="padding-top:10px ;">
+            <input type="text" placeholder="First Name" [(ngModel)]="Name" class="form-control line" style="font-family: Ubuntu-Medium !important;" />
+        </div>
+        <div class="form-group" style="padding-top:10px ;">
+           
+            <input type="text" placeholder="Last Name" [(ngModel)]="LastName" class="form-control line" style="font-family: Ubuntu-Medium !important;"  />
+        </div>
+        <div class="form-group" style="padding-top:10px ;">
+           
+            <input type="text" placeholder="Email ID " [(ngModel)]="EmailId" class="form-control line"  style="font-family: Ubuntu-Medium !important;" />
+        </div>
+        <div class="form-group" style="padding-top:10px ;">
+           
+            <input type="text" placeholder="Mobile Number " [(ngModel)]="Mobileno" maxlength="13" (ngModelChange)="onprofileMobileChange($event)"  class="form-control line" style="font-family: Ubuntu-Medium !important;" />
+        </div>
+        <div class="form-group" style="padding-top:10px ;">
+           
+            <input type="file"  [(ngModel)]="Filepng" class="form-control line" style="font-family: Ubuntu-Medium !important;" />
+        </div>
+        
+        <div class="form-group" style=" margin-top: 10px; margin-bottom: 30px; border-radius: 34px;border: 1px solid ;background-color: #9ed3c2;text-align: center;">
+           
+            <h3 class="" (click)="UpdateaddressClick()" style="font-family: Ubuntu-Medium !important;text-align: center;margin-top: 10px;color: white;">SUBMIT</h3>
+        </div>
+
+      
+    </div>
+  
+    </div>
+  
+   
+  
+  </ng-template>
+
+  <ng-template #ChangeAddress let-modal >
+
+    <div class="modal-header" style="border: none;padding: 35px;padding-bottom: unset;">
+  
+      <h3 class="modal-title" id="modal-basic-title" style="font-family:Roboto, sans-serif  !important">Address</h3>
+  
+      <button type="button" class="close" aria-label="Close" style="outline: none;opacity: 1;font-size: 34px;padding-top: unset;" (click)="modal.dismiss('Cross click')">
+  
+        <span aria-hidden="true">×</span>
+  
+      </button>
+  
+    </div>
+  
+    <div class="modal-body" style="padding:35px;">
+ <div class="col-lg-12 col-xs-12 col-sm-12 col-xs-12">
+    <span [hidden]="isShownErrorChange" style="color: red;" >{{ChangeAddErrorMsg}}</span>
+    <span [hidden]="isShownSuccessChange" style="color: #9ed3c2;" >{{ChangeAddSuccessMsg}}</span>
+ </div>
+  
+    <div class="col-lg-12 col-xs-12 col-sm-12 col-xs-12">
+        <div class="form-group" style="padding-top:10px ;">
+            <input type="text" placeholder="Name" [(ngModel)]="Name" class="form-control line" style="font-family: Ubuntu-Medium !important;" />
+        </div>
+        <div class="form-group" style="padding-top:10px ;">
+           
+            <input type="text" placeholder="Address Line1" [(ngModel)]="AddAddLine1" class="form-control line" style="font-family: Ubuntu-Medium !important;"  />
+        </div>
+        <div class="form-group" style="padding-top:10px ;">
+           
+            <input type="text" placeholder="Address Line2" [(ngModel)]="AddLine2" class="form-control line"  style="font-family: Ubuntu-Medium !important;" />
+        </div>
+        <div class="form-group" style="padding-top:10px ;">
+           
+            <input type="text" placeholder="City" [(ngModel)]="AddCity" class="form-control line"  style="font-family: Ubuntu-Medium !important;" />
+        </div>
+        <div class="form-group" style="padding-top:10px ;">
+           
+            <input type="text" placeholder="State" [(ngModel)]="AddState" class="form-control line"  style="font-family: Ubuntu-Medium !important;" />
+        </div>
+        <div class="form-group" style="padding-top:10px ;">
+           
+            <input type="text" placeholder="Zip" [(ngModel)]="AddZip" class="form-control line"  style="font-family: Ubuntu-Medium !important;" />
+        </div>
+        
+      
+        <div class="form-group" style=" margin-top: 10px; margin-bottom: 30px; border-radius: 34px;border: 1px solid ;background-color: #9ed3c2;text-align: center;">
+           
+            <h3 class="" (click)="ChangeAddressClick()" style="cursor: pointer; font-family: Ubuntu-Medium !important;text-align: center;margin-top: 10px;color: white;">SUBMIT</h3>
+        </div>
+
+      
+    </div>
+  
+    </div>
+  
+   
+  
+  </ng-template>
+
+
+  <ng-template #AddNewAddress let-modal >
+
+    <div class="modal-header" style="border: none;padding: 35px;padding-bottom: unset;">
+  
+      <h3 class="modal-title" id="modal-basic-title" style="font-family:Roboto, sans-serif  !important">Address</h3>
+  
+      <button type="button" class="close" aria-label="Close" style="outline: none;opacity: 1;font-size: 34px;padding-top: unset;" (click)="modal.dismiss('Cross click')">
+  
+        <span aria-hidden="true">×</span>
+  
+      </button>
+  
+    </div>
+  
+    <div class="modal-body" style="padding:35px;">
+ <div class="col-lg-12 col-xs-12 col-sm-12 col-xs-12">
+    <span [hidden]="isShownErrorAddnew" style="color: red;" >{{AddnewErrorMsg}}</span>
+    <span [hidden]="isShownSuccessAddnew" style="color: #9ed3c2;" >{{AddNewSuccessMsg}}</span>
+ </div>
+  
+    <div class="col-lg-12 col-xs-12 col-sm-12 col-xs-12">
+        <div class="form-group" style="padding-top:10px ;">
+            <input type="text" placeholder="Name" [(ngModel)]="AddNewFirstName" class="form-control line" style="font-family: Ubuntu-Medium !important;" />
+        </div>
+        <div class="form-group" style="padding-top:10px ;">
+           
+            <input type="text" placeholder="Address Line1" [(ngModel)]="AddNewLine1" class="form-control line" style="font-family: Ubuntu-Medium !important;"  />
+        </div>
+        <div class="form-group" style="padding-top:10px ;">
+           
+            <input type="text" placeholder="Address Line2" [(ngModel)]="AddNewLine2" class="form-control line"  style="font-family: Ubuntu-Medium !important;" />
+        </div>
+        <div class="form-group" style="padding-top:10px ;">
+           
+            <input type="text" placeholder="City" [(ngModel)]="AddnewCity" class="form-control line"  style="font-family: Ubuntu-Medium !important;" />
+        </div>
+        <div class="form-group" style="padding-top:10px ;">
+           
+            <input type="text" placeholder="State" [(ngModel)]="AddNewState" class="form-control line"  style="font-family: Ubuntu-Medium !important;" />
+        </div>
+        <div class="form-group" style="padding-top:10px ;">
+           
+            <input type="text" placeholder="Zip" [(ngModel)]="AddNewZip" class="form-control line"  style="font-family: Ubuntu-Medium !important;" />
+        </div>
+        
+      
+        <div class="form-group" style=" margin-top: 10px; margin-bottom: 30px; border-radius: 34px;border: 1px solid ;background-color: #9ed3c2;text-align: center;">
+           
+            <h3 class="" (click)="AddressNewClick()" style="cursor: pointer;font-family: Ubuntu-Medium !important;text-align: center;margin-top: 10px;color: white;">SUBMIT</h3>
+        </div>
+
+      
+    </div>
+  
+    </div>
+  
+   
+  
+  </ng-template>
+ 

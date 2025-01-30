@@ -1,0 +1,596 @@
+#MoreResult:hover{
+    background-color:#9ed3c2 ;
+    color: white;
+}
+#MoreResult{
+    background-color:white ;
+    
+    color: black;
+}.trapezoid1 {
+    border-top: 30px solid #F4650C;
+    left: 0px;
+    width: 100px;
+}
+
+.rating {
+    padding-top: 5px;
+    width: 29%;
+}
+#MhF_menu:hover{
+    color: #9ed3c2;
+}
+
+.carousel-indicators .active{
+    width:17px;
+    height: 17px;
+}
+.carousel-indicators li{
+    width: 17px;
+    height: 17px;
+}
+#Moreclick:hover{
+    background-color: #9ed3c2 !important;
+    color: white;
+}
+carousel-inner {
+    overflow: visible;
+ }
+
+.tes:hover {
+    color: white;
+    background: #3b5998;
+}
+.tes {
+    display: inline-block;
+    border-radius: 60px;
+    box-shadow: 0px 0px 2px #888;
+    padding: 0.5em 0.6em;
+    color: #3b5998;
+    background:white;
+}
+.instagram {
+    display: inline-block;
+    border-radius: 60px;
+    box-shadow: 0px 0px 2px #888;
+    padding: 0.5em 0.6em;
+    color: #3f729b;
+    background: white;
+}
+    .instagram:hover {
+        color: white;
+        background: #3f729b;
+    }
+.twitte {
+    display: inline-block;
+    border-radius: 60px;
+    box-shadow: 0px 0px 2px #888;
+    padding: 0.5em 0.6em;
+    color: #00acee;
+    background: white;
+}
+    .twitte:hover {
+        color: white;
+        background: #00acee;
+    }
+
+  
+.FF:hover{
+    color:#9ed3c2 !important;
+    filter:none;
+    
+}
+.FF{
+   
+    filter:grayscale(100%);
+}
+.menuvariance{
+    border: 1px solid #151515; 
+    border-radius: 5px;
+    padding: 4px 7px;
+}
+.menuvariance:hover{
+    background-color:#9ed3c2;
+    color: white;
+}
+.menuvariancecolor{
+    background-color:#9ed3c2;
+    color: white;
+}
+.menuvariance:active{
+    background-color:#9ed3c2;
+    color: white;
+}
+
+
+.tooltip1 .tooltiptext {
+    visibility: hidden;
+    width: 150px;
+    background-color:white;
+    color: black;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    top: 100%;
+    left: 50%;
+    margin-left: -60px;
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+  }
+  
+  .tooltip1:hover .tooltiptext {
+    visibility: visible;
+  }
+
+  
+  /* relevant styles */
+  .img__wrap {
+    position: relative;
+    height: 200px;
+   /* width: 257px; */
+  }
+  
+  .img__description {
+    /* position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0; */
+    background: #fff;
+    z-index:6;
+    position: absolute;
+    color: #000;
+    font-size:12px;
+    text-align: center;
+    visibility: hidden;
+    opacity: 0;
+  
+    /* transition effect. not necessary */
+    transition: opacity .2s, visibility .2s;
+  }
+  .imagehover .img__wrap:hover .pricerange{
+      visibility: hidden;
+  }
+  .img__wrap:hover .img__description {
+    visibility: visible;
+    opacity: 1;
+  }
+.items_cart {
+    position: absolute;
+    top: 0px;
+    left: 20%;
+    background: black;
+    color: white;
+    border-radius: 100%;
+    height: 22px;
+    width: 22px;
+}
+.items_cart1 {
+    position: absolute;
+    top: 0px;
+    left: 26%;
+    background: black;
+    color: white;
+    border-radius: 100%;
+    height: 22px;
+    width: 22px;
+}
+
+
+
+h1, h2, h3, h4, h5 {
+    font-family: Ubuntu-Medium !important;
+}
+p, a {
+    font-family: 'Roboto', sans-serif !important;
+}
+span {
+    font-family: Ubuntu-Medium !important;
+}
+h5{
+    font-size:15px !important;
+}
+.btn :active{
+    outline: none;
+}
+.btn :focus{
+    outline: none;
+}
+.btn:active:focus{
+    outline: none !important;
+}
+
+label {
+    font-weight: unset !important;
+}
+.design:hover .wishlist1 .design {
+    border: 1px solid;
+    display: block !important;
+}
+
+@media(min-width:1025px) {
+    .filter {
+        width: 20%
+    }
+}
+.PopUpmodal {
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-radius: 0px;
+    border-bottom: 1px solid;
+    height: 40px;
+    font-size: 16px;
+    font-weight: bolder;
+    outline: none;
+    width: 100%;
+    display: inline-block;
+}
+input[type='range'] {
+    width: 76%;
+    height: 30px;
+    overflow: hidden;
+    cursor: pointer;
+    outline: none;
+}
+
+    input[type='range'],
+    input[type='range']::-webkit-slider-runnable-track,
+    input[type='range']::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        background: none;
+    }
+
+        input[type='range']::-webkit-slider-runnable-track {
+            width: 76%;
+            height: 1px;
+            background: #003D7C;
+        }
+
+        input[type='range']:nth-child(2)::-webkit-slider-runnable-track {
+            background: none;
+        }
+
+        input[type='range']::-webkit-slider-thumb {
+            position: relative;
+            height: 15px;
+            width: 15px;
+            margin-top: -7px;
+            background: #fff;
+            border: 8px solid #F4650C;
+            border-radius: 25px;
+            z-index: 1;
+        }
+
+
+        input[type='range']:nth-child(1)::-webkit-slider-thumb {
+            z-index: 2;
+        }
+
+.rangeslider {
+    position: relative;
+    height: 60px;
+    width: 210px;
+    display: inline-block;
+    margin-top: -5px;
+    margin-left: 20px;
+}
+
+    .rangeslider input {
+        position: absolute;
+    }
+#owl-demo .item {
+    margin: 3px;
+}
+
+    #owl-demo .item img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+.rangeslider {
+    position: absolute;
+}
+
+    .rangeslider span {
+        position: absolute;
+        margin-top: 30px;
+        left: 0;
+    }
+
+    .rangeslider .right {
+        position: relative;
+        float: right;
+        margin-right: -5px;
+    }
+
+#Border {
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-radius: 0px;
+    border-bottom: 1px solid;
+    height: 40px;
+    font-size: 16px;
+    font-weight: bolder;
+    outline: none;
+    display: inline-block;
+    width: 100%;
+}
+
+.triangle-right {
+    width: 0;
+    height: 0;
+    border-top: 12px solid transparent;
+    border-left: 24px solid white;
+    border-bottom: 12px solid transparent;
+}
+
+.triangle-down {
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 24px solid white;
+}
+
+.view:hover {
+    height: 27px;
+    padding: unset;
+    left: -20px;
+    background-color: rgba(111,111,111,0.5);
+}
+
+
+.oldprice {
+    position: relative;
+    display: inline-block;
+    font-size:13px;
+}
+
+    .oldprice::before, .oldprice::after {
+        content: '';
+        width: 100%;
+        position: absolute;
+        right: 0;
+        top: 50%;
+    }
+
+    .oldprice::before {
+        border-bottom: 1.5px solid red;
+        -webkit-transform: skewY(-10deg);
+        transform: skewY(-10deg);
+    }
+
+    
+h4 {
+    font-size: 15px;
+}
+h1{
+    font-size:30px;
+}
+
+.food:focus{
+    border: unset;
+    outline: unset;
+}
+#normalDish:focus{
+    outline:unset ;
+}
+#normal :focus{
+    outline: unset;
+}
+@media (max-width: 767px) {
+    .Drin {
+       padding-top:20px ;
+    }
+    .Lu{
+        padding: unset !important;
+    }
+}
+@media(min-width:768px) and (max-width:1024px){
+    .FF{
+        padding: unset;
+    }
+}
+.test {
+    position: relative;
+    top: -25px;
+    color: white;
+    padding-left: 11px;
+}
+
+.overFlow {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    height: 60px;
+}
+
+
+
+.horizontal {
+    padding-top: 40px;
+}
+
+.test1 {
+    position: absolute;
+    color: white;
+    left: 0px;
+}
+
+.dollar {
+    padding-right: unset;
+    padding-left: unset;
+}
+
+.border {
+    border: 1px solid gray;
+    border-bottom: unset;
+}
+
+.rating1 {
+    padding-right: unset !important;
+    padding-left: unset !important;
+}
+.dollar {
+    padding-right: unset !important;
+    padding-left: unset !important;
+}
+
+.title {
+    height: 35px;
+    overflow-x: auto;
+}
+@media (min-width: 768px) {
+    .modal-sm {
+        width: 400px !important;
+    }
+}
+@media (min-width:768px) {
+    .wishlist1 {
+        position: relative;
+        top: -50px;
+        float: right;
+        /* right: -327px; */
+    left: inherit;
+    right: 0;
+}
+
+    .wishlist {
+        position: relative;
+        top: 0px;
+        float: right;
+        /* right: -327px; */
+        left: inherit;
+        right: 0;
+    }
+}
+
+@media (max-width:768px) {
+    .wishlist1 {
+        position: relative;
+        top: -50px;
+        float: right;
+        /* right: -327px; */
+        left: inherit;
+        right: 0;
+    }
+
+    .wishlist {
+        position: relative;
+        top: -11px;
+        float: right;
+        /* right: -327px; */
+        left: inherit;
+        right: 0;
+    }
+
+    .Soup {
+        padding-right: unset;
+        padding-left: unset;
+        padding-top: 30px;
+    }
+
+    .spicy {
+        padding-left: unset !important;
+    }
+
+    .imgsoup {
+        width: 100px !important;
+    }
+
+
+    .arrow {
+        display: none;
+    }
+}
+
+
+
+
+.wishlist1 {
+    display: none;
+}
+
+.AddAddress {
+    POSITION: ABSOLUTE;
+    top: 18%;
+    left: 13%;
+    border: 1px dashed rgba(111,111,111,0.5);
+    padding: 22px;
+    padding-left: 78px;
+    padding-right: 78px;
+}
+
+@media(max-width:768px) {
+    .Address {
+        position: unset !important;
+    }
+
+    .AddAddress {
+        POSITION: unset;
+        top: 18%;
+        left: 13%;
+        border: 1px dashed rgba(111,111,111,0.5);
+        padding: 22px;
+        padding-left: 78px;
+        padding-right: 78px;
+    }
+}
+
+#Lun{
+padding-top:8px ;
+}
+
+.tooltipval {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+  }
+  
+  .tooltipval .tooltiptextname {
+    visibility: hidden;
+    width: 191px;
+    background-color: white;
+    color: black;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 10;
+    bottom: 150%;
+    left: -256%;
+    margin-left: -60px;
+  }
+  .tooltipval .tooltiptextname::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: White transparent transparent transparent;
+  }
+  
+  .tooltipval:hover .tooltiptextname {
+    visibility: visible;
+  }
+.inline-group {
+    max-width: 9rem;
+    padding: .5rem;
+}
+
+    .inline-group .form-control {
+        text-align: right;
+    }
+span{
+    font-size: 13px;
+}
+.form-control[type="number"]::-webkit-inner-spin-button,
+.form-control[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+

@@ -1,0 +1,202 @@
+.btn{
+    outline: none;
+}
+h4{
+    font-size: 17px;
+}
+
+h1, h2, h3,h4,  h5 {
+    font-family: Ubuntu-Medium !important;
+}
+p, a {
+    font-family: 'Roboto', sans-serif !important;
+}
+span {
+    font-family:Roboto, sans-serif  !important
+}
+h5{
+    font-size: 17px !important ;
+}
+.modal-backdrop.fade{
+    opacity: 0.7;
+}
+.ColorCha{
+    color: black;
+}
+.ColorCha:hover{
+    background-color: #9ed3c2;
+    color: white;
+}
+.radio-item  input[id=ritema12]:checked + label:after{
+    top:13px;
+    }
+ 
+    .radio-item  input[id=ritema11]:checked + label:after{
+        left: 4px;
+        }
+    
+    
+            
+  /* relevant styles */
+  .img__wrap {
+    position: relative;
+    height: 200px;
+   /* width: 257px; */
+  }
+  
+  .img__description {
+    /* position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0; */
+    background: #fff;
+    z-index:6;
+    position: absolute;
+    color: #000;
+    font-size:12px;
+    text-align: center;
+    visibility: hidden;
+    opacity: 0;
+  
+    /* transition effect. not necessary */
+    transition: opacity .2s, visibility .2s;
+  }
+  .imagehover .img__wrap:hover .pricerange{
+      visibility: hidden;
+  }
+  .img__wrap:hover .img__description {
+    visibility: visible;
+    opacity: 1;
+  }
+.items_cart {
+    position: absolute;
+    top: 0px;
+    left: 20%;
+    background: black;
+    color: white;
+    border-radius: 100%;
+    height: 22px;
+    width: 22px;
+}
+.dotedline {
+    display: inline-block;
+    width: 80px;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+  }
+#cccardlabel{
+    font-size: 18px;
+}
+#ccnumfield{
+    width: 87%;
+    height: 20px;
+}
+#ccexpiryyear{
+    height: 20px;
+}
+#ccexpirymonth{
+    height: 20px;
+}
+.items_cart1 {
+    position: absolute;
+    top: 0px;
+    left: 26%;
+    background: black;
+    color: white;
+    border-radius: 100%;
+    height: 22px;
+    width: 22px;
+}
+
+           
+        .radio-item  input[id=ritema10]:checked + label:after{
+            left: 4px;
+            }
+
+    
+#ritema3 .radio-item label:before{
+    top: 3px;
+}
+.input-euro {
+    position: relative;
+}
+.input-euro.left input {
+    padding-left:18px;
+}
+.input-euro.right input {
+    padding-right:18px;
+    text-align:end; 
+}
+
+.input-euro:before {
+    position: absolute;
+    top: -2px;
+    content:"$";
+    color: #9ed3c2;
+}
+.input-euro.left:before {
+    left: 5px;
+}
+.input-euro.right:before {
+    right: 5px;
+}
+
+.radio-item #ritema3 input[type=radio]:checked + label:after{
+    top:13px;
+}
+.address-card {
+    border: 2px solid #ccc;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .address-card.selected {
+    border-color: #9ed3c2;
+    background-color: #e7f3ff;
+  }
+  
+  .hidden-radio {
+    display: none;
+  }
+  
+  .address-label {
+    display: block;
+    cursor: pointer;
+  }
+  .info-card {
+    background-color: #f9f9f9;
+    border-left: 5px solid #9ed3c2;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .info-content h4 {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+    color: #9ed3c2;
+  }
+  
+  .info-content p {
+    font-size: 1rem;
+    margin: 5px 0;
+    color: #333;
+  }
+  
+  .info-content a {
+    color: #9ed3c2;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  .info-content a:hover {
+    text-decoration: none;
+  }
+  

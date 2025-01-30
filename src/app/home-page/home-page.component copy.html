@@ -1,0 +1,719 @@
+<title>Welcome to Shopping Online</title>
+  <div style="overflow:hidden;">
+    <div class="slider-container row" style="padding-top: 0px; " >
+  
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="item active" >
+                       
+                        <img src="../../assets/Images/Banner1.png" alt="test" style="width: 100%;">
+                    </div>
+                </div>
+            </div>
+  
+        </div>
+    </div>
+  
+  
+  
+    <div class="container-fluid" style="padding:15px" data-aos="fade-up" data-aos-anchor-placement="top-center">
+        <div class="row">
+            <div class="col-lg-1 col-md-1"></div>
+            <div class="col-sm-10 col-xs-10 col-md-6 col-lg-4" style="box-shadow: 0px 5px 14px;padding-top: 20px;background-color:white;position:absolute;z-index:6;padding-bottom:20px" id="Filter">
+                <div class="col-lg-1 col-md-1"></div>
+                <div class="col-lg-11 col-md-11 col-xs-12 col-sm-12" style="padding:unset">
+                    <ul style="list-style: none;padding:unset">
+                        <li>
+                            <h4>
+                                <span style="color:black;font-size:18px; font-family: Ubuntu-Regular!important;text-align:left">
+                                    Filters
+                                    <img src="../../assets/Images/icon/filter.png"  style="width:44px;padding-left:10px"/>
+                                </span>
+                                <i class="pull-right " aria-hidden="true" style="color: black; font-family: Ubuntu-Regular!important;font-size:25px;cursor:pointer" (click)="menuopen('Filter')"> x</i>
+                            </h4>
+                            
+                        </li>
+                    </ul>
+                    <ul style="color:black; list-style: none;  padding-left: unset;padding-top:15px">
+                        <li class="treeview" >
+                            <h4 href="" style="cursor: pointer; font-size:17px" (click)="ShowHideCategory('menuCategory')" >
+  
+                                <span style="color:black;font-size: unset;">CATEGORY</span>
+                                <i class="fa fa-plus glyphicon glyphicon-plus pull-right" id="Categoryplus" aria-hidden="true" style="color: black;"></i>
+                            </h4>
+                            <ul class="treeview-menu" id="menuCategory" style="list-style:none;padding-left: unset;padding-top: 15px;">
+                                <li>
+                                    <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-xs-6 col-sm-4" style="padding:unset"  *ngFor="let it of ItemsArrayMenu" >
+                                        <h4 style="font-family: Ubuntu-Regular!important;font-size:14PX"><input type="checkbox" value={{it.categoryName}} id="CategoryMenulist" (click)="handleSelected($event,it)" /> <label style="padding-left:10px;font-family: Ubuntu-Regular!important;">{{it.categoryName}}</label> </h4>
+                                    </div>
+                                </div>
+                                </li>
+                            
+                            </ul>
+                        </li>
+                    </ul>
+     
+                    <ul style="color:black;padding-top:30px;  list-style: none;padding-left: unset;">
+                        <li class="treeview" >
+                            <h4 href="" style="cursor: pointer;  font-size:17px" (click)="ShowHidePrice('PriceShow')">
+  
+                                <span style="color:black;;font-size: unset;">PRICE RANGE</span>
+                                <i class="fa fa-plus glyphicon glyphicon-plus pull-right" id="priceplus" aria-hidden="true" style="color: black;"></i>
+                            </h4>
+                            <ul class="treeview-menu" id="PriceShow" style="list-style:none;padding-left: unset;padding-top: 15px;padding-bottom: 25px;">
+                                <li>
+                                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+                                    <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3" style="padding:unset">
+                                        <input type="text" placeholder="$0.0" style="width: 80%;" [(ngModel)]="FromPrize" />
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
+                                        <p>To </p>
+                                    </div>
+  
+                                    <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3" style="padding:unset">
+                                        <input type="text" placeholder="$0.0" style="width: 80%;"  [(ngModel)]="ToPrize" (change)="PriceList()"/>
+                                    </div>
+  
+                                    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 " style="padding-top:20px;  padding: unset;padding-bottom: 67px;">
+                                        <div class="rangeslider center-block" style="padding-top: 17px;width: 76%;text-align:center;left: 38px;">
+                                            <input class="min" id="MinIndex" name="range_1" type="range" min="1" max="100" value="0" />
+                                            <input class="max" id="Maxindex" name="range_1" type="range" min="1" max="100" value="100" />
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+    <div *ngIf="Filter">
+   <div  *ngFor="let item of AllArray">
+    <div  class="container-fluid carousel-wrap" *ngIf="item.viewAll=='All'? true :false"  style="overflow: hidden;width:96%;margin-top:50px"  data-aos="fade-up-left"> 
+        <h1 style="float:left;position:absolute" id={{item.subCategoryName}}>{{item.subCategoryName}}
+            <span style="text-align:left; padding-top:20px;cursor: pointer; color: #b62601; " (click)="Allcilick(item)" class="Lu">View All</span>
+        </h1>
+        
+        <div style="padding-top:40px;padding-bottom:50px;    padding-left: 20px;margin: 21px;">
+            <owl-carousel-o [options]="customOptions" class="" style="  z-index: -1;">
+                <ng-template carouselSlide *ngFor="let Menuitem of item.menuitem" style="  z-index: -1;" >
+                    
+                        <div class="col-md-3"   style="border:1px solid rgba(111,111,111,0.8);width: 95%;   " *ngFor="let menu of Menuitem.menuvariance">
+                            <div class="img__wrap">
+                                <!-- Discount Label -->
+                                <div class="trapezoid" *ngIf="Menuitem.discountAmt">
+                                    <span class="test">{{ Menuitem.discountAmt }}% OFF</span>
+                                </div>
+                            
+                                <!-- Item Image and Description -->
+                                <img 
+                                    [src]="menu.imageUrl1" 
+                                    class="center-block img__img" 
+                                    style="width: 90%; height: 198px;" 
+                                    [routerLink]="'/Food/' + Menuitem.menuItemId + '/' + Menuitem.quan + '/' + Menuitem.adddon" 
+                                    alt="Menu Item Image" 
+                                />
+                                <p class="img__description" *ngIf="menu.description1">
+                                    {{ menu.description1 }}
+                                </p>
+                            </div>
+                            
+                            <!-- Item Name and Price -->
+                            <div class="row" style="padding: 10px;">
+                                <div class="container" style="width: 100%; height: 32px;">
+                                    <div class="col-lg-9 col-md-9 col-xs-7 col-sm-7">
+                                        <h5>
+                                            {{ Menuitem.itemName }}
+                                            <span *ngIf="menu.menuvarianceName1"> - {{ menu.menuvarianceName1 }}</span>
+                                        </h5>
+                                    </div>
+                                    <div class="col-lg-3 col-md-4 col-xs-4 col-sm-4" style="padding: unset;">
+                                        <div class="rating1" style="text-align: center; background-color: #48C479; padding: 4px;">
+                                            <p style="color: white;">
+                                                $ {{ menu.price1 | number: '.2' }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Variants and Customizations -->
+                            <div class="row">
+                                <div class="container" style="height: 56px;">
+                                    <!-- Variants -->
+                                    <div *ngIf="menu.menuvarianceName1">
+                                        <div 
+                                            class="col-md-4 menuvariance" 
+                                            style="padding: 5px 2px; width: 31.33%; cursor: pointer;" 
+                                            *ngFor="let menu1 of Menuitem.menuvariance | slice: 0:3"
+                                            (click)="Addvariance(Menuitem, menu1.menuVariance)"
+                                        >
+                                            <h5 style="font-size: 11px; text-align: center;">{{ menu1.menuvarianceName }}</h5>
+                                        </div>
+                                    </div>
+                            
+                                    <!-- Customizations -->
+                                    <div *ngFor="let menu1 of Menuitem.menuvariance | slice: 0:1">
+                                        <div *ngIf="menu1.customization">
+                                            <div 
+                                                class="col-md-4 menuvariance Addon" 
+                                                style="padding: 5px 2px; width: 31.33%; cursor: pointer;" 
+                                                *ngFor="let menu2 of menu1.customization | slice: 0:3"
+                                                (click)="addOnClick(Menuitem, menu2.customization, menu2.price, menu2.menuCustomizationId)"
+                                            >
+                                                <h5 style="font-size: 11px; text-align: center;">{{ menu2.customization }}</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Quantity Adjustment -->
+                            <div style="border-top: 1px solid rgba(111, 111, 111, 0.8);">
+                                <div class="col-lg-8 col-xs-8 col-md-8 col-sm-8" style="padding-top: 10px;">
+                                    <div class="input-group">
+                                        <div class="input-group-btn">
+                                            <button 
+                                                id="down" 
+                                                class="btn" 
+                                                style="border: unset; background: none;" 
+                                                (click)="Adddown('1', Menuitem)"
+                                            >
+                                                <span class="glyphicon glyphicon-minus" style="font-size: 25px;"></span>
+                                            </button>
+                                        </div>
+                                        <input 
+                                            type="number" 
+                                            id="AddNumber" 
+                                            class="form-control input-number" 
+                                            [(ngModel)]="Menuitem.quan" 
+                                            (change)="AddcartQuant(Menuitem)" 
+                                            style="border: unset; text-align: center; font-size: 25px; background-color: snow;"
+                                        />
+                                        <div class="input-group-btn">
+                                            <button 
+                                                id="up" 
+                                                class="btn" 
+                                                style="border: unset; background: none;" 
+                                                (click)="Addup('100', Menuitem)"
+                                            >
+                                                <span class="glyphicon glyphicon-plus" style="font-size: 25px;"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Add to Cart -->
+                            <div class="row" style="padding: 10px;">
+                                <div class="col-lg-5 col-sm-5 col-xs-5 col-md-5 tooltip2" (click)="AddonCartitems(Menuitem)">
+                                    <img 
+                                        src="../../assets/Images/Add_to_cart.png" 
+                                        style="width: unset;background-color:#9ed3c2;" 
+                                        alt="Add to Cart" 
+                                    />
+                                    <!-- <span class="tooltiptext">Add to Cart</span> -->
+                                </div>
+                                <div class="col-lg-1"></div>
+                            </div>
+                         </div>
+                </ng-template>  
+                
+                </owl-carousel-o>
+            </div>
+    </div>
+    <div class="container-fluid "*ngIf="item.viewAll=='less'? true :false"  >
+        <div class="col-lg-12 col-xs-12 col-sm-12 col-md-12" style="padding-top:30px" data-aos="flip-left">
+            <div class="col-lg-12 col-xs-12 col-sm-12 col-md-12" style="padding-bottom:30px">
+                <h1 style="float:left;position:absolute">{{item.subCategoryName}}
+                    <span style="text-align:left; padding-top:20px;cursor: pointer;color: #b62601;" (click)="Allcilick(item)" class="Lu">Show less</span> </h1>
+                
+            </div>
+            <div class="col-lg-3 col-xs-12 col-sm-6 col-md-4"  *ngFor="let Menuitem of item.menuitem" style="padding-top:30px">
+                <div class="col-lg-10 col-md-11 col-xs-12 col-sm-12 " style="padding:unset;border:1px solid rgba(111,111,111,0.8)">
+                    <div  *ngFor="let menu of Menuitem.menuvariance | slice:0:1" class="imagehover">
+                    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" style="padding:unset">
+                        
+                        <div  class=" img__wrap"  >
+                            <div class="trapezoid" style="position: absolute;" *ngIf='Menuitem.discountAmt != 0 ? true :false'><span class="test">{{Menuitem.discountAmt}}% OFF</span></div>
+                            <img src={{menu.imageUrl1}} class="center-block  img__img" style="width:90%;height:198px"  [routerLink]="'/Food/' + Menuitem.menuItemId  +'/'+Menuitem.quan +'/' + Menuitem.adddon" />
+                            <p class="img__description" *ngIf='menu.description1 != null && menu.description1 !="" ? true :false' >{{menu.description1}}</p>
+                       </div>
+                    </div>
+                    <div class="row" style="padding:10px; " >
+                        <div class="container" style="width:100%;height: 32px; ">
+                            
+                            <div class="col-lg-9 col-md-9 col-xs-7 col-sm-7" style="    z-index: -13;"  *ngIf="menu.menuvarianceName1 != null &&  menu.menuvarianceName1 != '' ? false : true">
+                                <h5>{{Menuitem.itemName}} </h5>
+                            </div>
+                            <div class="col-lg-9 col-md-9 col-xs-7 col-sm-7" style="    z-index: -13;"  *ngIf="menu.menuvarianceName1 != null &&  menu.menuvarianceName1 != '' ? true : false">
+                                <h5>{{Menuitem.itemName}} - {{menu.menuvarianceName1}}</h5>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-xs-4 col-sm-4"  style="padding:unset; z-index: -13  ">
+                               
+                                <div class=" rating1" style="text-align: center;background-color:#48C479; padding-top: 4px; padding-right: unset;border-left:1px">
+                                    <p style="color:white"  >
+                                      $ {{(menu.price1)  | number:'.2'}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                     </div>
+                     <div class="row" >
+                        <div class="container"  style="    height: 56px;">
+                            <div *ngIf="menu.menuvarianceName1 != null &&  menu.menuvarianceName1 != '' ? true : false">
+                            <div class="col-md-4" style="padding: 5px 2px 7px 2px !important; cursor: pointer;;width:31.333333%" *ngFor="let menu1 of Menuitem.menuvariance | slice:0:3;">
+                                <h5 style="font-size: 11px !important;text-align:center" class="menuvariance" (click)="Addvariance(Menuitem,menu1.menuVariance)" >{{menu1.menuvarianceName}}</h5>
+                            </div>
+                        </div>
+                            <div  *ngFor="let menu1 of Menuitem.menuvariance | slice:0:1">
+                                <div *ngIf="menu1.customization != null &&  menu1.customization != '' ? true : false" >
+                                    <div *ngIf="menu.menuvarianceName1 != null &&  menu.menuvarianceName1 != '' ? true : false">
+                                        <div class="col-md-4" style="padding: 5px 2px 7px 2px !important; cursor: pointer;width:31.333333%" *ngFor="let menu2 of menu1.customization | slice:0:3 - Menuitem.menuvariancecount;">
+                                            <h5 style="font-size: 11px !important;text-align:center" class="menuvariance"  (click)="addOnClick(Menuitem,menu2.customization,menu2.price,menu2.menuCustomizationId)" id={{menu2.menuCustomizationId}} class="menuvariance Addon">{{menu2.customization}}  </h5>
+                                          </div>
+                                    </div>
+                                 
+                                   <div *ngIf="menu.menuvarianceName1 != null &&  menu.menuvarianceName1 != '' ? false: true">
+                                    <div class="col-md-4" style="padding: 5px 2px 7px 2px !important; cursor: pointer;width:31.333333%" *ngFor="let menu2 of menu1.customization | slice:0:3;">
+                                        <h5 style="font-size: 11px !important;text-align:center" class="menuvariance"  (click)="addOnClick(Menuitem,menu2.customization,menu2.price,menu2.menuCustomizationId)" id={{menu2.menuCustomizationId}} class="menuvariance Addon">{{menu2.customization}}  </h5>
+                                      </div>
+                                    </div>
+                                    <div style="font-size: 40px;
+                                    position: absolute;
+                                    right: 3px;
+                                    bottom: 182px;" class="tooltipval">&#8286;
+                                     <div class="tooltiptextname" style="box-shadow: 0px 5px 14px;">
+                                        <!-- <div class="col-md-12" style=" cursor: pointer;padding:unset" *ngFor="let menu1 of Menuitem.menuvariance">
+                                           <div class="col-md-8">
+                                            <h5 style="font-size: 11px !important;text-align:center" class="menuvariance" (click)="Addvariance(Menuitem,menu1.menuVariance)" >{{menu1.menuvarianceName}}</h5>
+                                           </div>
+                                           <div class="col-md-4" style="    position: absolute; right: 9px;padding: unset;">
+                                            <h5>$ {{menu1.price == null ? 0:menu1.price}}</h5>
+                                           </div>
+                                        </div> -->
+                                        <div class="col-md-12"  *ngFor="let menu2 of menu1.customization" style="padding:unset" >
+                                          <div class="col-md-8" style=" cursor: pointer;">
+                                            <h5  style="font-size: 11px !important;text-align:center" (click)="addOnClick(Menuitem,menu2.customization,menu2.price,menu2.menuCustomizationId)" id={{menu2.menuCustomizationId}} class="menuvariance Addon">{{menu2.customization}}  </h5>
+                                        </div>
+                                          <div class="col-md-4" style="    position: absolute; right: 9px;padding: unset;">
+                                              <h5>$ {{menu2.price == null ? 0:menu2.price}}</h5>
+                                          </div>
+                                          </div>
+                                     </div>
+                                
+                                </div>
+                                </div>
+                                
+                            </div>
+                           
+                        </div>
+                       
+                    </div>
+                    
+                    </div>
+                    <div style="border-top: 1px solid rgba(111,111,111,0.8) ;">
+                          <div class="col-lg-8 col-xs-12 col-md-8 col-sm-12"  style="padding-top:10px ;padding-right:unset;padding-left:unset;" >
+                            <div class="input-group">
+                                <div class="input-group-btn">
+                                    <button id="down" class="btn" style="border:unset;z-index: 0;background: none;padding-right:unset;    font-size: 16px;" (click)="Adddown('1',Menuitem)" ><span style="font-size: 25px;" class="glyphicon glyphicon-minus" ></span></button>
+                                </div>
+                                <input type="number" id="AddNumber"  onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"  style=" border:unset;z-index: 0;text-align: center;    font-size: 25px; font-family:Roboto, sans-serif  !important;box-shadow:unset;padding-left: 14px;background-color: snow;" class="form-control input-number "  [(ngModel)]="Menuitem.quan" (change)="AddcartQuant(Menuitem)"  />
+                                <div class="input-group-btn">
+                                    <button id="up" class="btn" style="border:unset;z-index: 0;background: none;    font-size: 16px;padding-left:unset" (click)="Addup('100',Menuitem)"><span  style="font-size: 25px;" class="glyphicon glyphicon-plus" ></span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="padding:10px">
+                      
+                        <div class="col-lg-5 col-sm-5 col-xs-5 col-md-5 tooltip2" (click)="AddonCartitems(Menuitem)">
+                            <img src="../../assets/Images/icon/Add_to_cart.png" style="width:unset;background-color:#9ed3c2;" />
+                            <span class="tooltiptext">
+                                Add to Cart
+                             </span>
+                        </div>
+                        <!-- <div class="col-lg-1"></div> -->
+                    </div>
+                </div>
+            </div>
+  
+        </div>
+    </div>
+   </div>
+    <div class="conteiner" style="padding-top:60px;padding-bottom: 60px ;" *ngIf="More && AllArray?.length">
+        <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="text-align: center;">
+            <button class="btn " id="Moreclick" style="text-align: center;background-color: white;border: 1px solid rgba(111,111,111,0.5);font-size: 18px;" (click)="LoadDetail()">Load More</button>
+        </div>
+    </div>
+    <div *ngIf="!More">
+       
+        <div  *ngFor="let item of RemainAllArray">
+            <div  class="container-fluid carousel-wrap" *ngIf="item.viewAll=='All'? true :false"  style="width:96%;border:1px solid rgba(111,111,111,0.5);margin-top:50px"  data-aos="fade-up-left"> 
+                <h1 style="float:left;position:absolute" id={{item.subCategoryName}}>{{item.subCategoryName}}</h1>
+                <h5 style="text-align:right; padding-top:20px;cursor: pointer; color: #b62601; " (click)="Allcilick(item)" class="Lu">View All</h5>
+                <div style="padding-top:40px;padding-bottom:50px;    padding-left: 20px;margin: 21px;">
+                    <owl-carousel-o [options]="customOptions" class="">
+                        <ng-template carouselSlide *ngFor="let Menuitem of item.menuitem" >
+                            <div class="" style="border:1px solid rgba(111,111,111,0.8);width: 95%; "  >
+                                <div  *ngFor="let menu of Menuitem.menuvariance | slice:0:1">
+                                                
+                                                <div  class=" img__wrap"  >
+                                                    <div class="trapezoid" style="position: absolute;" *ngIf='Menuitem.discountAmt != 0 ? true :false'><span class="test">{{Menuitem.discountAmt}}% OFF</span></div>
+                                                    <img src={{menu.imageUrl1}} class="center-block  img__img" style="width:90%;height:198px"  [routerLink]="'/Food/' + Menuitem.menuItemId  +'/'+Menuitem.quan +'/' + Menuitem.adddon" />
+                                                    <p class="img__description" *ngIf='menu.description1 != null && menu.description1 !="" ? true :false' >{{menu.description1}}</p>
+                                              
+                                                </div>
+                                                <div class="row" style="padding:10px; " >
+                                                    <div class="container" style="width:100%;height: 32px; ">
+                                                        
+                                                        <div class="col-lg-9 col-md-9 col-xs-7 col-sm-7" style="    z-index: -13;"  *ngIf="menu.menuvarianceName1 != null &&  menu.menuvarianceName1 != '' ? false : true">
+                                                            <h5>{{Menuitem.itemName}} </h5>
+                                                        </div>
+                                                        <div class="col-lg-9 col-md-9 col-xs-7 col-sm-7" style="    z-index: -13;"  *ngIf="menu.menuvarianceName1 != null &&  menu.menuvarianceName1 != '' ? true : false">
+                                                            <h5>{{Menuitem.itemName}} - {{menu.menuvarianceName1}}</h5>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-4 col-xs-4 col-sm-4"  style="padding:unset; z-index: -13  ">
+                                                           
+                                                            <div class=" rating1" style="text-align: center;background-color:#48C479; padding-top: 4px; padding-right: unset;border-left:1px">
+                                                                <p style="color:white"  >
+                                                                  $ {{(menu.price1)  | number:'.2'}}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                 </div>
+                                                 <div class="row" >
+                                                    <div class="container"  style="    height: 56px;">
+                                                        <div *ngIf="menu.menuvarianceName1 != null &&  menu.menuvarianceName1 != '' ? true : false">
+                                                        <div class="col-md-4" style="padding: 5px 2px 7px 2px !important; cursor: pointer;;width:31.333333%" *ngFor="let menu1 of Menuitem.menuvariance | slice:0:3;">
+                                                            <h5 style="font-size: 11px !important;text-align:center" class="menuvariance" (click)="Addvariance(Menuitem,menu1.menuVariance)" >{{menu1.menuvarianceName}}</h5>
+                                                        </div>
+                                                    </div>
+                                                        <div  *ngFor="let menu1 of Menuitem.menuvariance | slice:0:1">
+                                                            <div *ngIf="menu1.customization != null &&  menu1.customization != '' ? true : false" >
+                                                                <div *ngIf="menu.menuvarianceName1 != null &&  menu.menuvarianceName1 != '' ? true : false">
+                                                                    <div class="col-md-4" style="padding: 5px 2px 7px 2px !important; cursor: pointer;width:31.333333%" *ngFor="let menu2 of menu1.customization | slice:0:3 - Menuitem.menuvariancecount;">
+                                                                        <h5 style="font-size: 11px !important;text-align:center" class="menuvariance"  (click)="addOnClick(Menuitem,menu2.customization,menu2.price,menu2.menuCustomizationId)" id={{menu2.menuCustomizationId}} class="menuvariance Addon">{{menu2.customization}}  </h5>
+                                                                      </div>
+                                                                </div>
+                                                             
+                                                               <div *ngIf="menu.menuvarianceName1 != null &&  menu.menuvarianceName1 != '' ? false: true">
+                                                                <div class="col-md-4" style="padding: 5px 2px 7px 2px !important; cursor: pointer;width:31.333333%" *ngFor="let menu2 of menu1.customization | slice:0:3;">
+                                                                    <h5 style="font-size: 11px !important;text-align:center" class="menuvariance"  (click)="addOnClick(Menuitem,menu2.customization,menu2.price,menu2.menuCustomizationId)" id={{menu2.menuCustomizationId}} class="menuvariance Addon">{{menu2.customization}}  </h5>
+                                                                  </div>
+                                                                </div>
+                                                                <div style="font-size: 40px;
+                                                                position: absolute;
+                                                                right: 17px;
+                                                                bottom: 182px;" class="tooltipval">&#8286;
+                                                                 <div class="tooltiptextname" style="box-shadow: 0px 5px 14px;">
+                                                                    <!-- <div class="col-md-12" style=" cursor: pointer;padding:unset" *ngFor="let menu1 of Menuitem.menuvariance">
+                                                                       <div class="col-md-8">
+                                                                        <h5 style="font-size: 11px !important;text-align:center" class="menuvariance" (click)="Addvariance(Menuitem,menu1.menuVariance)" >{{menu1.menuvarianceName}}</h5>
+                                                                       </div>
+                                                                       <div class="col-md-4" style="    position: absolute; right: 9px;padding: unset;">
+                                                                        <h5>$ {{menu1.price == null ? 0:menu1.price}}</h5>
+                                                                       </div>
+                                                                    </div> -->
+                                                                    <div class="col-md-12"  *ngFor="let menu2 of menu1.customization" style="padding:unset" >
+                                                                      <div class="col-md-8" style=" cursor: pointer;">
+                                                                        <h5  style="font-size: 11px !important;text-align:center" (click)="addOnClick(Menuitem,menu2.customization,menu2.price,menu2.menuCustomizationId)" id={{menu2.menuCustomizationId}} class="menuvariance Addon">{{menu2.customization}}  </h5>
+                                                                    </div>
+                                                                      <div class="col-md-4" style="    position: absolute; right: 9px;padding: unset;">
+                                                                          <h5>$ {{menu2.price == null ? 0:menu2.price}}</h5>
+                                                                      </div>
+                                                                      </div>
+                                                                 </div>
+                                                            
+                                                            </div>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                       
+                                                    </div>
+                                                   
+                                                </div>
+                                            </div>
+                                               
+                                                <div style="border-top: 1px solid rgba(111,111,111,0.8) ;">
+                                                    <div class="col-md-3"></div>
+                                                      <div class="col-lg-6 col-xs-12 col-md-6 col-sm-12"  style="padding-top:10px ;padding-right:unset;padding-left:unset;" >
+                                                        <div class="input-group">
+                                                            <div class="input-group-btn">
+                                                                <button id="down" class="btn" style="border:unset;z-index: 0;background: none;padding-right:unset;    font-size: 16px;" (click)="Adddown('1',Menuitem)" ><span style="font-size: 25px;" class="glyphicon glyphicon-minus" ></span></button>
+                                                            </div>
+                                                            <input type="number" id="AddNumber" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57" style=" border:unset;z-index: 0;text-align: center;    font-size: 25px; font-family:Roboto, sans-serif  !important;box-shadow:unset;padding-left: 14px;background-color: snow;" class="form-control input-number "  [(ngModel)]="Menuitem.quan" (change)="AddcartQuant(Menuitem)"  />
+                                                            <div class="input-group-btn">
+                                                                <button id="up" class="btn" style="border:unset;z-index: 0;background: none;    font-size: 16px;padding-left:unset" (click)="Addup('100',Menuitem)"><span  style="font-size: 25px;" class="glyphicon glyphicon-plus" ></span></button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3"></div>
+                                                </div>
+                                                <div class="">
+                                                   
+                        <input type="text" style="height: 48px;width: 100%;" placeholder="ADD SPECIAL COMMENTS"  [(ngModel)]="Menuitem.adddon">
+                        <input type="hidden"  [(ngModel)]="Menuitem.adddon1">
+                                                </div>
+                            
+                                                <div class="row" style="padding:10px">
+                                                    <div class="col-lg-1"></div>
+                                                    
+                                                    <div class="col-lg-5 col-sm-5 col-xs-5 col-md-5 tooltip2" *ngIf='Menuitem.favId== 0 ? true : false'>
+                                                        <div class="Wish" style="top:0px; " (click)="Fav(Menuitem)">
+                                                            <img src="../../assets/Images/icon/wishlist.png" id="st" style="width:unset" class="center-block" />
+                                                            <span class="tooltiptext">
+                                                               Favourites
+                                                             </span>
+                                                        </div>
+                                                    </div>
+                                                   <div class="col-lg-5 col-sm-5 col-xs-5 col-md-5 tooltip2" *ngIf='Menuitem.favId== 0 ? false : true'>
+                                                        <div class="Wish" style="top:0px; " (click)="Fav(Menuitem)">
+                                                            <img src="../../assets/Images/wishlist.png" id="st" style="width:unset" class="center-block" />
+                                                            <span class="tooltiptext">
+                                                                Favourites
+                                                             </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-5 col-sm-5 col-xs-5 col-md-5 tooltip2" (click)="AddonCartitems(Menuitem)">
+                                                        <img src="../../assets/Images/icon/Add_to_cart.png" style="width:unset;background-color:#9ed3c2;" />
+                                                        <span class="tooltiptext">
+                                                            Add to Cart
+                                                         </span>
+                                                    </div>
+                                                    <div class="col-lg-1"></div>
+                                                </div>
+                                            </div>
+                        </ng-template>  
+                        
+                        </owl-carousel-o>
+                    </div>
+            </div>
+            <div class="container-fluid "*ngIf="item.viewAll=='less'? true :false"  >
+                <div class="col-lg-12 col-xs-12 col-sm-12 col-md-12" style="padding-top:30px" data-aos="flip-left">
+                    <div class="col-lg-12 col-xs-12 col-sm-12 col-md-12" style="padding-bottom:30px">
+                        <h2 style="float:left;position:absolute">{{item.subCategoryName}} </h2>
+                        <p style="float:right;padding-top:20px;cursor: pointer;" (click)="Allcilick(item)" class="Lu">Show less</p>
+                    </div>
+                    <div class="col-lg-3 col-xs-12 col-sm-6 col-md-4"  *ngFor="let Menuitem of item.menuitem" style="padding-top:30px">
+                        <div class="col-lg-10 col-md-11 col-xs-12 col-sm-12 " style="padding:unset;border:1px solid rgba(111,111,111,0.8)">
+                            <div  *ngFor="let menu of Menuitem.menuvariance | slice:0:1" class="imagehover">
+                            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" style="padding:unset">
+                                
+                                <div  class=" img__wrap"  >
+                                    <div class="trapezoid" style="position: absolute;" *ngIf='Menuitem.discountAmt != 0 ? true :false'><span class="test">{{Menuitem.discountAmt}}% OFF</span></div>
+                                    <img src={{menu.imageUrl1}} class="center-block  img__img" style="width:90%;height:198px"  [routerLink]="'/Food/' + Menuitem.menuItemId  +'/'+Menuitem.quan +'/' + Menuitem.adddon" />
+                                    <p class="img__description" *ngIf='menu.description1 != null && menu.description1 !="" ? true :false' >{{menu.description1}}</p>
+                              
+                                </div>
+                            </div>
+          
+                            <div class="row" style="padding:10px; " >
+                                <div class="container" style="width:100%;height: 32px; ">
+                                    
+                                    <div class="col-lg-9 col-md-9 col-xs-7 col-sm-7" style="    z-index: -13;"  *ngIf="menu.menuvarianceName1 != null &&  menu.menuvarianceName1 != '' ? false : true">
+                                        <h5>{{Menuitem.itemName}} </h5>
+                                    </div>
+                                    <div class="col-lg-9 col-md-9 col-xs-7 col-sm-7" style="    z-index: -13;"  *ngIf="menu.menuvarianceName1 != null &&  menu.menuvarianceName1 != '' ? true : false">
+                                        <h5>{{Menuitem.itemName}} - {{menu.menuvarianceName1}}</h5>
+                                    </div>
+                                    <div class="col-lg-3 col-md-4 col-xs-4 col-sm-4"  style="padding:unset; z-index: -13  ">
+                                       
+                                        <div class=" rating1" style="text-align: center;background-color:#48C479; padding-top: 4px; padding-right: unset;border-left:1px">
+                                            <p style="color:white"  >
+                                              $ {{(menu.price1)  | number:'.2'}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                             </div>
+                             <div class="row" >
+                                <div class="container"  style="    height: 56px;">
+                                    <div *ngIf="menu.menuvarianceName1 != null &&  menu.menuvarianceName1 != '' ? true : false">
+                                    <div class="col-md-4" style="padding: 5px 2px 7px 2px !important; cursor: pointer;;width:31.333333%" *ngFor="let menu1 of Menuitem.menuvariance | slice:0:3;">
+                                        <h5 style="font-size: 11px !important;text-align:center" class="menuvariance" (click)="Addvariance(Menuitem,menu1.menuVariance)" >{{menu1.menuvarianceName}}</h5>
+                                    </div>
+                                </div>
+                                    <div  *ngFor="let menu1 of Menuitem.menuvariance | slice:0:1">
+                                        <div *ngIf="menu1.customization != null &&  menu1.customization != '' ? true : false" >
+                                            <div *ngIf="menu.menuvarianceName1 != null &&  menu.menuvarianceName1 != '' ? true : false">
+                                                <div class="col-md-4" style="padding: 5px 2px 7px 2px !important; cursor: pointer;width:31.333333%" *ngFor="let menu2 of menu1.customization | slice:0:3 - Menuitem.menuvariancecount;">
+                                                    <h5 style="font-size: 11px !important;text-align:center" class="menuvariance"  (click)="addOnClick(Menuitem,menu2.customization,menu2.price,menu2.menuCustomizationId)" id={{menu2.menuCustomizationId}} class="menuvariance Addon">{{menu2.customization}}  </h5>
+                                                  </div>
+                                            </div>
+                                         
+                                           <div *ngIf="menu.menuvarianceName1 != null &&  menu.menuvarianceName1 != '' ? false: true">
+                                            <div class="col-md-4" style="padding: 5px 2px 7px 2px !important; cursor: pointer;width:31.333333%" *ngFor="let menu2 of menu1.customization | slice:0:3;">
+                                                <h5 style="font-size: 11px !important;text-align:center" class="menuvariance"  (click)="addOnClick(Menuitem,menu2.customization,menu2.price,menu2.menuCustomizationId)" id={{menu2.menuCustomizationId}} class="menuvariance Addon">{{menu2.customization}}  </h5>
+                                              </div>
+                                            </div>
+                                            <div style="font-size: 40px;
+                                            position: absolute;
+                                            right: 3px;
+                                            bottom: 182px;" class="tooltipval">&#8286;
+                                             <div class="tooltiptextname" style="box-shadow: 0px 5px 14px;">
+                                                <!-- <div class="col-md-12" style=" cursor: pointer;padding:unset" *ngFor="let menu1 of Menuitem.menuvariance">
+                                                   <div class="col-md-8">
+                                                    <h5 style="font-size: 11px !important;text-align:center" class="menuvariance" (click)="Addvariance(Menuitem,menu1.menuVariance)" >{{menu1.menuvarianceName}}</h5>
+                                                   </div>
+                                                   <div class="col-md-4" style="    position: absolute; right: 9px;padding: unset;">
+                                                    <h5>$ {{menu1.price == null ? 0:menu1.price}}</h5>
+                                                   </div>
+                                                </div> -->
+                                                <div class="col-md-12"  *ngFor="let menu2 of menu1.customization" style="padding:unset" >
+                                                  <div class="col-md-8" style=" cursor: pointer;">
+                                                    <h5  style="font-size: 11px !important;text-align:center" (click)="addOnClick(Menuitem,menu2.customization,menu2.price,menu2.menuCustomizationId)" id={{menu2.menuCustomizationId}} class="menuvariance Addon">{{menu2.customization}}  </h5>
+                                                </div>
+                                                  <div class="col-md-4" style="    position: absolute; right: 9px;padding: unset;">
+                                                      <h5>$ {{menu2.price == null ? 0:menu2.price}}</h5>
+                                                  </div>
+                                                  </div>
+                                             </div>
+                                        
+                                        </div>
+                                        </div>
+                                        
+                                    </div>
+                                   
+                                </div>
+                               
+                            </div>
+                            
+                            </div>
+                            <div style="border-top: 1px solid rgba(111,111,111,0.8) ;">
+                                <div class="col-md-3"></div>
+                                  <div class="col-lg-6 col-xs-12 col-md-6 col-sm-12"  style="padding-top:10px ;padding-right:unset;padding-left:unset;" >
+                                    <div class="input-group">
+                                        <div class="input-group-btn">
+                                            <button id="down" class="btn" style="border:unset;z-index: 0;background: none;padding-right:unset;    font-size: 16px;" (click)="Adddown('1',Menuitem)" ><span style="font-size: 25px;" class="glyphicon glyphicon-minus" ></span></button>
+                                        </div>
+                                        <input type="number" id="AddNumber"  onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"  style=" border:unset;z-index: 0;text-align: center;    font-size: 25px; font-family:Roboto, sans-serif  !important;box-shadow:unset;padding-left: 14px;background-color: snow;" class="form-control input-number "  [(ngModel)]="Menuitem.quan" (change)="AddcartQuant(Menuitem)"  />
+                                        <div class="input-group-btn">
+                                            <button id="up" class="btn" style="border:unset;z-index: 0;background: none;    font-size: 16px;padding-left:unset" (click)="Addup('100',Menuitem)"><span  style="font-size: 25px;" class="glyphicon glyphicon-plus" ></span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3"></div>
+                            </div>
+                            <div class="">
+                               
+                        <input type="text" style="height: 48px;width: 100%;" placeholder="ADD SPECIAL COMMENTS"  [(ngModel)]="Menuitem.adddon">
+                        <input type="hidden"  [(ngModel)]="Menuitem.adddon1">
+                            </div>
+        
+                            <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="padding:10px">
+                                <div class="col-lg-1"></div>
+                                
+                                <div class="col-lg-5 col-sm-5 col-xs-5 col-md-5 tooltip2" *ngIf='Menuitem.favId== "" ? true : false'>
+                                    <div class="Wish" style="top:0px; " (click)="Fav(item)">
+                                        <img src="../../assets/Images/icon/wishlist.png" id="st" style="width:unset" class="center-block" />
+                                        <span class="tooltiptext">
+                                            Favourites
+                                         </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5 col-sm-5 col-xs-5 col-md-5 tooltip2" *ngIf='Menuitem.favId== "" ? false : true'>
+                                    <div class="Wish" style="top:0px; " (click)="Fav(Menuitem)">
+                                        <img src="../../assets/Images/wishlist.png" id="st" style="width:unset" class="center-block" />
+                                        <span class="tooltiptext">
+                                            Favourites
+                                         </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5 col-sm-5 col-xs-5 col-md-5 tooltip2" (click)="AddonCartitems(Menuitem)">
+                                    <img src="../../assets/Images/Add_to_cart.png" style="width:unset;background-color:#9ed3c2; ;" />
+                                    <span class="tooltiptext">
+                                        Add to Cart
+                                     </span>
+                                </div>
+                                <div class="col-lg-1"></div>
+                            </div>
+                        </div>
+                    </div>
+          
+                </div>
+            </div>
+           </div>
+        </div>
+      
+            </div>
+              <ng-template #Addon let-modal id="" style="width:90%">
+
+                <div class="modal-header" style="border: none;padding: 35px;padding-bottom: unset;">
+              
+                  <h3 class="modal-title" id="modal-basic-title" style="font-family: Ubuntu-Bold;">ADD ON</h3>
+              
+                  <button type="button" class="close" aria-label="Close" style="outline: none;opacity: 1;font-size: 34px;padding-top: unset;" (click)="modal.dismiss('Cross click')">
+              
+                    <span aria-hidden="true">×</span>
+              
+                  </button>
+              
+                </div>
+              
+                <div class="modal-body" style="padding:35px;">
+              <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="text-align: center;"  style="padding-bottom: 10px;" >
+                <fieldset>
+                    <!-- Sign In Form -->
+                    <!-- Text input-->
+                    <div class="control-group">
+
+                        <div class="controls">
+                            <textarea required="" id="userid" name="userid"  [(ngModel)]="AddonText" width="200" style="height: 200px;" class="form-control " placeholder=""></textarea>
+                         
+                        </div>
+                    </div>
+
+
+                    <!-- Button -->
+                    <div class="control-group">
+                        <label class="control-label" for="signin"></label>
+                        <div class="controls" style="    text-align: center;">
+                            <button id="signin" class="btn " style="background-color:#9ed3c2;color:white" (click)="AddonCartitems('Addon')" >Submit</button>
+                        </div>
+                    </div>
+
+                </fieldset>
+              
+                </div>
+                </div>
+
+              
+               
+              
+              </ng-template>
+            
+            
+    <style>
+        @media(min-width:768px) {
+            .dollar {
+                padding-right: unset !important;
+                padding-left: unset !important;
+            }
+        }
+ .owl-next{
+    position: absolute;
+    top: 41%;
+    right:  -30px;
+    float:right;
+}
+ .owl-prev{
+    position: absolute;
+    top: 41%;
+left: -30px;
+}
+    </style>
+  
+  </div>
+  
+  

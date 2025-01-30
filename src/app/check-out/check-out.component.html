@@ -1,0 +1,1065 @@
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<title>Check-Out</title>
+<div class="container-fluid" style="border-top:2px solid #9ed3c2;"></div>
+<div>
+
+
+
+    <div class="container-fluid" style="padding-top:40px;padding-left:30px;padding-bottom:50px;">
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
+                
+                  
+            <div class="col-lg-1"></div>
+            
+            <div class="col-lg-6 col-sm-12 col-md-6 col-xs-12 center-block" *ngIf="DeliverAdd" style=" padding:unset;">
+                <div class="checkout-summary" style="background-color: #f4f4f4; padding: 20px 10px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+                    <div class="container" style="max-width: 100%; padding: 0;">
+                      <div class="row" style="display: flex; justify-content: space-between; align-items: center;">
+                        <!-- Left Section: Title/Description -->
+                        <div class="col-md-6" style="text-align: left;">
+                          <h3 style="font-size: 1.5em; color: #333; margin: 0;">Total Amount to Pay</h3>
+                          <p style="font-size: 1.1em; color: #555; margin-top: 5px;">Please review your order before proceeding to payment.</p>
+                        </div>
+                        
+                        <!-- Right Section: Total Amount -->
+                        <div class="col-md-6" style="text-align: right;">
+                          <h2 style="font-size: 2.5em; color: #9ed3c2; margin: 0; font-weight: bold;">${{NetBalance | number:'.2'}}</h2> <!-- Dynamic total -->
+                          <p style="font-size: 1.1em; color: #333; margin-top: 5px;">including taxes and shipping</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                
+                <div class="col-lg-12 col-xs-12 col-sm-12 col-md-12" style="padding-top:20px;" >
+                    <h3> Shipping Address
+                        <span>
+                            <button class="btn center-block" style="background:#9ed3c2;color:white;display:unset;"  (click)="open(AddNewAddress)"  >ADD NEW</button>
+                        </span>
+                    </h3>
+                    
+                    <div class="col-lg-6 col-sm-12 col-md-6 col-xs-12" *ngFor="let items of EditAddress; let i = index">
+                        <div
+                          class="address-card"
+                          [class.selected]="selectedIndex === i"
+                          (click)="selectItem(i,items.deliveryId)">
+                          <input
+                            type="radio"
+                            [checked]="selectedIndex === i"
+                            name="address"
+                            id="radio-{{ i }}"
+                            class="hidden-radio"
+                          />
+                          <a (click)="open3(ChangeAddress, items.deliveryId)" style="cursor: pointer;">
+                            <i
+                              class="fa fa-edit fa-1x"
+                              style="font-size:1.5rem; position: absolute; right: 0px; padding: 20px;">
+                            </i>
+                          </a>
+                          <label for="radio-{{ i }}" class="address-label">
+                            <p><strong>{{ items.name }} {{ items.lastName }}</strong></p>
+                            <p>{{ items.addLine1 }} {{ items.addLine2 }}</p>
+                            <p>{{ items.city }}, {{ items.state }} - {{ items.zip }}</p>
+                          </label>
+                        </div>
+                      </div>
+                      
+              
+                
+            </div>
+            <div class="info-card">
+                <div class="info-content">
+                  <h4>Verify Your Phone Number</h4>
+                  <p>
+                    To process your order, please verify your phone number manually. Once
+                    verified, your order will be processed promptly.
+                  </p>
+                  <p>
+                    If you need further assistance, feel free to contact us.
+                  </p>
+                </div>
+              </div>
+        </div>
+            
+            <div class="col-lg-1"></div>
+            <div style="padding-left:20px;">
+             
+
+                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" style="padding: 0; border-radius: 12px; background: #fff; box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); overflow: hidden;">
+  
+                    <!-- Checkout Button -->
+                    <div class="col-lg-12" style="padding: 20px 15px; display: flex; justify-content: flex-end;">
+                      <button class="btn btn-checkout" style="background-color: #9ed3c2; color: white; padding: 12px 24px; border-radius: 32px; width: 100%; font-size: 18px; text-align: center;" (click)="PayNow()">
+                        <i class="fa fa-shopping-basket"></i> CHECKOUT
+                      </button>
+                    </div>
+                  
+                    <!-- Order Details Card -->
+                    <div class="order-details" style="background: #fafafa; padding: 20px; border-radius: 12px;">
+                      <h4 style="font-family: 'Ubuntu', sans-serif; font-weight: bold; color: #333;">Order Details</h4>
+                  
+                      <!-- Item List -->
+                      <div *ngFor="let item of Addtocart" style="border-bottom: 1px solid #ddd; padding-bottom: 15px; margin-bottom: 15px;">
+                        <div class="item" style="display: flex; justify-content: space-between; align-items: center;">
+                          <!-- Item Name -->
+                          <div style="flex: 2; font-family: 'Roboto', sans-serif; font-weight: 500; font-size: 1.1em; color: #333;">
+                            <a [routerLink]="'/Food/' + item.MenuVarianceId + '/' + item.Quan + '/' + item.adddon" style="color: #333; text-decoration: none;">
+                              {{ item.itemName }}
+                            </a>
+                          </div>
+                  
+                          <!-- Quantity -->
+                          <div style="flex: 0.5; text-align: center; font-family: 'Roboto', sans-serif; font-size: 1em; color: #555;">
+                            x{{ item.Quan }}
+                          </div>
+                  
+                          <!-- Price -->
+                          <div style="flex: 1; text-align: right; font-family: 'Roboto', sans-serif; font-size: 1.1em; color: #9ed3c2;">
+                            <!-- $ {{ (item.couponType === "P" ? (item.Quan * item.price) | number: '.2' : (item.Quan * item.price)) | number: '.2' }} -->
+                          </div>
+                  
+                          <!-- Remove Icon -->
+                          <div style="cursor: pointer; color: #f44336;" (click)="RemoveOpen(Addon, item)">
+                            <i class="fa fa-trash"></i>
+                          </div>
+                        </div>
+                  
+                        <!-- Addon Section -->
+                        <div class="addons" style="padding-top: 10px;">
+                          <div *ngFor="let items of item.Addon" style="display: inline-block; background-color: #e0e0e0; border-radius: 20px; padding: 5px 15px; margin-right: 10px; font-size: 0.9em; color: #555;">
+                            {{ items.Addon }} <i>(${{ items.prize }})</i>
+                            <span class="closebtn" (click)="PriceRemove(item, items, items.Addon)" style="cursor: pointer; color: #f44336;">&times;</span>
+                          </div>
+                        </div>
+                  
+                        <!-- Instruction Input -->
+                        <input type="text" placeholder="Instruction" [(ngModel)]="item.Addon1" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; margin-top: 10px;" />
+                      </div>
+                  
+                      <!-- Discount Section -->
+                      <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+                        <div style="font-family: 'Roboto', sans-serif;">Discount</div>
+                        <div style="font-family: 'Roboto', sans-serif; color: #9ed3c2;">- ${{ Discount | number: '.2' }}</div>
+                      </div>
+                  
+                      <!-- SubTotal Section -->
+                      <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+                        <div style="font-family: 'Roboto', sans-serif;">SubTotal</div>
+                        <div style="font-family: 'Roboto', sans-serif; color: #9ed3c2;">$ {{ price | number: '.2' }}</div>
+                      </div>
+                  
+                      <!-- Delivery Section -->
+                      <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+                        <div style="font-family: 'Roboto', sans-serif;">Delivery</div>
+                        <div style="font-family: 'Roboto', sans-serif;">$ {{ DeliveryAmt | number: '.2' }}</div>
+                      </div>
+                  
+                      <!-- Total Due Section -->
+                      <div style="display: flex; justify-content: space-between; margin-top: 20px; font-weight: bold;">
+                        <div style="font-family: 'Roboto', sans-serif;">Total Due</div>
+                        <div style="font-family: 'Roboto', sans-serif; color: #20c500;">$ {{ NetBalance | number: '.2' }}</div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  
+            </div>
+       
+        </div>
+
+    </div>
+
+    
+  
+    <div class="modal fade bs-modal-md" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="padding-top:60px">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <br>
+                <div class="bs-example bs-example-tabs">
+                    <ul id="myTab" class="nav nav-tabs">
+                        <li class="active"><a href="#signin" data-toggle="tab" target="_self">Delivery Address</a></li>
+
+                    </ul>
+                </div>
+                <div class="modal-body">
+                    <div id="myTabContent" class="tab-content">
+
+                        <div class="tab-pane fade active in" id="signin">
+                            <form class="form-horizontal">
+                                <fieldset>
+                                    <!-- Sign In Form -->
+                                    <!-- Text input-->
+                                    <div class="control-group">
+
+                                        <div class="controls">
+                                            <input required="" id="userid" name="userid" type="text" class="form-control " placeholder="Enter your Frist Name ">
+                                        </div>
+                                    </div>
+                                    <!-- Password input-->
+                                    <div class="control-group" style="padding-top:20px">
+
+                                        <div class="controls">
+                                            <input required="" id="passwordinput" name="passwordinput" class="form-control" type="text" placeholder="Enter Your Last Name">
+                                        </div>
+                                    </div>
+                                    <div class="control-group" style="padding-top:20px">
+
+                                        <div class="controls">
+                                            <input required="" id="passwordinput" name="passwordinput" class="form-control" type="text" placeholder="Enter Your Contact Number">
+                                        </div>
+                                    </div>
+                                    <div class="control-group" style="padding-top:20px">
+
+                                        <div class="controls">
+                                            <input required="" id="passwordinput" name="passwordinput" class="form-control" type="text" placeholder="Address Line1">
+                                        </div>
+                                    </div>
+                                    <div class="control-group" style="padding-top:20px">
+
+                                        <div class="controls">
+                                            <input required="" id="passwordinput" name="passwordinput" class="form-control" type="text" placeholder="Address Line2">
+                                        </div>
+                                    </div>
+                                    <div class="control-group" style="padding-top:20px">
+
+                                        <div class="controls">
+                                            <input required="" id="passwordinput" name="passwordinput" class="form-control" type="text" placeholder="City">
+                                        </div>
+                                    </div>
+                                    <div class="control-group" style="padding-top:20px">
+
+                                        <div class="controls">
+                                            <input required="" id="passwordinput" name="passwordinput" class="form-control" type="text" placeholder="State">
+                                        </div>
+                                    </div>
+                                    <div class="control-group" style="padding-top:20px">
+
+                                        <div class="controls">
+                                            <input required="" id="passwordinput" name="passwordinput" class="form-control" type="text" placeholder="Zip Code">
+                                        </div>
+                                    </div>
+                                    <!-- Button -->
+                                    <div class="control-group">
+                                        <label class="control-label" for="signin"></label>
+                                        <div class="controls" style="    text-align: center;">
+                                            <button id="signin" name="signin" class="btn " style="background-color:#F4650C;color:white">Submit</button>
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+  <ng-template #Payout let-modal >
+
+    <div class="modal-header" style="border: none;padding-bottom: unset;">
+  <h4 style="font-size: 18px;padding-left: 25px;font-family:Roboto, sans-serif  !important"><i class="fa fa-map-marker">  {{location}}</i> </h4>
+  
+      <button type="button" class="close" aria-label="Close" style="outline: none;opacity: 1;font-size: 34px;padding-top: unset;" (click)="modal.dismiss('Cross click')">
+  
+        <span aria-hidden="true">×</span>
+  
+      </button>
+  
+    </div>
+  
+    <div class="modal-body">
+ 
+        <div class="">
+            <h4 style="font-family:Roboto, sans-serif  !important;padding-left: 25px">Delivery Address</h4>
+        </div>
+  <div class="" style="padding-top: 10px;padding-left: 25px;padding-bottom: 20px;">
+      <span style="font-size: 15px;">{{AddFirstName}}  </span>
+  <br/>
+  <span  style="font-size: 15px;">{{AddAddLine1}} {{AddLine2}}</span>
+  <br/>
+  <span  style="font-size: 15px;">{{AddCity}},{{AddState}} {{AddZip}}</span>
+  </div>
+    <div class="" style="border-top: 1px solid rgba(111,111,111,0.5);"></div>
+  
+
+    <div class="col-lg-12 col-xs-12 col-sm-12 col-md-12" style="padding:10px">
+        <h4 style="padding-left:20px;font-family:Ubuntu-Bold !important ;">Order Details</h4>
+    </div>
+    <div class="row" style="padding-left: 15px;padding-right: 14px;">
+        <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="padding-top:10px;" *ngFor="let item of Addtocart">
+            <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6" style="font-family:Roboto, sans-serif  !important;">
+                <h5  style="font-family:Roboto, sans-serif  !important;">{{item.itemName}} </h5>
+                <span>{{item.Addon}}</span>
+            </div>
+            <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2" style="font-family:Roboto, sans-serif  !important;">
+                <h5  style="font-family:Roboto, sans-serif  !important;">x{{item.Quan}}</h5>
+            </div>
+            <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3" style="padding-right: unset;font-family:Roboto, sans-serif  !important;text-align: center;">
+                <h5  style="font-family:Roboto, sans-serif  !important;">$ {{item.couponType=="P" ? ( item.Quan * (item.price -(item.couponAmt/100)) | number:'.2') :( item.Quan * (item.price -(item.couponAmt))  | number:'.2' )}}</h5>
+            </div>
+        </div>
+
+       
+        <!-- <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="padding-top:10px">
+            <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                <h5 style="font-family:Roboto, sans-serif  !important;">Discount </h5>
+            </div>
+            <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
+                <h5></h5>
+            </div>
+            <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3" style="padding-right: unset;color: #9ed3c2;text-align: center;">
+                <h5 style="font-family:Roboto, sans-serif  !important;"> - $ {{Discount | number:'.2'}}</h5>
+            </div>
+            <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1" style="padding-top:8px">
+
+            </div>
+        </div> -->
+        <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="padding-top:10px;border-bottom: 1px dashed; padding-bottom: 10px;" >
+            <div class="col-lg-8 col-md-8 col-xs-8 col-sm-8">
+                <h5 style="font-family:Roboto, sans-serif  !important;">Applied Coupon </h5>
+            </div>
+           
+            <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3" style="padding-right: unset;text-align: center;">
+                <h5 style="font-family:Roboto, sans-serif  !important;">$ {{CouponAmt | number:'.2'}}</h5>
+            </div>
+            <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1" style="padding-top:8px">
+
+            </div>
+        </div>
+        <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="padding-top:10px;padding-bottom: 10px;border-bottom: 1px dashed;">
+            <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                <h5 style="font-family:Roboto, sans-serif  !important;">SubTotal </h5>
+            </div>
+            <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
+                <h5></h5>
+            </div>
+            <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3" style="padding-right: unset;color: #9ed3c2;text-align: center;">
+                <h5 style="font-family:Roboto, sans-serif  !important;">$ {{price | number:'.2'}}</h5>
+            </div>
+            <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1" style="padding-top:8px">
+
+            </div>
+        </div>
+        <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="padding-top:10px;">
+            <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                <h5 style="font-family:Roboto, sans-serif  !important;">Delivery </h5>
+            </div>
+            <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
+                <h5></h5>
+            </div>
+            <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3" style="padding-right: unset;text-align: center;">
+                <h5 style="font-family:Roboto, sans-serif  !important;">$ {{DeliveryAmt | number:'.2'}}</h5>
+            </div>
+            <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1" style="padding-top:8px">
+
+            </div>
+        </div>
+        <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="padding-top:10px;border-bottom:1px dashed">
+            <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                <h5 style="font-family:Roboto, sans-serif  !important;">Tax </h5>
+            </div>
+            <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
+                <h5></h5>
+            </div>
+            <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3" style="padding-right: unset;text-align: center;">
+                <h5 style="font-family:Roboto, sans-serif  !important;">$ {{Taxamt | number:'.2'}}</h5>
+            </div>
+            <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1" style="padding-top:8px">
+
+            </div>
+        </div>
+        
+        <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="padding-top:10px;padding-bottom: 20px;">
+            <div class="col-lg-8 col-md-8 col-xs-8 col-sm-8">
+                <h5 style="font-family:Roboto, sans-serif  !important;color: #9ed3c2;">Tip Amount (Optional) </h5>
+                <table>
+                    <tr>
+                        <td style="width: 24%;padding-right: 15px;text-align: center;" *ngFor="let item of TipMaster">
+                            <div  style="background-color: #F4650C;cursor: pointer;" (click)="TippEnter(item.tipsPercentage)">
+                              <p style="color: white;">{{item.tipsPercentage}}%</p>
+                          </div>
+                           
+                        </td>
+                      
+                    </tr>
+                    <tr>
+                     
+                  </tr>
+                </table>
+            </div>
+           
+            <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3" style="padding-right: unset;text-align: center;">
+                <span class="input-euro left">                              
+                    <input type="number" style="font-family:Roboto, sans-serif  !important;color: #9ed3c2;    width: 150%;  height: 37px;"  [(ngModel)]="TipAmt"  min=0 oninput="validity.valid||(value='');" (change)="TipsPenter()"/>
+              </span>
+            </div>
+            <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1" style="padding-top:8px">
+
+            </div>
+        </div>
+        <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="padding-top:15px;padding-bottom:10px ;border-top: 1px solid rgba(111,111,111,0.5);border-bottom: 1px solid rgba(111,111,111,0.5)">
+            
+            <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" >
+                <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6" style="padding:unset">
+                    <h5 style="font-family:Roboto, sans-serif  !important;">Total Due </h5>
+                </div>
+                <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
+                    <h5></h5>
+                </div>
+                <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4" style="padding-right: unset;text-align: center;">
+                    <h5 style="color:#20c500 ;font-family:Roboto, sans-serif  !important;">$ {{NetBalance | number:'.2'}}</h5>
+                </div>
+              
+            </div>
+        </div>
+        <div class="col-md-12" >
+            <!-- <div class="col-md-6">
+                <div class="radio-item" >
+                    <input type="radio" id="ritema12" name="ritem12" value="Cash" (click)="DeliDelivery('Cash')">
+                    <label for="ritema12" style="font-size: 22px;">  Cash on Delivery </label>
+                </div>
+            </div> -->
+            <div class="col-md-12" style="text-align: center;">
+                <div class="radio-item" >
+                    <input type="radio" id="ritema13" name="ritem12" value="Online"  (click)="DeliDelivery('Online')">
+                    <label for="ritema13" style="font-size: 22px;">  Online Payment </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 col-xs-12 col-sm-12 col-md-12 " style="text-align: center;padding-top: 20px;padding-bottom: 50px;">
+            <button class="btn" style="border-radius: 25px; background-color: #9ed3c2;color: white;width: 52%;font-size: 20PX;font-family:Roboto, sans-serif  !important;" (click)="PayNow()" >PAY NOW</button>
+        </div>
+    </div>
+
+    </div>
+  
+   
+  
+  </ng-template>
+  <ng-template #ChangeAddress let-modal >
+
+    <div class="modal-header" style="border: none;padding: 10px;padding-bottom: unset;">
+  
+      <h3 class="modal-title" id="modal-basic-title" style="font-family:Roboto, sans-serif  !important">Address</h3>
+  
+      <button type="button" class="close" aria-label="Close" style="outline: none;opacity: 1;font-size: 34px;padding-top: unset;" (click)="modal.dismiss('Cross click')">
+  
+        <span aria-hidden="true">×</span>
+  
+      </button>
+  
+    </div>
+  
+    <div class="modal-body" style="padding:10px;">
+ <div class="col-lg-12 col-xs-12 col-sm-12 col-xs-12">
+    <span [hidden]="isShownErrorChange" style="color: red;" >{{ChangeAddErrorMsg}}</span>
+    <span [hidden]="isShownSuccessChange" style="color: #9ed3c2;" >{{ChangeAddSuccessMsg}}</span>
+ </div>
+  
+    <div class="col-lg-12 col-xs-12 col-sm-12 col-xs-12">
+        <div class="form-group" style="padding-top:10px ;">
+            <input type="text" placeholder="Name" [(ngModel)]="Name" class="form-control line" style="font-family: Ubuntu-Medium !important;" />
+        </div>
+        <div class="form-group" style="padding-top:10px ;">
+           
+            <input type="text" placeholder="Address Line1" [(ngModel)]="AddAddLine1" class="form-control line" style="font-family: Ubuntu-Medium !important;"  />
+        </div>
+        <div class="form-group" style="padding-top:10px ;">
+           
+            <input type="text" placeholder="Address Line2" [(ngModel)]="AddLine2" class="form-control line"  style="font-family: Ubuntu-Medium !important;" />
+        </div>
+        <div class="form-group" style="padding-top:10px ;">
+           
+            <input type="text" placeholder="City" [(ngModel)]="AddCity" class="form-control line"  style="font-family: Ubuntu-Medium !important;" />
+        </div>
+        <div class="form-group" style="padding-top:10px ;">
+           
+            <input type="text" placeholder="State" [(ngModel)]="AddState" class="form-control line"  style="font-family: Ubuntu-Medium !important;" />
+        </div>
+        <div class="form-group" style="padding-top:10px ;">
+           
+            <input type="text" placeholder="Zip" [(ngModel)]="AddZip" class="form-control line"  style="font-family: Ubuntu-Medium !important;" />
+        </div>
+        
+      
+        <div class="form-group" style=" margin-top: 10px; margin-bottom: 30px; border-radius: 34px;border: 1px solid ;background-color: #9ed3c2;text-align: center;">
+           
+            <h3 class="" (click)="ChangeAddressClick()" style="font-family: Ubuntu-Medium !important;text-align: center;margin-top: 10px;color: white;">SUBMIT</h3>
+        </div>
+
+      
+    </div>
+  
+    </div>
+  
+   
+  
+  </ng-template>
+
+
+  <ng-template #AddNewAddress let-modal >
+
+    <div class="modal-header" style="border: none;padding: 10px;padding-bottom: unset;">
+  
+      <h3 class="modal-title" id="modal-basic-title" style="font-family:Roboto, sans-serif  !important">Address</h3>
+  
+      <button type="button" class="close" aria-label="Close" style="outline: none;opacity: 1;font-size: 34px;padding-top: unset;" (click)="modal.dismiss('Cross click')">
+  
+        <span aria-hidden="true">×</span>
+  
+      </button>
+  
+    </div>
+  
+    <div class="modal-body" style="padding:10px;">
+ <div class="col-lg-12 col-xs-12 col-sm-12 col-xs-12">
+    <span [hidden]="isShownErrorAddnew" style="color: red;" >{{AddnewErrorMsg}}</span>
+    <span [hidden]="isShownSuccessAddnew" style="color: #9ed3c2;" >{{AddNewSuccessMsg}}</span>
+ </div>
+  
+    <div class="col-lg-12 col-xs-12 col-sm-12 col-xs-12">
+        <div class="form-group" style="padding-top:10px ;">
+            <input type="text" placeholder="Name" [(ngModel)]="AddNewFirstName" class="form-control line" style="font-family: Ubuntu-Medium !important;" />
+        </div>
+        <div class="form-group" style="padding-top:10px ;">
+           
+            <input type="text" placeholder="Address Line1" [(ngModel)]="AddNewLine1" class="form-control line" style="font-family: Ubuntu-Medium !important;"  />
+        </div>
+        <div class="form-group" style="padding-top:10px ;">
+           
+            <input type="text" placeholder="Address Line2" [(ngModel)]="AddNewLine2" class="form-control line"  style="font-family: Ubuntu-Medium !important;" />
+        </div>
+        <div class="form-group" style="padding-top:10px ;">
+           
+            <input type="text" placeholder="City" [(ngModel)]="AddnewCity" class="form-control line"  style="font-family: Ubuntu-Medium !important;" />
+        </div>
+        <div class="form-group" style="padding-top:10px ;">
+           
+            <input type="text" placeholder="State" [(ngModel)]="AddNewState" class="form-control line"  style="font-family: Ubuntu-Medium !important;" />
+        </div>
+        <div class="form-group" style="padding-top:10px ;">
+           
+            <input type="number" placeholder="Zip" [(ngModel)]="AddNewZip" class="form-control line"  style="font-family: Ubuntu-Medium !important;" />
+        </div>
+        
+      
+        <div class="form-group" style=" margin-top: 10px; margin-bottom: 30px; border-radius: 34px;border: 1px solid ;background-color: #9ed3c2;text-align: center;">
+           
+            <h3 class="" (click)="AddressNewClick()" style="cursor: pointer; font-family: Ubuntu-Medium !important;text-align: center;margin-top: 10px;color: white;">SUBMIT</h3>
+        </div>
+
+      
+    </div>
+  
+    </div>
+  
+   
+  
+  </ng-template>
+ 
+ 
+  <ng-template #Login let-modal id="" style="width:90%">
+
+    <div class="modal-header" style="border: none;padding: 35px;padding-bottom: unset;">
+
+        <h3 class="modal-title" id="modal-basic-title" style="font-family: Ubuntu-Bold;">LOGIN</h3>
+
+        <button type="button" class="close" aria-label="Close"
+            style="outline: none;opacity: 1;font-size: 34px;padding-top: unset;cursor: pointer;"
+            (click)="modal.dismiss('Cross click')">
+
+            <span aria-hidden="true">×</span>
+
+        </button>
+
+    </div>
+
+    <div class="modal-body" style="padding:35px;">
+        <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="text-align: center;" style="padding-bottom: 10px;">
+            <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6 col-xs-6" style="text-align: right;">
+                <button class="btn " (click)="socialSignIn('facebook')"
+                    style="background-color: #3b5998;color:white ;border-radius: 20px;text-align: right;cursor: pointer;"><i
+                        class="fa fa-facebook" style="padding-right: 10px;"></i>Facebook</button>
+            </div>
+            <div class="col-lg-6 col-xs-6 col-sm-6 col-md-6">
+                <button class="btn " (click)="socialSignIn('google')"
+                    style="background-color: #9ed3c2;color:white ;border-radius: 20px;text-align: center;cursor: pointer;"><i
+                        class="fa fa-google" style="padding-right: 10px;"></i>Google</button>
+            </div>
+
+        </div>
+        <div class="col-lg-12 col-xs-12 col-sm-12 col-xs-12">
+            <h4 style="border-bottom: 1px solid black;">
+                <span
+                    style="    background-color: white;  position: relative; top: 10px;left: 45%;padding: 0 10px; font-weight: bold;">Or
+                </span>
+            </h4>
+        </div>
+        <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="text-align: center;">
+            <span [hidden]="isShownErrorLogin" style="color: red;">{{LoginErrorMsg}}</span>
+            <span [hidden]="isShownSuccessLogin" style="color: #9ed3c2;">{{LoginSuccessMsg}}</span>
+        </div>
+        <div class="col-lg-12 col-xs-12 col-sm-12 col-xs-12">
+            <div class="form-group" style="padding-top:10px ;">
+                <input type="text" placeholder="Enter Phone No or Email" class="form-control line"
+                    [(ngModel)]="UserId" />
+            </div>
+            <div class="form-group" style="padding-top:10px ;">
+
+                <input type="password" placeholder="Enter your Password" class="form-control line"
+                    [(ngModel)]="Password" id="txtPassword" style="width: 95%;" />
+                    <i id="pass-status" class="fa fa-eye" aria-hidden="true" (click)="viewPassword()"></i>
+            </div>
+            <div class="row" style="padding-top: 10px;">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" id="Instant" style="display: block;">
+                    <div class="input-group" style=" padding-bottom:5px;" draggable="true" ondragstart="return false"
+                        ondrop="return false">
+                        <div class="input-group-addon"
+                            style="background-color:#294f91;cursor:pointer;height:0px;cursor: pointer;"
+                            (click)="Captcha()">
+                            <span id="refresh2"><img style="width:20px; height:20px;"
+                                    src="../assets/Images/icons8-refresh-30.png"></span>
+
+                        </div>
+
+                        <input type="text" class="form-control" [(ngModel)]="LoginCaptha"
+                            style="margin-bottom: 0px; margin-top: 0px;     width: 100px; color: black; height: 40px; font-size: 16px; border-radius: 2px; font-weight: bolder; display: inline-block; background-color: rgb(255, 255, 255);"
+                            id="mainCaptcha" disabled="" draggable="true" ondragstart="return false"
+                            ondrop="return false">
+
+                        <div style="margin-top:10px; color: #D8000C; border-radius: 7px;" id="log"></div>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-4 col-sm-4 col-xs-12" id="Instant1" style="display: block;">
+                    <div class="form-group box" style="padding-left: 22%;">
+                        <input type="text" [(ngModel)]="LoginCaptha1"
+                            style="border-top:0px;width: 100%; border-left:0px; border-right:0px; border-radius: 0px; border-bottom: 1px solid ;height: 40px; font-size: 14px; font-weight: bolder; display: inline-block;"
+                            id="txtInput" placeholder="Enter Captcha" ng-model="Data3.shCaptcha" name="captcha" value=""
+                            class="ng-pristine ng-untouched ng-valid ng-empty">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" style="padding-top:10px ;text-align: right; cursor: pointer; ">
+                <a (click)="open1('Login',Forget)" style="color: #294f91;">Forgot Password?</a>
+
+            </div>
+
+            <div class="form-group" (click)="loginClick()"
+                style="border-radius: 34px;border: 1px solid;background-color: #9ed3c2;text-align: center;cursor: pointer;">
+
+                <h3 class="" style="text-align: center;margin-top: 10px;color: white;">LOGIN</h3>
+            </div>
+
+            <div class="" style="padding-top:15px ;">
+                <h5>Don't have Account ?</h5>
+            </div>
+            <div class="form-group ColorCha"
+                style="border-radius: 34px;border: 1px solid;text-align: center;cursor: pointer;">
+
+                <h3 class="" style="text-align: center;margin-top: 10px;" (click)="open1('Login',SignUp)">SIGNUP</h3>
+            </div>
+            <div class="form-group" style="text-align: center;">
+
+                <h3 class="" style="text-align: center;margin-top: 50px;font-size: 18PX; cursor: pointer;"
+                    (click)="open1('Login',Guest)">Or Continue as a <b style="color: black;font-size: 18PX;">GUEST</b>
+                </h3>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</ng-template>
+
+<ng-template #SignUp let-modal>
+
+    <div class="modal-header" style="border: none;padding: 35px;padding-bottom: unset;">
+
+        <h3 class="modal-title" id="modal-basic-title" style="font-family:Roboto, sans-serif  !important">SIGNUP</h3>
+
+        <button type="button" class="close" aria-label="Close"
+            style="outline: none;opacity: 1;font-size: 34px;padding-top: unset; cursor: pointer;"
+            (click)="modal.dismiss('Cross click')">
+
+            <span aria-hidden="true">×</span>
+
+        </button>
+
+    </div>
+
+    <div class="modal-body" style="padding:35px;">
+        <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="text-align: center;" style="padding-bottom: 10px;">
+            <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6 col-xs-6" style="text-align: right;">
+                <button class="btn " (click)="socialSignIn('facebook')"
+                    style="background-color: #3b5998;color:white ;border-radius: 20px;text-align: right;cursor: pointer;"><i
+                        class="fa fa-facebook" style="padding-right: 10px;"></i>Facebook</button>
+            </div>
+            <div class="col-lg-6 col-xs-6 col-sm-6 col-md-6">
+                <button class="btn " (click)="socialSignIn('google')"
+                    style="background-color: #9ed3c2;color:white ;border-radius: 20px;text-align: center;cursor: pointer;"><i
+                        class="fa fa-google" style="padding-right: 10px;"></i>Google</button>
+            </div>
+
+        </div>
+        <div class="col-lg-12 col-xs-12 col-sm-12 col-xs-12">
+            <h4 style="border-bottom: 1px solid black;">
+                <span
+                    style="    background-color: white;  position: relative; top: 10px;left: 45%;padding: 0 10px; font-weight: bold;">Or
+                </span>
+            </h4>
+        </div>
+        
+    </div>
+    <div class="col-lg-12 col-xs-12 col-sm-12 col-xs-12">
+        <div class="form-group" style="padding-top:10px ;">
+            <input type="text" placeholder="First Name" [(ngModel)]="SignUpFirstName" class="form-control line"
+                style="font-family: Ubuntu-Medium !important;" />
+        </div>
+        <div class="form-group" style="padding-top:10px ;">
+
+            <input type="text" placeholder="Last Name" [(ngModel)]="SignUpLastName" class="form-control line"
+                style="font-family: Ubuntu-Medium !important;" />
+        </div>
+        <div class="form-group" style="padding-top:10px ;">
+
+            <input type="text" placeholder="Email ID (Optional) " [(ngModel)]="SignUpEmail" [email]="true"
+                class="form-control line" style="font-family: Ubuntu-Medium !important;" />
+        </div>
+        <div class="form-group" style="padding-top:10px ;">
+
+            <input type="text" placeholder="Mobile Number " [(ngModel)]="SignUpMobile" [pattern]="mobNumberPattern"  maxlength="13" (ngModelChange)="onSignUpMobileChange($event)" 
+                class="form-control line" style="font-family: Ubuntu-Medium !important;" />
+        </div>
+        <div class="form-group" style="padding-top:10px ;">
+
+            <input type="password" placeholder="Password " [(ngModel)]="SignUpPassword"    class="form-control line" id="txtsignuppassword"
+                style="font-family: Ubuntu-Medium !important;width: 95%;" />
+                <i id="pass-signstatus" class="fa fa-eye" aria-hidden="true" (click)="viewSignUpPassword()"></i>
+            <!-- <div *ngIf="sPass.errors?.pattern">
+                    User name not valid.
+               </div>  -->
+        </div>
+        <div class="form-group" style="padding-top:10px ;">
+
+            <input type="password" placeholder="Confirm Password " [(ngModel)]="SignUpConfirmPass"
+            class="form-control line" style="font-family: Ubuntu-Medium !important;" id="txtSignupConfirmPass"  style="width: 95%;" />
+            <i id="passSignupConfirm" class="fa fa-eye" aria-hidden="true" (click)="viewSignupConfirm()"></i>
+        </div>
+        <div class="row" style="padding-top: 10px;">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" id="Instant" style="display: block;">
+                <div class="input-group" style=" padding-bottom:5px;" draggable="true" ondragstart="return false"
+                    ondrop="return false">
+                    <div class="input-group-addon" style="background-color:#294f91;cursor:pointer;height:0px;"
+                        (click)="CaptchaSignUp()">
+                        <span id="refresh2"><img style="width:20px; height:20px;"
+                                src="../assets/Images/icons8-refresh-30.png"></span>
+
+                    </div>
+
+                    <input type="text" class="form-control" [(ngModel)]="SignUpCaptha"
+                        style="margin-bottom: 0px; margin-top: 0px;     width: 100px; color: black; height: 40px; font-size: 16px; border-radius: 2px; font-weight: bolder; display: inline-block; background-color: rgb(255, 255, 255);"
+                        id="mainCaptcha" disabled="" draggable="true" ondragstart="return false" ondrop="return false">
+
+                    <div style="margin-top:10px; color: #D8000C; border-radius: 7px;" id="log"></div>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-4 col-sm-4 col-xs-12" id="Instant1" style="display: block;">
+                <div class="form-group box" style="padding-left: 22%;">
+                    <input type="text" [(ngModel)]="SignUpCaptha1"
+                        style="border-top:0px;width: 100%; border-left:0px; border-right:0px; border-radius: 0px; border-bottom: 1px solid ;height: 40px; font-size: 14px; font-weight: bolder; display: inline-block;"
+                        id="txtInput" placeholder="Enter Captcha" ng-model="Data3.shCaptcha" name="captcha" value=""
+                        class="ng-pristine ng-untouched ng-valid ng-empty">
+                </div>
+            </div>
+
+        </div>
+        <div class="row" style="padding-top: 10px;">
+        <div class="col-lg-12 col-xs-12 col-sm-12 col-xs-12" style="text-align:center;">
+            <span [hidden]="isShownErrorSignUp" style="color: red;">{{SignUpErrorMsg}}</span>
+            <span [hidden]="isShownSuccessSignUp" style="color: #9ed3c2;">{{SignUpSuccessMsg}}</span>
+        </div></div>
+        <div class="form-group "
+            style="margin-top: 10px; border-radius: 34px;border: 1px solid;background-color: #9ed3c2;text-align: center; cursor: pointer;">
+
+            <h3 class="" style="text-align: center;margin-top: 10px;color: white;font-family: Ubuntu-Bold !important"
+                (click)="SignUpClick()">SIGNUP</h3>
+        </div>
+
+        <div class="" style="padding-top:15px ;">
+            <h5 style="font-size: 14px;">Already have Account ?</h5>
+
+            <div class="form-group ColorCha"
+                style="border-radius: 34px;border: 1px solid;text-align: center; cursor: pointer;">
+
+                <h3 class="" style="text-align: center;margin-top: 10px;font-family: Ubuntu-Bold !important"
+                    (click)="open2('SignUp',Login)">LOGIN</h3>
+            </div>
+            <div class="form-group " style="text-align: center;">
+
+                <h3 class="" style="text-align: center;margin-top: 50px;font-size: 18PX; cursor: pointer;"
+                    (click)="open1('Login',Guest)">Or Continue as a <b style="color: black;font-size: 18PX;">GUEST</b>
+                </h3>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</ng-template>
+
+
+<ng-template #Guest let-modal>
+
+    <div class="modal-header" style="border: none;padding: 35px;padding-bottom: unset;">
+
+        <h3 class="modal-title" id="modal-basic-title" style="font-family:Roboto, sans-serif  !important">GUEST</h3>
+
+        <button type="button" class="close" aria-label="Close"
+            style="outline: none;opacity: 1;font-size: 34px;padding-top: unset;" (click)="modal.dismiss('Cross click')">
+
+            <span aria-hidden="true">×</span>
+
+        </button>
+
+    </div>
+
+    <div class="modal-body" style="padding:35px;">
+       
+
+        <div class="col-lg-12 col-xs-12 col-sm-12 col-xs-12">
+            <div class="form-group" style="padding-top:10px ;">
+                <input type="text" placeholder="First Name" [(ngModel)]="GustFirstName" class="form-control line"
+                    style="font-family: Ubuntu-Medium !important;" />
+            </div>
+            <div class="form-group" style="padding-top:10px ;">
+
+                <input type="text" placeholder="Last Name" [(ngModel)]="GustLastName" class="form-control line"
+                    style="font-family: Ubuntu-Medium !important;" />
+            </div>
+            <div class="form-group" style="padding-top:10px ;">
+
+                <input type="text" placeholder="Email ID (Optional) " [(ngModel)]="GustEmail" class="form-control line"
+                    style="font-family: Ubuntu-Medium !important;" />
+            </div>
+            <div class="form-group" style="padding-top:10px ;">
+
+                <input type="text" placeholder="Mobile Number " [(ngModel)]="GustMobile" class="form-control line" maxlength="13" (ngModelChange)="onSignUpGustMobileChange($event)" 
+                    style="font-family: Ubuntu-Medium !important;" />
+            </div>
+            <div class="row" style="padding-top: 10px;">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" id="Instant" style="display: block;">
+                    <div class="input-group" style=" padding-bottom:5px;" draggable="true" ondragstart="return false"
+                        ondrop="return false">
+                        <div class="input-group-addon" style="background-color:#294f91;cursor:pointer;height:0px;"
+                            (click)="CaptchaGust()">
+                            <span id="refresh2"><img style="width:20px; height:20px;"
+                                    src="../assets/Images/icons8-refresh-30.png"></span>
+
+                        </div>
+
+                        <input type="text" class="form-control" [(ngModel)]="GustCaptha"
+                            style="margin-bottom: 0px; margin-top: 0px;     width: 100px; color: black; height: 40px; font-size: 16px; border-radius: 2px; font-weight: bolder; display: inline-block; background-color: rgb(255, 255, 255);"
+                            id="mainCaptcha" disabled="" draggable="true" ondragstart="return false"
+                            ondrop="return false">
+
+                        <div style="margin-top:10px; color: #D8000C; border-radius: 7px;" id="log"></div>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-4 col-sm-4 col-xs-12" id="Instant1" style="display: block;">
+                    <div class="form-group box" style="padding-left: 22%;">
+                        <input type="text" [(ngModel)]="GustCaptha1"
+                            style="border-top:0px;width: 100%; border-left:0px; border-right:0px; border-radius: 0px; border-bottom: 1px solid ;height: 40px; font-size: 14px; font-weight: bolder; display: inline-block;"
+                            id="txtInput" placeholder="Enter Captcha" ng-model="Data3.shCaptcha" name="captcha" value=""
+                            class="ng-pristine ng-untouched ng-valid ng-empty">
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="row" style="padding-top: 10px;">
+            <div class="col-lg-12 col-xs-12 col-sm-12 col-xs-12" style="text-align:center;" >
+                <span [hidden]="isShownErrorGuest" style="color: red;">{{GuestErrorMsg}}</span>
+                <span [hidden]="isShownSuccessGuest" style="color: #9ed3c2;">{{GuestSuccessMsg}}</span>
+            </div></div>
+
+            <div class="form-group"
+                style=" margin-top: 10px; margin-bottom: 30px; border-radius: 34px;border: 1px solid ;background-color: #9ed3c2;text-align: center;">
+
+                <h3 class="" (click)="GustClick()"
+                    style="font-family: Ubuntu-Medium !important;text-align: center;margin-top: 10px;color: white;cursor: pointer;">
+                    SUBMIT</h3>
+            </div>
+
+            <div class="" style="padding-top:20px ;border-top: 1px solid;font-size: 14px;">
+                <h5>Already have an Account ?</h5>
+            </div>
+            <div class="form-group ColorCha" style="border-radius: 34px;border: 1px solid;text-align: center;">
+
+                <h3 class="" style="font-family:Roboto, sans-serif  !important;text-align: center;margin-top: 10px;"
+                    (click)="open2('Guest',Login)">LOGIN</h3>
+            </div>
+            <div class="" style="padding-top:20px ;font-size: 14px">
+                <h5>Don't have an Account ?</h5>
+            </div>
+            <div class="form-group ColorCha" style="border-radius: 34px;border: 1px solid;text-align: center;">
+
+                <h3 class="" style="font-family:Roboto, sans-serif  !important;text-align: center;margin-top: 10px;"
+                    (click)="open2('Guest',SignUp)">SIGNUP</h3>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</ng-template>
+
+<ng-template #Forget let-modal>
+
+    <div class="modal-header" style="border: none;padding: 35px;padding-bottom: unset;">
+
+        <h3 class="modal-title" id="modal-basic-title" style="font-family:Roboto, sans-serif  !important">Forgot Password</h3>
+
+        <button type="button" class="close" aria-label="Close"
+            style="outline: none;opacity: 1;font-size: 34px;padding-top: unset;cursor: pointer;"
+            (click)="modal.dismiss('Cross click')">
+
+            <span aria-hidden="true">×</span>
+
+        </button>
+
+    </div>
+
+    <div class="modal-body" style="padding:35px;">
+        <div class="col-lg-12 col-xs-12 col-sm-12 col-xs-12" style="text-align:center;">
+            <span [hidden]="isShownErrorForgot" style="color: red;">{{ForgotErrorMsg}}</span>
+            <span [hidden]="isShownSuccessForgot" style="color: #9ed3c2;">{{ForgotSuccessMsg}}</span>
+        </div>
+
+        <div class="col-lg-12 col-xs-12 col-sm-12 col-xs-12">
+            <div class="form-group" style="padding-top:10px ;">
+                <input type="text" placeholder="Email Or Phone" class="form-control line" [(ngModel)]="ForgotMailId" />
+            </div>
+            <div class="row" style="padding-top: 10px;">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" id="Instant" style="display: block;">
+                    <div class="input-group" style=" padding-bottom:5px;" draggable="true" ondragstart="return false"
+                        ondrop="return false">
+                        <div class="input-group-addon" style="background-color:#294f91;cursor:pointer;height:0px;"
+                            (click)="CaptchaForgot()">
+                            <span id="refresh2"><img style="width:20px; height:20px;cursor: pointer;"
+                                    src="../assets/Images/icons8-refresh-30.png"></span>
+
+                        </div>
+
+                        <input type="text" [(ngModel)]="ForgotCaptha" class="form-control"
+                            style="margin-bottom: 0px; margin-top: 0px;     width: 100px; color: black; height: 40px; font-size: 16px; border-radius: 2px; font-weight: bolder; display: inline-block; background-color: rgb(255, 255, 255);"
+                            id="mainCaptcha" disabled="" draggable="true" ondragstart="return false"
+                            ondrop="return false">
+
+                        <div style="margin-top:10px; color: #D8000C; border-radius: 7px;" id="log"></div>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-4 col-sm-4 col-xs-12" id="Instant1" style="display: block;">
+                    <div class="form-group box" style="padding-left: 22%;">
+                        <input type="text" [(ngModel)]="ForgotCaptha1"
+                            style="border-top:0px;width: 100%; border-left:0px; border-right:0px; border-radius: 0px; border-bottom: 1px solid ;height: 40px; font-size: 14px; font-weight: bolder; display: inline-block;"
+                            id="txtInput" placeholder="Enter Captcha" ng-model="Data3.shCaptcha" name="captcha" value=""
+                            class="ng-pristine ng-untouched ng-valid ng-empty">
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="form-group"
+                style=" margin-top: 10px;margin-bottom: 30px; border-radius: 34px;border: 1px solid ;background-color: #9ed3c2;text-align: center;cursor:pointer;">
+
+                <h3 class="" style="text-align: center;margin-top: 10px;color: white;cursor:pointer;"
+                    (click)="open1('Forget',Submit)">SUBMIT</h3>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</ng-template>
+
+<ng-template #Submit let-modal>
+
+    <div class="modal-header" style="border: none;padding: 35px;padding-bottom: unset;">
+
+        <h3 class="modal-title" id="modal-basic-title" style="font-family:Roboto, sans-serif  !important">SUBMIT CODE</h3>
+
+        <button type="button" class="close" aria-label="Close"
+            style="outline: none;opacity: 1;font-size: 34px;padding-top: unset;cursor:pointer;"
+            (click)="modal.dismiss('Cross click')">
+
+            <span aria-hidden="true">×</span>
+
+        </button>
+
+    </div>
+
+    <div class="modal-body" style="padding:35px;">
+
+        <div class="col-lg-12 col-xs-12 col-sm-12 col-xs-12">
+
+            <span [hidden]="isShownErrorVerCode" style="color: red;">{{VerificationErrorMsg}}</span>
+            <span [hidden]="isShownSuccessVerCode" style="color: #9ed3c2;">{{VerificationSuccessMsg}}</span>
+        </div>
+        <div class="col-lg-12 col-xs-12 col-sm-12 col-xs-12">
+            <div class="form-group" style="padding-top:10px ;">
+                <input type="text" placeholder="Enter Verification Code" class="form-control line"
+                    [(ngModel)]="VerificationCode" />
+            </div>
+
+
+            <div class="form-group"
+                style="margin-top: 10px; margin-bottom: 30px; border-radius: 34px;border: 1px solid ;background-color: #9ed3c2;text-align: center;cursor:pointer;">
+
+                <h3 class="" style="text-align: center;margin-top: 10px;color: white;cursor:pointer;"
+                    (click)="VerificationSubmit()">SUBMIT</h3>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</ng-template>
+    <ng-template #Addon let-modal id="" style="width: 80%; max-width: 500px;">
+
+        <div class="modal-header" style="border: none; padding-bottom: unset; background-color: #9ed3c2; border-radius: 15px 15px 0 0; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+          <h4 style="margin: 0; color: white; font-size: 1.5em; text-align: center;">Confirm Deletion</h4>
+        </div>
+      
+        <div class="modal-body" >
+          <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="text-align: center; padding-bottom: 10px;">
+            <fieldset style="border: none; background-color: #fff; padding: 10px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+              <div style="padding-top: 20px;">
+                <h3 style="text-align: center; font-size: 1.6em; color: #333;">Are you sure you want to delete this item(s)?</h3>
+              </div>
+      
+              <!-- Buttons -->
+              <div class="row" style="padding-top: 20px; justify-content: center;">
+                <div class="col-md-5" style="text-align: center; padding: 10px;">
+                  <button class="btn" style="width: 100%; background-color: #9ed3c2; color: white; font-size: 1.1em; padding: 12px 0; border-radius: 5px; border: none; transition: all 0.3s ease;" (click)="RemoveCart()">OK</button>
+                </div>
+                <div class="col-md-5" style="text-align: center; padding: 10px;">
+                  <button class="btn" style="width: 100%; background-color: #f44336; color: white; font-size: 1.1em; padding: 12px 0; border-radius: 5px; border: none; transition: all 0.3s ease;" (click)="modal.dismiss('Cross click')">Cancel</button>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      
+      </ng-template>
+      

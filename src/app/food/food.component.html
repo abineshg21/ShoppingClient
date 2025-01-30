@@ -1,0 +1,1090 @@
+<title>Food</title>
+
+<div style="padding: 10px 20px 0px 60px ;"><a href="/"><i class="fa fa-home"></i>Home </a> &nbsp;/&nbsp;<span
+    style="font-family: 'Roboto', sans-serif !important;">Product Details</span></div><div>
+        <div class="container-fluid" style="border-top:1px solid #9ed3c2;"></div>
+    <div class="container" style="padding-top:40px">
+        <div class="col-lg-11 col-xs-12 col-sm-12 col-md-12 " style="padding:unset;">
+            <div class="col-lg-5 col-md-5 col-xs-12 col-sm-12" style="padding-left:unset">
+                <img src={{ItmImageURL}} style="width: 100%;outline: none;" height="100%" class="center-block"  />
+               
+            </div>
+            <div class="col-lg-7 col-md-7 col-xs-12 col-sm-12 Fa" style="position:absolute;right:0px;    padding: unset;">
+                <div class="col-lg-10 col-md-10 col-xs-12 col-sm-12" >
+                <h3 style="padding-left:40px;padding-right:40px;padding-top: 25px; font-size: 28px;">{{ItemName}} - {{VarianceName}} </h3>
+            </div>
+            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" style="padding-left:40px;">
+                <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12"  *ngFor="let itmv of ItmVariance" (click)="varianceClick(itmv.menuvVariance_ID,itmv.price,itmv.imageUrl,itmv.FavId,itmv.name)" >
+                   <div style="padding: 5px 2px 7px 2px !important; cursor: pointer;" *ngIf="itmv.name != null && itmv.name != '' ? true : false"  >
+                    <span class="menuvariance">{{itmv.name}}</span>
+                    <span [hidden]="isShownMenuVarianceId">{{itmv.menuvVariance_ID}}</span>
+                    <span [hidden]="isShownMenuPrice">{{itmv.price}}</span>
+                    <span [hidden]="isShownMenuDescription">{{itmv.description}}</span>
+                    <span [hidden]="isShownMenuImageUrl">{{itmv.imageUrl}}</span>
+                </div>
+                </div>
+                </div>
+                <!-- <div class="col-lg-2 col-md-2 col-xs-12 col-sm-12" >
+                    <div class="Wish" style="margin-top: 20px;cursor:pointer; " *ngIf='FacId== "" ? true : false' (click)="favItemClick()">
+                        <div class="Wish" style="top:0px; " >
+                            <img src="../../assets/Images/icon/wishlist.png" id="st" style="width:unset" class="center-block" />
+
+                        </div>
+                    </div>
+                    <div class="Wish" style="margin-top: 20px;cursor:pointer; " *ngIf='FacId== "" ? false : true' (click)="favItemClick()">
+                        <div class="Wish" style="top:0px; " >
+                            <img src="../../assets/Images/wishlist.png" id="st" style="width:unset" class="center-block" />
+
+                        </div>
+                    </div>
+                </div> -->
+                <div class="col-md-12">
+                    <p style="padding-left:40px;padding-right:40px;padding-top: 5px;width: 100%;font-size: 15px;">{{ItmDescription}}</p>
+                </div>
+
+              <span [hidden]="isShownVarianceId">{{MenuVarianceId}}</span>
+
+
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="text-align:left; padding-left:40px;padding-top:16px;padding-bottom: 10px;padding-right: 0px;">
+                <!-- <span class="oldprice " style="font-size:24px" [hidden]="isShownDiscount" >$ {{itmPrice}}</span>    -->
+                <span style="font-size: 26px;padding-left: 10px;">$ {{(itmPrice)| number:'1.2-2' }}</span>
+                </div>
+                <!-- <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" style="padding-left:40px;padding-right:25px;padding-top:12px ; padding-bottom: 20px;">
+                    <i class="fa fa-clock-o fa-2x" style="color:red"> </i>
+                    <label style="top: 12px;  position: absolute;  padding-left: 10px;font-size: 18px;font-family:Roboto, sans-serif  !important" *ngFor="let time of TimeArray">Hours {{time.stHours }} - {{time.endHours}} <br><span style="font-size:13px;font-weight:unset;font-family:Ubuntu-Regular !important">(Online Order till 30 mins before closing time)</span> </label>
+                </div> -->
+                <div >
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+                <div class="row" style="text-align:left; padding-left:40px;padding-top:16px;padding-bottom: 10px;"  [hidden]="isShowAddon">
+                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4" style="padding-top: 10px;"><span><u>Add ons</u></span></div>
+                    <div class="col-md-10" style="height: 135px; overflow-y: scroll;">
+                    <div class="col-lg-4 col-md-4 col-sm-8 col-xs-8" style="padding: 10px 2px 15px 2px !important; cursor: pointer;" *ngFor="let mnuc of ItemCustomization">
+                        <span class="Addon" (click)="addOnClick(mnuc.customization,mnuc.price)" id={{mnuc.customization}} >{{mnuc.customization}}</span>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-left:40px;padding-right:25px;border-bottom: 1px solid ;padding-top:20px ; padding-bottom: 20px;">
+                    <i class="fa fa-clock-o fa-2x" style="color:red"> </i>
+                    <label style="top: 20px;  position: absolute;  padding-left: 10px;font-size: 18px;font-family:Roboto, sans-serif  !important" *ngFor="let time of TimeArray">Hours {{time.stHours }} - {{time.endHours}} <span style="font-size:13px;font-weight:unset;font-family:Ubuntu-Regular !important">(Online Order till 30 mins before closing time)</span> </label>
+                </div> -->
+                <!-- <div class="col-lg-12 col-xs-12 col-sm-12 col-md-12" style="padding: 10px;border-top: 1px solid ;">
+                    <div class="col-lg-4  col-md-6 col-xs-6 col-sm-6">
+                        <h4 style="text-align: center;font-size: 18px;    margin-top: 5%;margin-bottom: unset;"> Special Comments</h4>
+                    </div>
+                    <div class="col-lg-8  col-md-6 col-xs-6 col-sm-6" style="border-left: 1px solid;">
+                       <input type="text" class="line foc" style="border-bottom: unset !important;" placeholder="Add Your Comments" [(ngModel)]="SpecialComments" ><i class="fa fa-pencil" style="float: right;top: 27%;position: absolute;right: 0px;"></i>
+                    </div>
+                </div> -->
+
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="   padding-top: 14px; padding-right: unset;padding-left:unset">
+                    <!-- <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4" style="border:1px solid rgba(111,111,111,0.5);padding:22px;text-align: center;" data-target="#myModal" data-toggle="modal">
+                        <i class="fa fa-star fa-2x" style="color:green"> 4.5</i>
+
+                    </div> -->
+
+                    <div class="col-lg-4 col-md-4 col-sm-7 col-xs-7" style="padding: 5px;padding-left:40px;" id="AddQuantity">
+
+
+                        <div class="input-group">
+                            <div class="input-group-btn">
+                                <button id="down" class="btn" style="border:unset;font-size: 29px; z-index: 0;background: none;" (click)="down('1')" ><span class="glyphicon glyphicon-minus" style="font-size: 29px" ></span></button>
+                            </div>
+                            <input type="text" [(ngModel)]="ItemQty" id="myNumber" style="    text-align: center;-webkit-box-shadow:unset;box-shadow: unset; border:unset;font-size: 22px;z-index: 0;padding-top: 24px;font-family:Roboto, sans-serif  !important;width: 50px;" class="form-control input-number" value="1"  (change)="ItemQuantChange()" />
+                            <div class="input-group-btn">
+                                <button id="up" class="btn" style="font-size: 29px;border:unset;z-index: 0;background: none;" (click)="up('10')"><span class="glyphicon glyphicon-plus" style="font-size: 29px" ></span></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5" style="padding: 15px; border:1px solid rgba(111,111,111,0.5);background:#9ed3c2;color:white;text-align: center;cursor: pointer;" (click)="AddonCartitems()">
+
+                      <h4 style="font-size:18px;margin: unset ;"> ADD TO CART</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container-fluid" style="padding-top:60px;border-bottom: 0.5px solid;" ng-show="RelatedItems">
+
+        <h2 style="margin-bottom: 5px;">
+            <span  id="rela" style="font-size: 30px;cursor: pointer;" (click)="itemCatClick('Related')">RELATED ITEMS </span>
+            <!-- <span id="rela1" style="margin-right: 30px;"  style="font-size: 30px;padding-left: 30px;cursor: pointer;" (click)="itemCatClick('Side')"> Side Orders</span>
+            <span id="rela2" style="margin-right: 30px;"  style="font-size: 30px;padding-left: 30px;cursor: pointer;" (click)="itemCatClick('HouseSpl')"> House Spl. Dishes</span> -->
+            <!-- <span style="text-align:right;float: right;"><a (click)="fullview()" style="width:30%;font-size:18px;font-size:15px;font-family: 'Roboto', sans-serif !important;color: #b62601;">View All</a></span> -->
+        </h2>
+    </div>
+
+        <div  class="container-fluid carousel-wrap" *ngIf="isShownRelatedItem"  style="width:92%;margin-top:unset;padding-top: 80px;    overflow: hidden;"  >
+
+            <div style="padding-bottom:50px;    padding-left: 20px;margin: 21px;">
+                <owl-carousel-o [options]="customOptions" class="">
+                    <ng-template carouselSlide *ngFor="let item of RelatedItm" >
+                        <div class="" style="border:1px solid rgba(111,111,111,0.8);width: 87%; "  >
+                            <div  *ngFor="let menu of item.menuvariance | slice:0:1">
+                                            <div  class=" img__wrap"  >
+                                                <div class="trapezoid" style="position: absolute;" *ngIf='item.discountAmt != 0 ? true :false'><span class="test">{{item.discountAmt}}% OFF</span></div>
+                                                <img src={{menu.imageUrl1}} class="center-block  img__img" style="width:90%;height:198px" (click)="Foodlist(item.menuItemId,item.quan,item.adddon)" />
+                                                <p class="img__description" *ngIf='menu.description1 != null && menu.description1 !="" ? true :false' >{{menu.description1}}</p>
+
+                                            </div>
+
+                                            <div class="row" style="padding:10px; " >
+                                                <div class="container" style="width:100%;height: 32px; ">
+
+                                                    <div class="col-lg-9 col-md-9 col-xs-7 col-sm-7" style="    z-index: -13;"  *ngIf="menu.menuvarianceName1 != null &&  menu.menuvarianceName1 != '' ? false : true">
+                                                        <h5>{{item.itemName}} </h5>
+                                                    </div>
+                                                    <div class="col-lg-9 col-md-9 col-xs-7 col-sm-7" style="    z-index: -13;"  *ngIf="menu.menuvarianceName1 != null &&  menu.menuvarianceName1 != '' ? true : false">
+                                                        <h5>{{item.itemName}} - {{menu.menuvarianceName1}}</h5>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-4 col-xs-4 col-sm-4"  style="padding:unset; z-index: -13  ">
+
+                                                        <div class=" rating1" style="text-align: center;background-color:#48C479; padding-top: 4px; padding-right: unset;border-left:1px">
+                                                            <p style="color:white"  >
+                                                              $ {{(menu.price1)  | number:'.2'}}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                             </div>
+                                            <div class="row" *ngIf="menu.menuvarianceName1 != null &&  menu.menuvarianceName1 != '' ? true : false">
+                                                <div class="container"  style="    height: 56px;">
+                                                    <div class="col-md-4" style="padding: 5px 2px 7px 2px !important; cursor: pointer;;width:31.333333%" *ngFor="let menu1 of item.menuvariance | slice:0:3;">
+                                                        <h5 style="font-size: 11px !important;text-align:center" class="menuvariance" (click)="Addvariance(item,menu1.menuVariance)" >{{menu1.menuvarianceName}}</h5>
+                                                    </div>
+                                                    <div  *ngFor="let menu1 of item.menuvariance | slice:0:1">
+                                                        <div  >
+                                                          <div class="col-md-4" style="padding: 5px 2px 7px 2px !important; cursor: pointer;width:31.333333%" *ngFor="let menu2 of menu1.customization | slice:0:3 - item.menuvariancecount;">
+                                                            <h5 style="font-size: 11px !important;text-align:center" class="menuvariance"  (click)="addOnClick1(item,menu2.customization,menu2.price)" id={{menu2.customization}} class="menuvariance ">{{menu2.customization}}  </h5>
+                                                          </div>
+
+                                                            <div style="font-size: 40px;
+                                                            position: absolute;
+
+                                                            bottom: 182px;" class="tooltipval"  *ngIf="menu1.customization != null &&  menu.customization != '' ? true :false">&#8286;
+                                                             <div class="tooltiptextname" style="box-shadow: 0px 5px 14px;">
+                                                                <div class="col-md-12" style=" cursor: pointer;padding:unset" *ngFor="let menu1 of item.menuvariance">
+                                                                   <div class="col-md-8">
+                                                                    <h5 style="font-size: 11px !important;text-align:center" class="menuvariance" (click)="Addvariance1(item,menu1.menuVariance)" >{{menu1.menuvarianceName}}</h5>
+                                                                   </div>
+                                                                   <div class="col-md-4" style="    position: absolute; right: 9px;padding: unset;">
+                                                                    <h5>$ {{menu1.price == null ? 0:menu1.price}}</h5>
+                                                                   </div>
+                                                                </div>
+                                                                <div class="col-md-12"  *ngFor="let menu2 of menu1.customization" style="padding:unset" >
+                                                                  <div class="col-md-8" style=" cursor: pointer;">
+                                                                    <h5  style="font-size: 11px !important;text-align:center" (click)="addOnClick1(item,menu2.customization,menu2.price)" id={{menu2.customization}} class="menuvariance Addon">{{menu2.customization}}  </h5>
+                                                                </div>
+                                                                  <div class="col-md-4" style="    position: absolute; right: 9px;padding: unset;">
+                                                                      <h5>$ {{menu2.price == null ? 0:menu2.price}}</h5>
+                                                                  </div>
+                                                                  </div>
+                                                             </div>
+
+                                                        </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                            <div style="border-top: 1px solid rgba(111,111,111,0.8) ;">
+                                                <div class="col-md-3"></div>
+                                                  <div class="col-lg-6 col-xs-12 col-md-6 col-sm-12"  style="padding-top:10px ;padding-right:unset;padding-left:unset;" >
+                                                    <div class="input-group">
+                                                        <div class="input-group-btn">
+                                                            <button id="down" class="btn" style="border:unset;z-index: 0;background: none;padding-right:unset;    font-size: 16px;" (click)="Adddown('1',item)" ><span style="font-size: 25px;" class="glyphicon glyphicon-minus" ></span></button>
+                                                        </div>
+                                                        <input type="number" id="AddNumber" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57" style=" border:unset;z-index: 0;text-align: center;    font-size: 25px; font-family:Roboto, sans-serif  !important;box-shadow:unset;padding-left: 14px;background-color: snow;" class="form-control input-number "  [(ngModel)]="item.quan" (change)="AddcartQuant(item)"  />
+                                                        <div class="input-group-btn">
+                                                            <button id="up" class="btn" style="border:unset;z-index: 0;background: none;    font-size: 16px;padding-left:unset" (click)="Addup('100',item)"><span  style="font-size: 25px;" class="glyphicon glyphicon-plus" ></span></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3"></div>
+                                            </div>
+                                            <div class="">
+                                                <input type="text" style="height: 48px;width: 100%;" placeholder="ADD SPECIAL COMMENTS"  [(ngModel)]="item.adddon">
+                                                <input type="hidden"  [(ngModel)]="item.adddon1">
+                                            </div>
+
+                                            <div class="row" style="padding:10px">
+                                                <div class="col-lg-1"></div>
+
+                                                <div class="col-lg-5 col-sm-5 col-xs-5 col-md-5" *ngIf='item.favId== 0 ? true : false'>
+                                                    <div class="Wish" style="top:0px; " (click)="Fav(item)">
+                                                        <img src="../../assets/Images/icon/wishlist.png" id="st" style="width:unset" class="center-block" />
+
+                                                    </div>
+                                                </div>
+                                               <div class="col-lg-5 col-sm-5 col-xs-5 col-md-5" *ngIf='item.favId== 0 ? false : true'>
+                                                    <div class="Wish" style="top:0px; " (click)="Fav(item)">
+                                                        <img src="../../assets/Images/wishlist.png" id="st" style="width:unset" class="center-block" />
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-5 col-sm-5 col-xs-5 col-md-5" (click)="AddonCartitemsRelated(item)">
+                                                    <img src="../../assets/Images/icon/add-tocart.png" style="width:unset" />
+
+                                                </div>
+                                                <div class="col-lg-1"></div>
+                                            </div>
+                                        </div>
+                    </ng-template>
+
+                    </owl-carousel-o>
+            </div>
+        </div>
+
+
+
+    <div style="padding-top: 80px;" *ngIf="isShownSideDishes">
+        <div  class="container-fluid carousel-wrap" *ngIf="Carne"  style="width:92%;margin-top:unset;    overflow: hidden;"  data-aos="fade-up-left">
+
+            <div style="padding-bottom:50px;    padding-left: 20px;margin: 21px;">
+                <owl-carousel-o [options]="customOptions" class="">
+                    <ng-template carouselSlide *ngFor="let item of SideOrders" >
+                        <div class="" style="border:1px solid rgba(111,111,111,0.8);width: 87%; "  >
+                            <div  *ngFor="let menu of item.menuvariance | slice:0:1">
+                                            <div  class=" img__wrap"  >
+                                                <div class="trapezoid" style="position: absolute;" *ngIf='item.discountAmt != 0 ? true :false'><span class="test">{{item.discountAmt}}% OFF</span></div>
+                                                <img src={{menu.imageUrl1}} class="center-block  img__img" style="width:90%;height:198px"  (click)="Foodlist(item.menuItemId,item.quan,item.adddon)" />
+                                                <p class="img__description" *ngIf='menu.description1 != null && menu.description1 !="" ? true :false' >{{menu.description1}}</p>
+
+                                            </div>
+
+                                            <div class="row" style="padding:10px; " >
+                                                <div class="container" style="width:100%;height: 32px; ">
+
+                                                    <div class="col-lg-9 col-md-9 col-xs-7 col-sm-7" style="    z-index: -13;"  *ngIf="menu.menuvarianceName1 != null &&  menu.menuvarianceName1 != '' ? false : true">
+                                                        <h5>{{item.itemName}} </h5>
+                                                    </div>
+                                                    <div class="col-lg-9 col-md-9 col-xs-7 col-sm-7" style="    z-index: -13;"  *ngIf="menu.menuvarianceName1 != null &&  menu.menuvarianceName1 != '' ? true : false">
+                                                        <h5>{{item.itemName}} - {{menu.menuvarianceName1}}</h5>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-4 col-xs-4 col-sm-4"  style="padding:unset; z-index: -13  ">
+
+                                                        <div class=" rating1" style="text-align: center;background-color:#48C479; padding-top: 4px; padding-right: unset;border-left:1px">
+                                                            <p style="color:white"  >
+                                                              $ {{(menu.price1)  | number:'.2'}}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                             </div>
+                                            <div class="row" *ngIf="menu.menuvarianceName1 != null &&  menu.menuvarianceName1 != '' ? true : false">
+                                                <div class="container"  style="    height: 56px;">
+                                                    <div class="col-md-4" style="padding: 5px 2px 7px 2px !important; cursor: pointer;;width:31.333333%" *ngFor="let menu1 of item.menuvariance | slice:0:3;">
+                                                        <h5 style="font-size: 11px !important;text-align:center" class="menuvariance" (click)="Addvariance(item,menu1.menuVariance)" >{{menu1.menuvarianceName}}</h5>
+                                                    </div>
+                                                    <div  *ngFor="let menu1 of item.menuvariance | slice:0:1">
+                                                        <div  >
+                                                          <div class="col-md-4" style="padding: 5px 2px 7px 2px !important; cursor: pointer;width:31.333333%" *ngFor="let menu2 of menu1.customization | slice:0:3 - item.menuvariancecount;">
+                                                            <h5 style="font-size: 11px !important;text-align:center" class="menuvariance"  (click)="addOnClick1(item,menu2.customization,menu2.price)" id={{menu2.customization}} class="menuvariance Addon">{{menu2.customization}}  </h5>
+                                                          </div>
+
+                                                            <div style="font-size: 40px;
+                                                            position: absolute;
+
+                                                            bottom: 182px;" class="tooltipval"  *ngIf="menu1.customization != null &&  menu.customization != '' ? true :false">&#8286;
+                                                             <div class="tooltiptextname" style="box-shadow: 0px 5px 14px;">
+                                                                <div class="col-md-12" style=" cursor: pointer;padding:unset" *ngFor="let menu1 of item.menuvariance">
+                                                                   <div class="col-md-8">
+                                                                    <h5 style="font-size: 11px !important;text-align:center" class="menuvariance" (click)="Addvariance1(item,menu1.menuVariance)" >{{menu1.menuvarianceName}}</h5>
+                                                                   </div>
+                                                                   <div class="col-md-4" style="    position: absolute; right: 9px;padding: unset;">
+                                                                    <h5>$ {{menu1.price == null ? 0:menu1.price}}</h5>
+                                                                   </div>
+                                                                </div>
+                                                                <div class="col-md-12"  *ngFor="let menu2 of menu1.customization" style="padding:unset" >
+                                                                  <div class="col-md-8" style=" cursor: pointer;">
+                                                                    <h5  style="font-size: 11px !important;text-align:center" (click)="addOnClick1(item,menu2.customization,menu2.price)" id={{menu2.customization}} class="menuvariance Addon">{{menu2.customization}}  </h5>
+                                                                </div>
+                                                                  <div class="col-md-4" style="    position: absolute; right: 9px;padding: unset;">
+                                                                      <h5>$ {{menu2.price == null ? 0:menu2.price}}</h5>
+                                                                  </div>
+                                                                  </div>
+                                                             </div>
+
+                                                        </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                            <div style="border-top: 1px solid rgba(111,111,111,0.8) ;">
+                                                <div class="col-md-3"></div>
+                                                  <div class="col-lg-6 col-xs-12 col-md-6 col-sm-12"  style="padding-top:10px ;padding-right:unset;padding-left:unset;" >
+                                                    <div class="input-group">
+                                                        <div class="input-group-btn">
+                                                            <button id="down" class="btn" style="border:unset;z-index: 0;background: none;padding-right:unset;    font-size: 16px;" (click)="Adddown('1',item)" ><span style="font-size: 25px;" class="glyphicon glyphicon-minus" ></span></button>
+                                                        </div>
+                                                        <input type="number" id="AddNumber" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57" style=" border:unset;z-index: 0;text-align: center;    font-size: 25px; font-family:Roboto, sans-serif  !important;box-shadow:unset;padding-left: 14px;background-color: snow;" class="form-control input-number "  [(ngModel)]="item.quan" (change)="AddcartQuant(item)"  />
+                                                        <div class="input-group-btn">
+                                                            <button id="up" class="btn" style="border:unset;z-index: 0;background: none;    font-size: 16px;padding-left:unset" (click)="Addup('100',item)"><span  style="font-size: 25px;" class="glyphicon glyphicon-plus" ></span></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3"></div>
+                                            </div>
+                                            <div class="">
+                                                <input type="text" style="height: 48px;width: 100%;" placeholder="ADD SPECIAL COMMENTS"  [(ngModel)]="item.adddon">
+                                                <input type="hidden"  [(ngModel)]="item.adddon1">
+                                            </div>
+
+                                            <div class="row" style="padding:10px">
+                                                <div class="col-lg-1"></div>
+
+                                                <div class="col-lg-5 col-sm-5 col-xs-5 col-md-5" *ngIf='item.favId== 0 ? true : false'>
+                                                    <div class="Wish" style="top:0px; " (click)="Fav(item)">
+                                                        <img src="../../assets/Images/icon/wishlist.png" id="st" style="width:unset" class="center-block" />
+
+                                                    </div>
+                                                </div>
+                                               <div class="col-lg-5 col-sm-5 col-xs-5 col-md-5" *ngIf='item.favId== 0 ? false : true'>
+                                                    <div class="Wish" style="top:0px; " (click)="Fav(item)">
+                                                        <img src="../../assets/Images/wishlist.png" id="st" style="width:unset" class="center-block" />
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-5 col-sm-5 col-xs-5 col-md-5" (click)="AddonCartitemsRelated(item)">
+                                                    <img src="../../assets/Images/icon/add-tocart.png" style="width:unset" />
+
+                                                </div>
+                                                <div class="col-lg-1"></div>
+                                            </div>
+                                        </div>
+                    </ng-template>
+
+                    </owl-carousel-o>
+            </div>
+        </div>
+    </div>
+
+    <div style="padding-top: 80px;" *ngIf="isShownHouseSpl">
+        <div  class="container-fluid carousel-wrap" *ngIf="Carne"  style="width:92%;margin-top:unset;    overflow: hidden;"  data-aos="fade-up-left">
+
+            <div style="padding-bottom:50px;    padding-left: 20px;margin: 21px;">
+                <owl-carousel-o [options]="customOptions" class="">
+                    <ng-template carouselSlide *ngFor="let item of HouseSplDishes" >
+                        <div class="" style="border:1px solid rgba(111,111,111,0.8);width: 87%; "  >
+                            <div  *ngFor="let menu of item.menuvariance | slice:0:1">
+                                            <div  class=" img__wrap"  >
+                                                <div class="trapezoid" style="position: absolute;" *ngIf='item.discountAmt != 0 ? true :false'><span class="test">{{item.discountAmt}}% OFF</span></div>
+                                                <img src={{menu.imageUrl1}} class="center-block  img__img" style="width:90%;height:198px"  (click)="Foodlist(item.menuItemId,item.quan,item.adddon)"/>
+                                                <p class="img__description" *ngIf='menu.description1 != null && menu.description1 !="" ? true :false' >{{menu.description1}}</p>
+
+                                            </div>
+
+                                            <div class="row" style="padding:10px; " >
+                                                <div class="container" style="width:100%;height: 32px; ">
+
+                                                    <div class="col-lg-9 col-md-9 col-xs-7 col-sm-7" style="    z-index: -13;"  *ngIf="menu.menuvarianceName1 != null &&  menu.menuvarianceName1 != '' ? false : true">
+                                                        <h5>{{item.itemName}} </h5>
+                                                    </div>
+                                                    <div class="col-lg-9 col-md-9 col-xs-7 col-sm-7" style="    z-index: -13;"  *ngIf="menu.menuvarianceName1 != null &&  menu.menuvarianceName1 != '' ? true : false">
+                                                        <h5>{{item.itemName}} - {{menu.menuvarianceName1}}</h5>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-4 col-xs-4 col-sm-4"  style="padding:unset; z-index: -13  ">
+
+                                                        <div class=" rating1" style="text-align: center;background-color:#48C479; padding-top: 4px; padding-right: unset;border-left:1px">
+                                                            <p style="color:white"  >
+                                                              $ {{(menu.price1)  | number:'.2'}}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                             </div>
+                                            <div class="row" *ngIf="menu.menuvarianceName1 != null &&  menu.menuvarianceName1 != '' ? true : false">
+                                                <div class="container"  style="    height: 56px;">
+                                                    <div class="col-md-4" style="padding: 5px 2px 7px 2px !important; cursor: pointer;;width:31.333333%" *ngFor="let menu1 of item.menuvariance | slice:0:3;">
+                                                        <h5 style="font-size: 11px !important;text-align:center" class="menuvariance" (click)="Addvariance(item,menu1.menuVariance)" >{{menu1.menuvarianceName}}</h5>
+                                                    </div>
+                                                    <div  *ngFor="let menu1 of item.menuvariance | slice:0:1">
+                                                        <div  >
+                                                          <div class="col-md-4" style="padding: 5px 2px 7px 2px !important; cursor: pointer;width:31.333333%" *ngFor="let menu2 of menu1.customization | slice:0:3 - item.menuvariancecount;">
+                                                            <h5 style="font-size: 11px !important;text-align:center" class="menuvariance"  (click)="addOnClick1(item,menu2.customization,menu2.price)" id={{menu2.customization}} class="menuvariance Addon">{{menu2.customization}}  </h5>
+                                                          </div>
+
+                                                            <div style="font-size: 40px;
+                                                            position: absolute;
+
+                                                            bottom: 182px;" class="tooltipval"  *ngIf="menu1.customization != null &&  menu.customization != '' ? true :false">&#8286;
+                                                             <div class="tooltiptextname" style="box-shadow: 0px 5px 14px;">
+                                                                <div class="col-md-12" style=" cursor: pointer;padding:unset" *ngFor="let menu1 of item.menuvariance">
+                                                                   <div class="col-md-8">
+                                                                    <h5 style="font-size: 11px !important;text-align:center" class="menuvariance" (click)="Addvariance1(item,menu1.menuVariance)" >{{menu1.menuvarianceName}}</h5>
+                                                                   </div>
+                                                                   <div class="col-md-4" style="    position: absolute; right: 9px;padding: unset;">
+                                                                    <h5>$ {{menu1.price == null ? 0:menu1.price}}</h5>
+                                                                   </div>
+                                                                </div>
+                                                                <div class="col-md-12"  *ngFor="let menu2 of menu1.customization" style="padding:unset" >
+                                                                  <div class="col-md-8" style=" cursor: pointer;">
+                                                                    <h5  style="font-size: 11px !important;text-align:center" (click)="addOnClick1(item,menu2.customization,menu2.price)" id={{menu2.customization}} class="menuvariance ">{{menu2.customization}}  </h5>
+                                                                </div>
+                                                                  <div class="col-md-4" style="    position: absolute; right: 9px;padding: unset;">
+                                                                      <h5>$ {{menu2.price == null ? 0:menu2.price}}</h5>
+                                                                  </div>
+                                                                  </div>
+                                                             </div>
+
+                                                        </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                            <div style="border-top: 1px solid rgba(111,111,111,0.8) ;">
+                                                <div class="col-md-3"></div>
+                                                  <div class="col-lg-6 col-xs-12 col-md-6 col-sm-12"  style="padding-top:10px ;padding-right:unset;padding-left:unset;" >
+                                                    <div class="input-group">
+                                                        <div class="input-group-btn">
+                                                            <button id="down" class="btn" style="border:unset;z-index: 0;background: none;padding-right:unset;    font-size: 16px;" (click)="Adddown('1',item)" ><span style="font-size: 25px;" class="glyphicon glyphicon-minus" ></span></button>
+                                                        </div>
+                                                        <input type="number" id="AddNumber" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57" style=" border:unset;z-index: 0;text-align: center;    font-size: 25px; font-family:Roboto, sans-serif  !important;box-shadow:unset;padding-left: 14px;background-color: snow;" class="form-control input-number "  [(ngModel)]="item.quan" (change)="AddcartQuant(item)"  />
+                                                        <div class="input-group-btn">
+                                                            <button id="up" class="btn" style="border:unset;z-index: 0;background: none;    font-size: 16px;padding-left:unset" (click)="Addup('100',item)"><span  style="font-size: 25px;" class="glyphicon glyphicon-plus" ></span></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3"></div>
+                                            </div>
+                                            <div class="">
+                                                <input type="text" style="height: 48px;width: 100%;" placeholder="ADD SPECIAL COMMENTS"  [(ngModel)]="item.adddon">
+                                                <input type="hidden"  [(ngModel)]="item.adddon1">
+                                            </div>
+
+                                            <div class="row" style="padding:10px">
+                                                <div class="col-lg-1"></div>
+
+                                                <div class="col-lg-5 col-sm-5 col-xs-5 col-md-5" *ngIf='item.favId== 0 ? true : false'>
+                                                    <div class="Wish" style="top:0px; " (click)="Fav(item)">
+                                                        <img src="../../assets/Images/icon/wishlist.png" id="st" style="width:unset" class="center-block" />
+
+                                                    </div>
+                                                </div>
+                                               <div class="col-lg-5 col-sm-5 col-xs-5 col-md-5" *ngIf='item.favId== 0 ? false : true'>
+                                                    <div class="Wish" style="top:0px; " (click)="Fav(item)">
+                                                        <img src="../../assets/Images/wishlist.png" id="st" style="width:unset" class="center-block" />
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-5 col-sm-5 col-xs-5 col-md-5" (click)="AddonCartitemsRelated(item)">
+                                                    <img src="../../assets/Images/icon/add-tocart.png" style="width:unset" />
+
+                                                </div>
+                                                <div class="col-lg-1"></div>
+                                            </div>
+                                        </div>
+                    </ng-template>
+
+                    </owl-carousel-o>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid " *ngIf="!Carne" >
+        <div class="col-lg-12 col-xs-12 col-sm-12 col-md-12" style="padding-top:30px;padding-bottom:50px ;" data-aos="flip-left">
+
+            <div class="col-lg-3 col-xs-12 col-sm-6 col-md-4">
+                <div class="col-lg-10 col-md-11 col-xs-12 col-sm-12 " style="padding:unset;border:1px solid rgba(111,111,111,0.5)">
+                    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" style="padding:unset">
+                        <div class="wishlist1" style="top:0px; ">
+
+
+                        </div>
+                        <div >
+                            <div class="trapezoid" style="position: absolute;"><span class="test">10% OFF</span></div>
+                            <a href="#!food">
+                                <img src="../../assets/Images/Spicy-Chicken-Lettuce-Wraps_EXPS_CHKBZ18_48618_D10_19_5b-1.jpg" class="center-block" style="width:90%;height:198px" />
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="padding-bottom:10px ;border-bottom:1px solid">
+                        <div >
+                            <h5 style="text-align:center">Special Gonzales</h5>
+                            <div style="padding-top:10px">
+                                <div>
+                                    <div class="col-lg-1  col-md-1"></div>
+                                    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3 rating1" style="text-align: center ;margin:unset; background-color:#9ed3c2;padding-top: 4px; padding-right: unset;border-left:1px">
+
+                                        <p style="color:white;margin:unset">
+                                            <i class="glyphicon glyphicon-star"></i>  <a style="color:white;"> 3.5</a>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3 dollar" style="padding-right: unset;padding-top:5px;text-align:center">
+                                    <p style="color:black;" class="oldprice">
+                                        $ 8.95
+                                    </p>
+
+                                </div>
+                                <div class="col-lg-3 col-xs-3 col-md-3 col-sm-3 dollar" style="padding-right: unset;padding-top:5px;">
+                                    <p style="font-size:15px">$7.25</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="padding:10px">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-3 col-sm-4 col-xs-4 col-md-4">
+                            <img src="../../assets/Images/icon/view (1).png" class="center-block" />
+                        </div>
+                        <div class="col-lg-3 col-sm-4 col-xs-4 col-md-4">
+                            <div class="Wish" style="top:0px; ">
+
+                                <img src="../../assets/Images/icon/wishlist.png" id="st" class="center-block" />
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-4 col-xs-4 col-md-4">
+                            <img src="../../assets/Images/icon/add-tocart.png" class="center-block" />
+                        </div>
+                        <div class="col-lg-1"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-xs-12 col-sm-6 col-md-4">
+                <div class="col-lg-10 col-md-11 col-xs-12 col-sm-12 " style="padding:unset;border:1px solid rgba(111,111,111,0.5)">
+                    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" style="padding:unset">
+                        <div class="wishlist1" style="top:0px; ">
+
+
+                        </div>
+                        <div >
+                            <div class="trapezoid" style="position: absolute;"><span class="test">10% OFF</span></div>
+                            <a href="#!food">
+                                <img src="../../assets/Images/Special-4-new.jpg" class="center-block" style="width:90%;height:198px" />
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="padding-bottom:10px ;border-bottom:1px solid">
+                        <div >
+                            <h5 style="text-align:center">Special Lunch -01</h5>
+                            <div style="padding-top:10px">
+                                <div>
+                                    <div class="col-lg-1  col-md-1"></div>
+                                    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3 rating1" style="text-align: center ;margin:unset; background-color:#48C479;padding-top: 4px; padding-right: unset;border-left:1px">
+
+                                        <p style="color:white;margin:unset">
+                                            <i class="glyphicon glyphicon-star"></i>  <a style="color:white;"> 4.3</a>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3 dollar" style="padding-right: unset;padding-top:5px;text-align:center">
+                                    <p style="color:black;" class="oldprice">
+                                        $ 10.50
+                                    </p>
+
+                                </div>
+                                <div class="col-lg-3 col-xs-3 col-md-3 col-sm-3 dollar" style="padding-right: unset;padding-top:5px;">
+                                    <p style="font-size:15px">$9.25</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="padding:10px">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-3 col-sm-4 col-xs-4 col-md-4">
+                            <img src="../../assets/Images/icon/view (1).png" class="center-block" />
+                        </div>
+                        <div class="col-lg-3 col-sm-4 col-xs-4 col-md-4">
+                            <div class="Wish" style="top:0px; ">
+
+                                <img src="../../assets/Images/icon/wishlist.png" id="st" class="center-block" />
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-4 col-xs-4 col-md-4">
+                            <img src="../../assets/Images/icon/add-tocart.png" class="center-block" />
+                        </div>
+                        <div class="col-lg-1"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-xs-12 col-sm-6 col-md-4">
+                <div class="col-lg-10 col-md-11 col-xs-12 col-sm-12 " style="padding:unset;border:1px solid rgba(111,111,111,0.5)">
+                    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" style="padding:unset">
+                        <div class="wishlist1" style="top:0px; ">
+
+
+                        </div>
+                        <div >
+
+                            <a href="#!food">
+                                <img src="../../assets/Images/ten mix.jpg" class="center-block" style="width:90%;height:198px" />
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="padding-bottom:10px ;border-bottom:1px solid">
+                        <div >
+                            <h5 style="text-align:center">Special Lunch -02</h5>
+                            <div style="padding-top:10px">
+                                <div>
+                                    <div class="col-lg-3  col-md-1"></div>
+                                    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3 rating1" style="text-align: center;background-color:#9ed3c2;padding-top: 4px; padding-right: unset;border-left:1px">
+
+                                        <p style="color:white;margin:unset">
+                                            <i class="glyphicon glyphicon-star"></i>  <a style="color:white;"> 3.9</a>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-xs-3 col-md-3 col-sm-3 dollar" style="padding-right: unset;padding-top:3px;text-align:center">
+                                    <p style="font-size:15px">$6.95</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="padding:10px">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-3 col-sm-4 col-xs-4 col-md-4">
+                            <img src="../../assets/Images/icon/view (1).png" class="center-block" />
+                        </div>
+                        <div class="col-lg-3 col-sm-4 col-xs-4 col-md-4">
+                            <div class="Wish" style="top:0px; ">
+
+                                <img src="../../assets/Images/icon/wishlist.png" id="st" class="center-block" />
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-4 col-xs-4 col-md-4">
+                            <img src="../../assets/Images/icon/add-tocart.png" class="center-block" />
+                        </div>
+                        <div class="col-lg-1"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-xs-12 col-sm-6 col-md-4">
+                <div class="col-lg-10 col-md-11 col-xs-12 col-sm-12 " style="padding:unset;border:1px solid rgba(111,111,111,0.5)">
+                    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" style="padding:unset">
+                        <div class="wishlist1" style="top:0px; ">
+
+
+                        </div>
+                        <div >
+                            <div class="trapezoid" style="position: absolute;"><span class="test">10% OFF</span></div>
+                            <a href="#!food">
+                                <img src="../../assets/Images/Tender.png" class="center-block" style="width:90%;height:198px" />
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="padding-bottom:10px ;border-bottom:1px solid">
+                        <div >
+                            <h5 style="text-align:center">Special Lunch -03</h5>
+                            <div style="padding-top:10px">
+                                <div>
+                                    <div class="col-lg-1  col-md-1"></div>
+                                    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3 rating1" style="text-align: center ;margin:unset; background-color:#48C479;padding-top: 4px; padding-right: unset;border-left:1px">
+
+                                        <p style="color:white;margin:unset">
+                                            <i class="glyphicon glyphicon-star"></i>  <a style="color:white;"> 4.1</a>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3 dollar" style="padding-right: unset;padding-top:5px;text-align:center">
+                                    <p style="color:black;" class="oldprice">
+                                        $ 7.50
+                                    </p>
+
+                                </div>
+                                <div class="col-lg-3 col-xs-3 col-md-3 col-sm-3 dollar" style="padding-right: unset;padding-top:5px;">
+                                    <p style="font-size:15px">$5.25</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="padding:10px">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-3 col-sm-4 col-xs-4 col-md-4">
+                            <img src="../../assets/Images/icon/view (1).png" class="center-block" />
+                        </div>
+                        <div class="col-lg-3 col-sm-4 col-xs-4 col-md-4">
+                            <div class="Wish" style="top:0px; ">
+
+                                <img src="../../assets/Images/icon/wishlist.png" id="st" class="center-block" />
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-4 col-xs-4 col-md-4">
+                            <img src="../../assets/Images/icon/add-tocart.png" class="center-block" />
+                        </div>
+                        <div class="col-lg-1"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-xs-12 col-sm-6 col-md-4" style="padding-top:50px">
+                <div class="col-lg-10 col-md-11 col-xs-12 col-sm-12 " style="padding:unset;border:1px solid rgba(111,111,111,0.5)">
+                    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" style="padding:unset">
+                        <div class="wishlist1" style="top:0px; ">
+
+
+                        </div>
+                        <div >
+                            <div class="trapezoid" style="position: absolute;"><span class="test">10% OFF</span></div>
+                            <a href="#!food">
+                                <img src="../../assets/Images/The-Best-Guacamole-Recipe.jpg" class="center-block" style="width:90%;height:198px" />
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="padding-bottom:10px ;border-bottom:1px solid">
+                        <div >
+                            <h5 style="text-align:center">Special Lunch -04</h5>
+                            <div style="padding-top:10px">
+                                <div>
+                                    <div class="col-lg-1  col-md-1"></div>
+                                    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3 rating1" style="text-align: center ;margin:unset; background-color:#9ed3c2;padding-top: 4px; padding-right: unset;border-left:1px">
+
+                                        <p style="color:white;margin:unset">
+                                            <i class="glyphicon glyphicon-star"></i>  <a style="color:white;"> 3.6</a>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3 dollar" style="padding-right: unset;padding-top:5px;text-align:center">
+                                    <p style="color:black;" class="oldprice">
+                                        $ 8.50
+                                    </p>
+
+                                </div>
+                                <div class="col-lg-3 col-xs-3 col-md-3 col-sm-3 dollar" style="padding-right: unset;padding-top:5px;">
+                                    <p style="font-size:15px">$6.25</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="padding:10px">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-3 col-sm-4 col-xs-4 col-md-4">
+                            <img src="../../assets/Images/icon/view (1).png" class="center-block" />
+                        </div>
+                        <div class="col-lg-3 col-sm-4 col-xs-4 col-md-4">
+                            <div class="Wish" style="top:0px; ">
+
+                                <img src="../../assets/Images/icon/wishlist.png" id="st" class="center-block" />
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-4 col-xs-4 col-md-4">
+                            <img src="../../assets/Images/icon/add-tocart.png" class="center-block" />
+                        </div>
+                        <div class="col-lg-1"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-xs-12 col-sm-6 col-md-4" style="padding-top:50px">
+                <div class="col-lg-10 col-md-11 col-xs-12 col-sm-12 " style="padding:unset;border:1px solid rgba(111,111,111,0.5)">
+                    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" style="padding:unset">
+                        <div class="wishlist1" style="top:0px; ">
+
+
+                        </div>
+                        <div >
+
+                            <a href="#!food">
+                                <img src="../../assets/Images/Torilla.jpg" class="center-block" style="width:90%;height:198px" />
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="padding-bottom:10px ;border-bottom:1px solid">
+                        <div >
+                            <h5 style="text-align:center">Special Lunch -05</h5>
+                            <div style="padding-top:10px">
+                                <div>
+                                    <div class="col-lg-3  col-md-1"></div>
+                                    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3 rating1" style="text-align: center;background-color:#48C479;padding-top: 4px; padding-right: unset;border-left:1px">
+
+                                        <p style="color:white;margin:unset">
+                                            <i class="glyphicon glyphicon-star"></i>  <a style="color:white;"> 4.6</a>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!--<div class="col-lg-4 col-sm-3 col-md-3 col-xs-3 dollar" style="padding-right: unset;padding-top:5px;text-align:center">
+                                        <p style="color:black;" class="oldprice">
+                            $ 10.75
+                        </p>
+
+                                    </div>-->
+                                <div class="col-lg-6 col-xs-3 col-md-3 col-sm-3 dollar" style="padding-right: unset;padding-top:3px;text-align:center">
+                                    <p style="font-size:15px">$8.95</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="padding:10px">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-3 col-sm-4 col-xs-4 col-md-4">
+                            <img src="../../assets/Images/icon/view (1).png" class="center-block" />
+                        </div>
+                        <div class="col-lg-3 col-sm-4 col-xs-4 col-md-4">
+                            <div class="Wish" style="top:0px; ">
+
+                                <img src="../../assets/Images/icon/wishlist.png" id="st" class="center-block" />
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-4 col-xs-4 col-md-4">
+                            <img src="../../assets/Images/icon/add-tocart.png" class="center-block" />
+                        </div>
+                        <div class="col-lg-1"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-xs-12 col-sm-6 col-md-4" style="padding-top:50px">
+                <div class="col-lg-10 col-md-11 col-xs-12 col-sm-12 " style="padding:unset;border:1px solid rgba(111,111,111,0.5)">
+                    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" style="padding:unset">
+                        <div class="wishlist1" style="top:0px; ">
+
+
+                        </div>
+                        <div >
+                            <div class="trapezoid" style="position: absolute;"><span class="test">10% OFF</span></div>
+                            <a href="#!food">
+                                <img src="../../assets/Images/images.jpg" class="center-block" style="width:90%;height:198px" />
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="padding-bottom:10px ;border-bottom:1px solid">
+                        <div >
+                            <h5 style="text-align:center">Special Lunch -06</h5>
+                            <div style="padding-top:10px">
+                                <div>
+                                    <div class="col-lg-1  col-md-1"></div>
+                                    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3 rating1" style="text-align: center ;margin:unset; background-color:#48C479;padding-top: 4px; padding-right: unset;border-left:1px">
+
+                                        <p style="color:white;margin:unset">
+                                            <i class="glyphicon glyphicon-star"></i>  <a style="color:white;"> 4.9</a>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3 dollar" style="padding-right: unset;padding-top:5px;text-align:center">
+                                    <p style="color:black;" class="oldprice">
+                                        $ 18.50
+                                    </p>
+
+                                </div>
+                                <div class="col-lg-3 col-xs-3 col-md-3 col-sm-3 dollar" style="padding-right: unset;padding-top:5px;">
+                                    <p style="font-size:15px">$16.25</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="padding:10px">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-3 col-sm-4 col-xs-4 col-md-4">
+                            <img src="../../assets/Images/icon/view (1).png" class="center-block" />
+                        </div>
+                        <div class="col-lg-3 col-sm-4 col-xs-4 col-md-4">
+                            <div class="Wish" style="top:0px; ">
+
+                                <img src="../../assets/Images/icon/wishlist.png" id="st" class="center-block" />
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-4 col-xs-4 col-md-4">
+                            <img src="../../assets/Images/icon/add-tocart.png" class="center-block" />
+                        </div>
+                        <div class="col-lg-1"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-xs-12 col-sm-6 col-md-4" style="padding-top:50px">
+                <div class="col-lg-10 col-md-11 col-xs-12 col-sm-12 " style="padding:unset;border:1px solid rgba(111,111,111,0.5)">
+                    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" style="padding:unset">
+                        <div class="wishlist1" style="top:0px; ">
+
+
+                        </div>
+                        <div >
+
+                            <a href="#!food">
+                                <img src="../../assets/Images/butter-basted-rib-eye.jpeg" class="center-block" style="width:90%;height:198px" />
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="padding-bottom:10px ;border-bottom:1px solid">
+                        <div >
+                            <h5 style="text-align:center">Special Lunch -07</h5>
+                            <div style="padding-top:10px">
+                                <div>
+                                    <div class="col-lg-3  col-md-1"></div>
+                                    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3 rating1" style="text-align: center;background-color:#48C479;padding-top: 4px; padding-right: unset;border-left:1px">
+
+                                        <p style="color:white;margin:unset">
+                                            <i class="glyphicon glyphicon-star"></i>  <a style="color:white;"> 4.9</a>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-xs-3 col-md-3 col-sm-3 dollar" style="padding-right: unset;padding-top:3px;text-align:center">
+                                    <p style="font-size:15px">$16.95</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="padding:10px">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-3 col-sm-4 col-xs-4 col-md-4">
+                            <img src="../../assets/Images/icon/view (1).png" class="center-block" />
+                        </div>
+                        <div class="col-lg-3 col-sm-4 col-xs-4 col-md-4">
+                            <div class="Wish" style="top:0px; ">
+
+                                <img src="../../assets/Images/icon/wishlist.png" id="st" class="center-block" />
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-4 col-xs-4 col-md-4">
+                            <img src="../../assets/Images/icon/add-tocart.png" class="center-block" />
+                        </div>
+                        <div class="col-lg-1"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="modal fade bs-modal-md" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="padding-top:60px">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <br>
+                <div class="bs-example bs-example-tabs">
+                    <ul id="myTab" class="nav nav-tabs">
+                        <li class="active"><a>Add On</a></li>
+
+                    </ul>
+                </div>
+                <div class="modal-body">
+                    <div id="myTabContent" class="tab-content">
+
+                        <div class="tab-pane fade active in" id="signin">
+                            <form class="form-horizontal">
+                                <fieldset>
+                                    <!-- Sign In Form -->
+                                    <!-- Text input-->
+                                    <div class="control-group">
+
+                                        <div class="controls">
+                                            <textarea required="" id="userid" name="userid"  width="200" style="height: 200px;" class="form-control " placeholder=""></textarea>
+
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Button -->
+                                    <div class="control-group">
+                                        <label class="control-label" for="signin"></label>
+                                        <div class="controls" style="    text-align: center;">
+                                            <button id="signin" name="signin" class="btn " style="background-color:#9ed3c2;color:white">Submit</button>
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+<ng-template #Addon let-modal id="" style="width:90%">
+
+    <div class="modal-header" style="border: none;padding: 35px;padding-bottom: unset;">
+
+      <h3 class="modal-title" id="modal-basic-title" style="font-family: Ubuntu-Bold;">ADD ON</h3>
+
+      <button type="button" class="close" aria-label="Close" style="outline: none;opacity: 1;font-size: 34px;padding-top: unset;" (click)="modal.dismiss('Cross click')">
+
+        <span aria-hidden="true">×</span>
+
+      </button>
+
+    </div>
+
+    <div class="modal-body" style="padding:35px;">
+  <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="text-align: center;"  style="padding-bottom: 10px;" >
+    <fieldset>
+        <!-- Sign In Form -->
+        <!-- Text input-->
+        <div class="control-group">
+
+            <div class="controls">
+                <textarea required="" id="userid" name="userid"  [(ngModel)]="AddonText" width="200" style="height: 200px;" class="form-control " placeholder=""></textarea>
+
+            </div>
+        </div>
+
+
+        <!-- Button -->
+        <div class="control-group">
+            <label class="control-label" for="signin"></label>
+            <div class="controls" style="    text-align: center;">
+                <button id="signin" class="btn " style="background-color:#9ed3c2;color:white" (click)="AddonCartitemsRelated('Addon')" >Submit</button>
+            </div>
+        </div>
+
+    </fieldset>
+
+    </div>
+    </div>
+
+
+
+
+  </ng-template>
+</div>
+

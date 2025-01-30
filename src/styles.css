@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: "Ubuntu-Medium";
+    src: url("../src/assets/fonts/Ubuntu-Medium.ttf") format("opentype");
+  }
+  @font-face {
+    font-family: "Ubuntu-Bold";
+    src: url("../src/assets/fonts/Ubuntu-Bold.ttf") format("opentype");
+  } 
+   @font-face {
+    font-family: "Ubuntu-Regular";
+    src: url("../src/assets/fonts/Ubuntu-Regular.ttf") format("opentype");
+  }
+
+  @font-face {
+    font-family: "Cairo-SemiBold";
+    src: url("../src/assets/fonts/Cairo-SemiBold.ttf") format("opentype");
+  }
+  /* @font-face {
+    font-family: "Roboto, sans-serif  !important";
+    src: url("../src/assets/Roboto, sans-serif  !important.otf") format("opentype");
+  } */
+html, body { height: 100%; }
+body { margin: 0;  }

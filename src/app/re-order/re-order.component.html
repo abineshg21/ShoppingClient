@@ -1,0 +1,132 @@
+
+<div class="container-fluid" style="padding: 40px;">
+
+    <div class="col-lg-12 col-xs-12 col-sm-12 sol-md-12">
+        <div class="col-lg-2  col-md-2 col-xs-2 col-sm-2" style="text-align: center;">
+            <h3 style="color:  #9ed3c2;font-size: 28px;">Re-Order </h3>
+        </div>
+        <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2" style="text-align: right ;;">
+            <h3 style="font-size: 24px;">Order ID : </h3> 
+        </div>
+        <div class="col-lg-1 col-md-1 col-xs-3 col-sm-3" style="text-align: left; padding: unset;">
+            <h3 style="font-size: 24px;">{{OrderId}}</h3>
+        </div>
+        <div class="col-lg-3  col-md-3 col-xs-3 col-sm-3" style="text-align: right;">
+            <h3 style="font-size: 24px;">Order Date & Time :</h3>
+        </div>
+        <div class="col-lg-3  col-md-3 col-xs-2 col-sm-2" style="text-align: left;">
+            <h3 style="font-size: 24px;">{{OrderDate}} </h3>
+        </div>
+        </div>
+    </div>
+    <div class="" style="padding: 80px;padding-top: unset;" >
+    <div class="container-fluid" style="border:1px solid rgba(111,111,111,0.5) ;    border-radius: 20px;" >
+       
+        <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="border-bottom: 1px solid rgba(111,111,111,0.5);padding-top: 40px;padding-bottom: 20px;">
+            <div class="col-lg-2 col-xs-2 col-md-2 col-sm-12">
+                <h4 style="text-align: center;font-family:Ubuntu-Medium !important  ;font-size: 25px;">Items</h4>
+            </div>
+            <div class="col-lg-3 col-xs-2 col-md-3 col-sm-12">
+                <h4 style="text-align: center;font-family:Ubuntu-Medium !important  ;font-size: 25px;">Description</h4>
+            </div>
+            <div class="col-lg-2 col-xs-2 col-md-2 col-sm-12">
+                <h4 style="text-align: center;;font-family:Ubuntu-Medium !important  ;font-size: 25px;">Quantity</h4>
+            </div>
+            <div class="col-lg-3 col-xs-3 col-md-3 col-sm-12">
+                <h4 style="text-align: center;font-family:Ubuntu-Medium !important  ;font-size: 25px;">Price</h4>
+            </div>
+            <div class="col-lg-2 col-xs-2 col-md-2 col-sm-12">
+                <h4 style="text-align: center;font-family:Ubuntu-Medium !important  ;font-size: 25px;">Select<input type="checkbox" style="zoom: 1.5;    margin-left: 8px;" (click)="handleSelected1($event)"> </h4>
+            </div>
+        </div>
+        <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="padding-bottom: 30px; border-bottom: 1px solid rgba(111,111,111,0.5);padding-top: 20px;" *ngFor='let menu of ItemPrice  '>
+            <div *ngFor='let item of menu.orderitem  '>
+            <div class="col-lg-2 col-xs-2 col-md-2 col-sm-2">
+                <img src={{item.imageUrl}} class="center-block" style="width: 130px;height: 100px;;">
+            </div>
+            <div class="col-lg-3 col-xs-2 col-md-3 col-sm-4"   *ngIf="item.varianceName != null &&  item.varianceName != '' ? false : true">
+                <h4 style="text-align: center;font-family:Ubuntu-Medium !important  ;font-size: 20px;    padding-top: 23px;">{{item.itemName}} </h4>
+           <span *ngIf="item.addon ==null || item.addon ==''  ? false :true">{{item.addon}}</span>
+            </div>
+            <div class="col-lg-3 col-xs-2 col-md-3 col-sm-4"   *ngIf="item.varianceName != null &&  item.varianceName != '' ? true : false">
+                <h4 style="text-align: center;font-family:Ubuntu-Medium !important  ;font-size: 20px;    padding-top: 23px;">{{item.itemName}} - {{item.varianceName}}</h4>
+                <span *ngIf="item.addon ==null || item.addon ==''  ? false :true">{{item.addon}}</span>
+            </div>
+            <!-- <div class="col-lg-3 col-xs-2 col-md-3 col-sm-4">
+                <h4 style="text-align: center;font-family:Ubuntu-Medium !important  ;font-size: 20px;    padding-top: 23px;">{{item.itemName}}</h4>
+            </div> -->
+            <div class="col-lg-2 col-xs-2 col-md-2 col-sm-4" style="padding-top: 23px;padding-left: 33px;" >
+                <div class="input-group" id="wi" style="   text-align: center;background-color: #9ed3c2;color: white;">
+                    <div class="input-group-btn">
+                        <button id="down" class="btn" style="padding-top: unset;padding-bottom: unset; border:unset;font-size: 20px;z-index: 0;background: none;color: white;" (click)="Addup('100',item)" ><span class="glyphicon glyphicon-plus" style="font-size: 23px;"  ></span></button>
+                    </div>
+                    <input type="text" id="AddNumber"  onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"  (change)="AddcartQuant(item)"   style="text-align: center;-webkit-box-shadow:unset;box-shadow: unset; border:unset;background-color: #9ed3c2;color: white; font-size: 20px;z-index: 0;font-family:Roboto, sans-serif  !important" class="form-control input-number"  [(ngModel)]="item.qty"  />
+                    <div class="input-group-btn">
+                        <button id="up" class="btn" style="padding-top: unset;padding-bottom: unset;border:unset;font-size: 20px;z-index: 0;background: none;color: white;"  (click)="Adddown('1',item)"><span class="glyphicon glyphicon-minus" style="font-size: 23px;"  ></span></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-xs-3 col-md-3 col-sm-12">
+                <h4 style="text-align: center;font-family:Ubuntu-Medium !important  ;font-size: 20px;    padding-top: 23px;">$ {{item.qty * item.iTEMprice | number:'.2'}}</h4>
+            </div>
+            <div class="col-lg-2 col-xs-2 col-md-2 col-sm-12" style="padding-top: 23px;text-align: center;">
+                <input type="checkbox" style="zoom: 1.5;" name="Check" (click)="handleSelected($event,item)" >
+            </div>
+            </div>
+        </div>
+        
+    </div>
+    </div>
+    <div class="container-fluid" style="padding-top: unset; text-align: left;">
+        <button class="btn " style="background-color: #9ed3c2; color: white;font-size: 24px;border-radius: 32px;width: 25%;height: 60px;font-family: Ubuntu-Medium !important ;"> <a href="/" style="color: white;">Continue Shopping</a></button>
+    </div>
+
+<div class="container-fluid" style="padding: 81px ;padding-top: unset; text-align: right;    margin-top: -62px;">
+    <button class="btn " style="background-color: #9ed3c2; color: white;font-size: 24px;border-radius: 32px;width: 25%;height: 60px;font-family: Ubuntu-Medium !important ;" (click)="CheckOut()">Check Out  <i class="fa fa-shopping-cart"></i> <a *ngIf='selectedCount == 0 ? false:true'>({{selectedCount}})</a></button>
+</div>
+
+<ng-template #Addon let-modal id="" style="width:90%">
+
+    <div class="modal-header" style="border: none;padding: 35px;padding-bottom: unset;">
+  
+      <h3 class="modal-title" id="modal-basic-title" style="font-family: Ubuntu-Bold;">ADD ON</h3>
+  
+      <button type="button" class="close" aria-label="Close" style="outline: none;opacity: 1;font-size: 34px;padding-top: unset;" (click)="modal.dismiss('Cross click')">
+  
+        <span aria-hidden="true">×</span>
+  
+      </button>
+  
+    </div>
+  
+    <div class="modal-body" style="padding:35px;">
+  <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="text-align: center;"  style="padding-bottom: 10px;" >
+    <fieldset>
+        <!-- Sign In Form -->
+        <!-- Text input-->
+        <div class="control-group">
+
+            <div class="controls">
+                <textarea required="" id="userid" name="userid"  [(ngModel)]="AddonText" width="200" style="height: 200px;" class="form-control " placeholder=""></textarea>
+             
+            </div>
+        </div>
+
+
+        <!-- Button -->
+        <div class="control-group">
+            <label class="control-label" for="signin"></label>
+            <div class="controls" style="    text-align: center;">
+                <button id="signin" class="btn " style="background-color:#9ed3c2;color:white" (click)="AddonCartitems('Addon')" >Submit</button>
+            </div>
+        </div>
+
+    </fieldset>
+  
+    </div>
+    </div>
+
+  
+   
+  
+  </ng-template>

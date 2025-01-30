@@ -1,0 +1,24 @@
+@media(max-width:1320px) and (min-width:768px){
+    #wi{
+        width: 80%;
+    }
+}
+@media(min-width:1370px){
+    #wi{
+        width: 70%;
+    }
+}
+
+.closebtn {
+    right: 0px;
+    color: #888;
+    font-weight: bold;
+    float: right;
+    font-size: 20px;
+    position: absolute;
+      top: 8px;
+    cursor: pointer;
+  }
+  .closebtn:hover {
+    color: #000;
+  }

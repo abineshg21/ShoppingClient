@@ -1,0 +1,9 @@
+
+<app-header-component *ngIf="showHead"></app-header-component>
+
+
+<app-admin-menucommon *ngIf="showAdmin"></app-admin-menucommon>
+<router-outlet  (deactivate)="onDeactivate()"></router-outlet>
+
+
+<app-footer-component *ngIf="showHead"></app-footer-component>

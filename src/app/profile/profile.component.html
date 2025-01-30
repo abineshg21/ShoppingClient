@@ -1,0 +1,117 @@
+
+    <main class="body-content">
+
+        <!-- Navigation Bar -->
+        <nav class="navbar ms-navbar" style=" margin: unset;">
+            <div class="ms-aside-toggler ms-toggler pl-0" data-target="#ms-side-nav" data-toggle="slideLeft"> <span class="ms-toggler-bar bg-primary"></span>
+              <span class="ms-toggler-bar bg-primary"></span>
+              <span class="ms-toggler-bar bg-primary"></span>
+            </div>
+           
+          </nav>
+
+          <div class="row page-titles ms-panel" style="margin-right: unset;  margin-left: unset;">
+             
+            <div class="col-md-5 align-self-center">
+                <h4 class="text-themecolor">Profile Update</h4>
+            </div>
+            <div class="col-md-7 align-self-center text-right">
+               
+            </div>
+            <div style="    margin-top: 20px;">
+<div class="col-md-12" id="Menus">
+    <div class="">
+        <button id="Menu" tabindex="92" class="accordion" style="display: block;">Profile Details</button>
+    </div>
+
+    <div class="col-md-6" style="padding-top: 30px;padding-bottom: 30px;">
+       
+        <div class="col-md-6 ">
+          <div class="form-group">
+              <label class="control-label">User Name</label>
+            <input type="text" class="form-control " placeholder="First Name"  [(ngModel)]="FName">
+        </div>
+      </div>
+        <div class="col-md-6 ">
+          <div class="form-group" style="padding-top: 24px;">
+              <label class="control-label"></label>
+            <input type="text" class="form-control " placeholder="Last Name"  [(ngModel)]="LName">
+        </div>
+  </div>
+  </div>
+</div>
+<div class="col-md-12" style="padding-top: 30px;padding-bottom: 10px;">
+  
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label">Address Line1</label>
+          <input type="text" class="form-control"  placeholder="Address Line1" [(ngModel)]="Address1">
+    </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label">Address Line2</label>
+          <input type="text" class="form-control"  placeholder="Address Line2" [(ngModel)]="Address2">
+    </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label class="control-label">City</label>
+            <div class="">
+                <!-- <span><i class="ion-upload m-r-5"></i>Item Image</span> -->
+                <input type="text" class=" form-control" placeholder="City"  [(ngModel)]="City"> </div>
+        </div> 
+    </div>
+    
+    <div class="col-md-3" style="padding-top: 20px;">
+        <div class="form-group">
+            <label class="control-label">State</label>
+            <div class="">
+                <!-- <span><i class="ion-upload m-r-5"></i>Item Image</span> -->
+                <input type="text" class=" form-control" placeholder="State"  [(ngModel)]="State"> </div>
+        </div> 
+    </div>
+    <div class="col-md-3"  style="padding-top: 20px;">
+        <div class="form-group">
+            <label class="control-label">ZIP</label>
+            <div class="">
+                <!-- <span><i class="ion-upload m-r-5"></i>Item Image</span> -->
+                <input type="text" class=" form-control" placeholder="ZIP"  [(ngModel)]="Zip"> </div>
+        </div> 
+    </div>
+    <div class="col-md-3"  style="padding-top: 20px;">
+      <div class="form-group">
+          <label class="control-label">Profile Photo</label>
+          <div class="">
+              <!-- <span><i class="ion-upload m-r-5"></i>Item Image</span> -->
+              <input type="file"  #file   (change)="uploadFile(file.files)" class=" form-control" > </div>
+      </div> 
+  </div>
+  <div class="col-md-3" style="padding-top:20px;">
+    <img src={{Profile}} width="100" />
+  </div>
+    </div>
+
+    <div class="col-md-12" style="padding-bottom:20px ;">
+      <div class="col-md-6">
+        <div class="col-md-12">
+          <div class="col-md-6">
+              <button class="btn" class="form-control" style="background:  #9ed3c2;color:White ;border-radius: 5px;" (click)="Update()">Update</button>
+          </div>
+          <!-- <div class="col-md-6">
+              <button class="btn" class="form-control" style="border: 1px solid #444;color:black ;border-radius: 5px">CLEAR</button>
+          </div> -->
+      </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+        <span [hidden]="isShownError" style="color: red;">{{ErrorMsg}}</span>
+        <span [hidden]="isShownSuccess" style="color: #9ed3c2;">{{SuccessMsg}}</span>
+      </div>
+</div>
+    <!--/span-->
+        </div>
+      
+    
+      </main>
+  

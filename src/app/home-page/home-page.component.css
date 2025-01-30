@@ -1,0 +1,205 @@
+/* Product Grid: Desktop = 4 columns, Mobile = 1 column */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Adjusted width */
+    gap: 15px; /* Reduced gap for better spacing */
+    justify-content: center;
+  }
+  
+  /* Responsive Grid */
+  @media (min-width: 1024px) { /* Desktop (4 columns) */
+    .product-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  @media (min-width: 768px) and (max-width: 1023px) { /* Tablet (2 columns) */
+    .product-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 767px) { /* Mobile (1 column) */
+    .product-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  /* Product Card */
+  .product-card {
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    position: relative;
+  }
+  
+  /* Hover Effect */
+  .product-card:hover {
+    transform: scale(1.05); /* Slight zoom effect */
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2); /* Highlight */
+    z-index: 10; /* Make sure it appears in front */
+  }
+  
+  /* Image */
+  .menu-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    margin-bottom: 10px;
+  }
+  
+  /* Image Hover Effect */
+  .product-card:hover .menu-image {
+    transform: scale(1.1);
+  }
+  
+  /* Product Name & Price on One Line */
+  .product-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  /* Name Left */
+  .product-title .name {
+    text-align: left;
+    flex-grow: 1;
+  }
+  
+  /* Price Right */
+  .product-title .price {
+    text-align: right;
+    color: #28a745;
+    font-weight: bold;
+  }
+  
+  /* Variance Selector */
+  .variance-selector {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .variance-btn {
+    background-color: #eee;
+    border: none;
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .variance-btn:hover {
+    background-color: #ddd;
+  }
+  
+  /* Quantity & Add to Cart Section */
+  .quantity-cart-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background: #f8f9fa;
+    padding: 8px;
+    border-radius: 8px;
+  }
+  
+  /* Quantity Selector */
+  .quantity-selector {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: white;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .quantity-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .quantity-btn:hover {
+    background-color: #218838;
+  }
+  
+  .quantity-input {
+    width: 40px;
+    height: 30px;
+    text-align: center;
+    border: none;
+    font-size: 14px;
+    outline: none;
+  }
+  
+  /* Add to Cart Button */
+  .add-to-cart {
+    background-color: #9ed3c2;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    flex-grow: 1;
+  }
+  
+  .add-to-cart:hover {
+    background-color: #9ed3c2;
+  }
+  
+  .slider-container {
+    padding-top: 0;
+}
+#myCarousel {
+    max-height: 400px; /* Adjust height as needed */
+    overflow: hidden;
+}
+.carousel-inner .item img {
+    width: 100%;
+    height: auto;
+    max-height: 300px; /* Ensures image doesn't exceed max height */
+    object-fit: cover; /* Keeps a neat, trendy look */
+}
+.carousel-indicators {
+    bottom: 10px;
+}
+
+/* Centering and Styling Carousel Controls */
+.carousel-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px; /* Adjust button width */
+    height: 100%; /* Full height */
+    background: rgba(0, 0, 0, 0.3);
+    opacity: 1;
+    transition: background 0.3s;
+}
+.carousel-control:hover {
+    background-color: unset;
+}
+.carousel-control i {
+    font-size: 30px;
+    color: white;
+}

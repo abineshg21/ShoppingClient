@@ -1,0 +1,133 @@
+<div class="container-fluid" style="padding-top:40px;border-top:12px solid #9ed3c2;background-color:#15161d;border-bottom:1px solid rgba(111,111,111,0.5)">
+    <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="padding-bottom:15px;border-bottom:1px solid rgba(111,111,111,0.5);padding-bottom:unset">
+        <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12" style="border-right:1px solid rgba(111,111,111,0.5);  padding-left: 30px;  padding-bottom: 110px;padding-right:unset">
+            <div>
+                <img src="../assets/Images/icon/Logo-Footer.png"  style="padding-bottom: 20px;" />
+
+               
+            </div>
+            <div style="color:white;border-top:1px solid rgba(111,111,111,0.5);padding-left: 33px;">
+                <h3 style="text-align:left;padding-top:20px;font:bold; padding-bottom: 20px;">Restaurant Hours</h3>
+                <div *ngFor="let time of TimeArray">
+                    <p>{{time.day}}:&nbsp;{{time.startTime}}-{{time.endTime}}</p>
+                </div>
+                <!--<p style="text-align:left;padding-top:20px;font-size: 17px;">Mon - Thur : 11.00 a.m - 10.00 p.m</p>
+                <p style="text-align:left;padding-top:10px;font-size: 17px;">Friday : 11.00 a.m - 10.30 p.m</p>
+                <p style="text-align:left;padding-top:10px;font-size: 17px;">Saturday : 11.30 a.m - 10.00 p.m</p>
+                <p style="text-align:left;padding-top:10px;font-size: 17px;">Sunday : 11.30 a.m - 9.30 p.m</p>
+                <h3 style="text-align:left;padding-top:20px;font:bold">HAPPY HOURS </h3>
+                <p style="text-align:left;padding-top:20px;font-size: 17px;">Mon - Thur : 4.00 a.m - 7.00 p.m</p>-->
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12"  style="border-right: 1px solid rgba(111,111,111,0.5);padding-bottom: 53px;">
+            <div style="color:white">
+                <h3 style="color:white;padding-left:20px;">LOCATIONS</h3>
+                <h3 style="color:white;padding-left:20px;padding-top:15px">ZAPATA FLORENCE</h3>
+                <p style="color:white;padding-left:20px;font-size: 17px;">904, Pamplico Hwy</p>
+                <p style="color:white;padding-left:20px;font-size: 17px;">Florence,SC-29505</p>
+                <p style="color:white;padding-left:25px;font-size: 17px;padding-top:8px">(843) 292-8980</p>
+                <h3 style="color:white;padding-left:20px;padding-top:10px">ZAPATA HARTSVILLE</h3>
+                <p style="color:white;padding-left:20px;font-size: 17px;">1217, Retail Row</p>
+                <p style="color:white;padding-left:20px;font-size: 17px;">Hartsville,SC-29550</p>
+                <p style="color:white;padding-left:20px;font-size: 17px;padding-top:8px">(843) 332-2937</p>
+                <h3 style="color:white;padding-left:20px;padding-top:10px">EL SAN JOSE</h3>
+                <p style="color:white;padding-left:20px;font-size: 17px;">275, W.Main Street,</p>
+                <p style="color:white;padding-left:20px;font-size: 17px;">Lake City,SC-29560</p>
+                <p style="color:white;padding-left:20px;padding-top:8px;font-size: 17px;">(843) 394-5522</p>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-3 col-xs-12 col-sm-12" style="    padding-right: 20px;" >
+        <div class="col-lg-12 col-xs-12 col-sm-12 col-md-12" style="border-right: 1px solid rgba(111,111,111,0.5);
+        padding-bottom: 162px;">
+            <div class="col-lg-6 col-xs-6 col-sm-6 col-md-6" >
+                <h3 style="color:white; padding-bottom: 20px;;">DISHES</h3>
+                <div  *ngFor="let it of ItemsArrayMenu" >
+                    <a href=#{{it.categoryName}} target="_self"><p id="MhF" style="color:white;font-size: 17px; margin-bottom:15px;">{{it.categoryName}}</p>
+                    </a>
+                </div>
+                <!--<p style="color:white;font-size: 17px;padding-top:20px">Appetizers</p>
+                <p style="color:white;font-size: 17px;">Lunch Only</p>
+                <p style="color:white;font-size: 17px;">House Spl. Dishes</p>
+                <p style="color:white;font-size: 17px;">Quesadillas</p>
+                <p style="color:white;font-size: 17px;">Supreme</p>
+                <p style="color:white;font-size: 17px;">Poultry</p>
+                <p style="color:white;font-size: 17px;">Pork</p>
+                <p style="color:white;font-size: 17px;">From the Sea </p>
+                <p style="color:white;font-size: 17px;">Vegetarian</p>
+                <p style="color:white;font-size: 17px;">Carnes</p>
+                <p style="color:white;font-size: 17px;">Esoecialidades</p>-->
+            </div>
+            <div class="col-lg-4 col-xs-6 col-sm-6 col-md-4"  >
+                
+                <!--<p style="color:white;font-size: 17px;padding-top:80px">Combinations</p>
+                <p style="color:white;font-size: 17px;">Side orders</p>
+                <p style="color:white;font-size: 17px;">Soup & Salads</p>
+                <p style="color:white;font-size: 17px;">A le Carte</p>
+                <p style="color:white;font-size: 17px;">Desserts</p>
+                <p style="color:white;font-size: 17px;">Little Amigo's</p>-->            </div>
+        </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-xs-12 col-sm-12">
+            <h3 style="color:white;">DRINKS</h3>
+            <p style="color:white;font-size: 17px;padding-top:20px">Domestic Beer</p>
+            <p style="color:white;font-size: 17px;">Imported Beer</p>
+            <p style="color:white;font-size: 17px;">Draft Beer</p>
+            <p style="color:white;font-size: 17px;">Wines</p>
+            <p style="color:white;font-size: 17px;">Daiquiris</p>
+            <p style="color:white;font-size: 17px;">Pina Colada</p>
+            <p style="color:white;font-size: 17px;">Soft drinks</p>
+            <p style="color:white;font-size: 17px;">Margartias </p>
+            <p style="color:white;font-size: 17px;">Texas old Margaritas</p>
+            <p style="color:white;font-size: 17px;">Midori Margaritas</p>
+        </div>
+    </div>
+    <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" >
+        <div class="col-lg-6 col-xs-12 col-md-6 col-sm-6" style="padding-top:35px">
+            <div class="col-lg-2 col-md-2 col-xs-12 col-sm-12">
+                <span style="color:white" ><a [routerLink]="['/About']">ABOUT US</a></span>
+            </div>
+            <div class="col-lg-2  col-md-2 col-xs-12 col-sm-12" style="padding:unset">
+                <span style="color:white"><a [routerLink]="['/ContactUs']" >CONTACT US </a></span>
+            </div>
+          
+            <div class="col-lg-3  col-md-3 col-xs-12 col-sm-12">
+                <span style="color:white"><a [routerLink]="['/Privacy']">PRIVACY POLICIES </a></span>
+            </div>
+            <div class="col-lg-3  col-md-4 col-xs-12 col-sm-12" style="padding:unset">
+                <span style="color:white"><a [routerLink]="['/TermsCondition']">TERMS & CONDITIONS</a></span>
+            </div>
+            <div class="col-lg-2 col-md-2 col-xs-12 col-sm-12">
+                <span style="color:white"><a [routerLink]="['/SiteMap']">SITE MAP </a></span>
+            </div>
+            
+        </div>
+        <div class="col-lg-2  col-md-3 col-xs-12 col-sm-12">
+            <h5 style="color:white">FOLLOW US ON :</h5>
+            <div class="col-lg-3 col-xs-3 col-md-3 col-sm-3" style="padding-left: unset;">
+                <a href="https://www.facebook.com/zapatasgrill843/" target="_blank"><i class="fa fa-facebook  tes" ></i></a>
+            </div>
+            <div class="col-lg-3 col-xs-3 col-md-3 col-sm-3"  style="padding-left: unset;">
+                <a href="https://www.instagram.com/zapatas_grill/" target="_blank"><i class="fa fa-instagram  instagram" ></i></a>
+            </div>
+            <div class="col-lg-3 col-xs-3 col-md-3 col-sm-3"  style="padding-left: unset;">
+                <p><a href="https://twitter.com/zapatas_grill" target="_blank"> <i class="fa fa-twitter  twitte"></i></a></p>
+            </div>
+        </div>
+
+        <div class="col-lg-3  col-md-2 col-xs-12 col-sm-12" style="padding-bottom:20px">
+            <h5 style="color:white">DOWNLOAD OUR APP :</h5>
+            <div class="col-lg-5 col-xs-6 col-sm-6 col-md-6" style="padding-left: unset;">
+                <img src="../assets/Images/icon/play-store.png" />
+               
+            </div>
+            <div class="col-lg-5 col-xs-6 col-sm-6 col-md-6">
+                <img src="../assets/Images/icon/App-store.png" />
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" style="border-top:1px solid rgba(111,111,111,0.5);padding-top:20px">
+        <h5 style="text-align:center;color:white">All Rights Reserved. Powered by  <a href="https://abineshg21.github.io/Web/" target="_blank">Abinesh</a></h5>
+    </div>
+</div>

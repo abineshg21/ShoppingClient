@@ -1,0 +1,185 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Navbar Styles */
+.navbar {
+  background-color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between; /* Aligns logo left and menu right */
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: unset;
+}
+
+.logo img {
+  height: 50px;
+  width: auto;
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 30px;
+  color: #333; /* Dark color for visibility */
+  cursor: pointer;
+}
+/* Menu Styling */
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Adds space between items */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Align Cart to the Right */
+.menu li.cart-container {
+  margin-left: auto; /* Pushes the cart to the right */
+  position: relative;
+}
+.menu li {
+  margin-left: 20px;
+}
+
+.menu li a {
+  color: #333; /* Dark text color */
+  text-decoration: none;
+  padding: 10px 15px;
+  display: block;
+  transition: background-color 0.3s;
+}
+
+.menu li a:hover {
+  background-color: #f0f0f0; /* Subtle hover effect */
+}
+/* Cart Container */
+.cart-container {
+  position: relative;
+  display: inline-block; /* Ensure it only takes the necessary space */
+  padding-right: 15px; /* Space between text and badge */
+}
+/* Cart Badge (Cart Count) */
+.items_cart {
+  position: absolute;
+  top: -3px; /* Move upwards */
+  left: 37px; /* Move right */
+  background-color: #9ed3c2;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
+}
+/* Mobile Styling */
+@media (max-width: 768px) {
+  .menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: white; /* Ensure the background is white on mobile */
+    flex-direction: column;
+    width: 100%;
+    display: none;
+    z-index: 1000;
+    border-radius: 5px;
+  }
+
+  .menu.show {
+    display: flex;
+  }
+
+  .menu li {
+    margin-left: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .menu li a {
+    padding: 15px 20px;
+  }
+
+  .dropdown-menu {
+    position: static;
+    background-color: #f9f9f9;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
+
+/* Hover & Active State */
+.menu li a:focus,
+.menu li a:hover {
+  background-color: #f0f0f0;
+}
+
+/* Additional Styles for Active Menu Item */
+.menu li.active > a {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+/* Dropdown Menu */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #f9f9f9; /* Light background for dropdown */
+  border-radius: 5px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0s linear 0.3s; /* Fade-in transition */
+}
+
+/* Show the dropdown when active */
+.dropdown-menu.show {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease, visibility 0s linear 0s; /* Fade-in effect */
+}
+
+.dropdown-menu li {
+  padding: 10px 15px;
+  width: 100%; /* Make the entire li clickable */
+  display: block;
+  margin-left: unset;
+}
+
+.dropdown-menu li a {
+  color: #333; /* Dark text color */
+  text-decoration: none;
+  display: block; /* Ensure the <a> tag fills the entire <li> */
+  padding: 10px 15px;
+  width: 100%; /* Ensure the link fills the entire <li> */
+  box-sizing: border-box;
+}
+
+/* Hover effect for each item */
+.dropdown-menu li a:hover {
+  background-color: #f0f0f0; /* Subtle hover effect */
+}

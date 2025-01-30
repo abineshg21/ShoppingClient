@@ -1,0 +1,173 @@
+<title>Welcome to Shopping Online</title>
+  <div style="overflow:hidden;">
+    <div class="slider-container row">
+        <div class="col-lg-12">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+    
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img src="../../assets/Images/Banner1.png" alt="Banner 1">
+                    </div>
+                    <div class="item">
+                        <img src="../../assets/Images/Banner1.png" alt="Banner 2">
+                    </div>
+                    <div class="item">
+                        <img src="../../assets/Images/Banner1.png" alt="Banner 3">
+                    </div>
+                </div>
+    
+               
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                <i class="fa fa-chevron-left"></i>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                <i class="fa fa-chevron-right"></i>
+            </a>
+            </div>
+        </div>
+    </div>
+  
+  
+  
+  
+    <div *ngIf="Filter">
+   <div  *ngFor="let item of AllArray">
+    <div  class="container-fluid carousel-wrap" *ngIf="item.viewAll=='All'? true :false"  style="overflow: hidden;width:96%;margin-top:50px;padding-bottom: 50px;"  data-aos="fade-up-left"> 
+       
+        <div class="product-section" id="{{ item.subCategoryName }}">
+            <h2 class="section-title">{{ item.subCategoryName }}</h2>
+            <div class="product-grid">
+              <div class="product-card" *ngFor="let Menuitem of item.menuitem">
+                
+                <div class="menu-variance" *ngFor="let variance of Menuitem.menuvariance">
+                  
+                  <!-- Product Image -->
+                  <div class="product-image">
+                    <img [src]="variance.imageUrl1" [alt]="Menuitem.itemName" class="menu-image" />
+                    <span class="discount-badge" *ngIf="Menuitem.discountAmt">
+                      {{ Menuitem.discountAmt }}% OFF
+                    </span>
+                  </div>
+                  
+                  <!-- Product Name & Price (Left & Right Alignment) -->
+                  <div class="product-details">
+                    <h3 class="product-title">
+                      <span class="name">{{ Menuitem.itemName }}</span>
+                      <span class="price">${{ variance.price1 | number: '.2' }}</span>
+                    </h3>
+                  </div>
+          
+                  <!-- Variance Selector -->
+                  <div class="variance-selector" *ngIf="variance.menuvarianceName1">
+                    <button 
+                      *ngFor="let menu1 of Menuitem.menuvariance | slice: 0:3" 
+                      class="variance-btn"
+                      (click)="Addvariance(Menuitem, menu1.menuVariance)"
+                    >
+                      {{ menu1.menuvarianceName }}
+                    </button>
+                  </div>
+          
+                  <!-- Quantity & Add to Cart in One Section -->
+                  <div class="product-actions">
+                    <div class="quantity-cart-container">
+                      <div class="quantity-selector">
+                        <button class="quantity-btn" (click)="Adddown('1', Menuitem)">-</button>
+                        <input 
+                          type="number" 
+                          [(ngModel)]="Menuitem.quan" 
+                          (change)="AddcartQuant(Menuitem)" 
+                          class="quantity-input"
+                        />
+                        <button class="quantity-btn" (click)="Addup('100', Menuitem)">+</button>
+                      </div>
+                      <button class="add-to-cart" (click)="AddonCartitems(Menuitem)">Add to Cart</button>
+                    </div>
+                  </div>
+          
+                </div>
+              </div>
+            </div>
+          </div>
+          
+    </div>
+  
+   </div>
+   
+      
+            </div>
+              <ng-template #Addon let-modal id="" style="width:90%">
+
+                <div class="modal-header" style="border: none;padding: 35px;padding-bottom: unset;">
+              
+                  <h3 class="modal-title" id="modal-basic-title" style="font-family: Ubuntu-Bold;">ADD ON</h3>
+              
+                  <button type="button" class="close" aria-label="Close" style="outline: none;opacity: 1;font-size: 34px;padding-top: unset;" (click)="modal.dismiss('Cross click')">
+              
+                    <span aria-hidden="true">×</span>
+              
+                  </button>
+              
+                </div>
+              
+                <div class="modal-body" style="padding:35px;">
+              <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="text-align: center;"  style="padding-bottom: 10px;" >
+                <fieldset>
+                    <!-- Sign In Form -->
+                    <!-- Text input-->
+                    <div class="control-group">
+
+                        <div class="controls">
+                            <textarea required="" id="userid" name="userid"  [(ngModel)]="AddonText" width="200" style="height: 200px;" class="form-control " placeholder=""></textarea>
+                         
+                        </div>
+                    </div>
+
+
+                    <!-- Button -->
+                    <div class="control-group">
+                        <label class="control-label" for="signin"></label>
+                        <div class="controls" style="    text-align: center;">
+                            <button id="signin" class="btn " style="background-color:#9ed3c2;color:white" (click)="AddonCartitems('Addon')" >Submit</button>
+                        </div>
+                    </div>
+
+                </fieldset>
+              
+                </div>
+                </div>
+
+              
+               
+              
+              </ng-template>
+            
+            
+    <style>
+        @media(min-width:768px) {
+            .dollar {
+                padding-right: unset !important;
+                padding-left: unset !important;
+            }
+        }
+ .owl-next{
+    position: absolute;
+    top: 41%;
+    right:  -30px;
+    float:right;
+}
+ .owl-prev{
+    position: absolute;
+    top: 41%;
+left: -30px;
+}
+    </style>
+  
+  </div>
+  
+  

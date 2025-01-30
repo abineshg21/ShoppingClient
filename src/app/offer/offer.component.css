@@ -1,0 +1,64 @@
+
+.oldprice {
+    position: relative;
+    display: inline-block;
+    font-size:13px;
+}
+
+    .oldprice::before, .oldprice::after {
+        content: '';
+        width: 100%;
+        position: absolute;
+        right: 0;
+        top: 50%;
+    }
+
+    .oldprice::before {
+        border-bottom: 1.5px solid red;
+        -webkit-transform: skewY(-10deg);
+        transform: skewY(-10deg);
+    }
+
+    .circle{
+        background-color: #9ed3c2;
+        color: white;
+        position: absolute;
+        right: -16px;
+        border-radius: 24px;
+        width: 47px;
+        height: 44px;
+        top: -30px;
+        text-align: center;
+        padding-top: 14px;
+    }
+    .tria{
+      
+        color: white;
+        font-family:Roboto, sans-serif  !important;
+        position: absolute;
+        right: -35px;
+        top: -31px;
+        height: 22px;
+        padding-top: 2px;
+        border-left: 10px;
+        border-right: 10px;
+        width: 28%;
+        width: 5;
+        text-align: center;
+        border-bottom: 30px solid #9ed3c2;
+        border-left: 36px solid transparent;
+       
+        height: 0;
+        width: 189px;
+    }
+    #MoreResult:hover{
+        background-color:#9ed3c2 ;
+        color: white;
+    }
+    #MoreResult{
+        background-color:white ;
+        color: black;
+    }
+    .btn{
+        font-family:Roboto, sans-serif  !important
+    }
